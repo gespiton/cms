@@ -33,5 +33,4 @@ public class WxUser {
         System.out.println(session);
         return session;
     }
-
 }

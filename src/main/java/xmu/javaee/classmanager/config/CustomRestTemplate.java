@@ -13,12 +13,6 @@ import java.util.List;
 @Configuration
 public class CustomRestTemplate {
 
-//    @Bean
-//    public ClientHttpRequestFactory clientHttpRequestFactory() {
-//
-//    }
-
-
     @Bean
     public RestTemplate restTemplate() {
         RestTemplate template = new RestTemplate();
