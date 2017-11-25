@@ -9,7 +9,7 @@
   box-sizing: border-box;
 }
 
-input{
+input,picker{
   border-radius: 10rpx;
   border: solid 1px silver;
   padding: 5px

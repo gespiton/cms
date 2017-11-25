@@ -1,6 +1,19 @@
 /* pages/bind/bind.wxss */
 
-.input-group {
+.input_group {
+  margin: 20px 0;
+
+}
+
+.selected{
+  color: white;
+  background-color: #333;
+}
+
+.label{
+  border-left: solid 3px pink;
+  padding: 0 5px;
+  transform: translateX(-10px);
 }
 
 .outer{
@@ -11,4 +24,10 @@
 #character button{
   display: inline-block;
   width: 50%;
+}
+
+#bt_bind_confirm{
+  width: 100%;
+  margin: 40px 0;
+  text-align: center;
 }

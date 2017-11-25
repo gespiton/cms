@@ -3,8 +3,8 @@
   <view class='input_group section'>
     <view class='label'>我是:</view>
     <view id='character'>
-      <button bindtap='changeUserType' type="{{userType=='student'?'primary':''}}" id='bt_student'>学生</button>
-      <button bindtap='changeUserType' type="{{userType=='teacher'?'primary':''}}"  id='bt_teacher' >老师</button>
+      <button bindtap='changeUserType' class="{{userType=='student'?'selected':''}}" id='bt_student'>学生</button>
+      <button bindtap='changeUserType' class="{{userType=='teacher'?'selected':''}}"  id='bt_teacher' >老师</button>
     </view>
   </view>
 
@@ -18,11 +18,17 @@
     <input placeholder="输入" id='name' bindinput='textInput'/>
   </view>
 
-  <view class="input_group">学校</view>
-  <picker mode="multiSelector" bindchange="schoolPickerChange" bindcolumnchange="bindMultiPickerColumnChange" value="{{multiIndex}}" range="{{multiArray}}">
+  <view class="input_group">
+    <view class='label'>学校</view>
+  <picker mode="multiSelector" bindchange="schoolPickerChange"  value="{{schoolIndex}}" range="{{schoolArray}}">
     <view class="picker">
-      当前选择：{{multiArray[2][multiIndex[2]]}}
+      {{schoolArray[2][schoolIndex[2]]}}
     </view>
   </picker>
+  </view>
+
+  <button type='primary' id='bt_bind_confirm' bindtap='bt_bind'>
+    确认绑定
+  </button>
 
 </view>

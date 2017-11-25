@@ -1,4 +1,5 @@
 // pages/bind/bind.js
+import dataCenter from '../../utils/dataCenter';
 Page({
 
   /**
@@ -6,9 +7,13 @@ Page({
    */
   data: {
     userType: 'student',
-    array:['fuck','you','stupid fuck'],
-    multiArray: [ ['福建省'], ['厦门式'], ['集美大学', '厦门大学']],
-    multiIndex:[0,0,1]
+    array: ['fuck', 'you', 'stupid fuck'],
+    schoolArray: [
+      ['福建省'],
+      ['厦门式'],
+      ['集美大学', '厦门大学']
+    ],
+    schoolIndex: [0, 0, 1]
   },
 
   /**
@@ -45,9 +50,16 @@ Page({
     });
   },
 
-  schoolPickerChange(e){
-    console.log(e);
+  schoolPickerChange(e) {
+    this.setData({
+      schoolIndex: e.detail.value
+    });
 
+    dataCenter.set('ha',this.data.schoolArray[2][e.detail.value[2]]);
+  },
+
+  bt_bind(e) {
+    console.log(dataCenter.get('ha'));
   }
 
 
