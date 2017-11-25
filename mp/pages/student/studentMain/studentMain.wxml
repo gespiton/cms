@@ -1,0 +1,26 @@
+<!--pages/student/studentMain/studentMain.wxml-->
+<view class="main_title">
+  <view bindtap='goRevise'>
+    <view class="avator">
+      <image src='{{student.avator}}'></image>
+    </view>
+
+    <view>
+      <view>姓名： {{student.name}}</view>
+      <view>学号： {{student.number}}</view>
+    </view>
+  </view>
+
+  <view wx:for="{{student.courses}}" wx:for-item="course">
+    <view>
+      <button class="course_button" bindtap="chooseCourse">
+        <view style="display:flex; flex-direction:row;">
+          <view>{{course.name}}</view>
+          <view>{{course.teacher}}</view>
+        </view>
+      </button>
+
+    </view>
+  </view>
+
+</view>

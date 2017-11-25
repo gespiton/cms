@@ -1,5 +1,14 @@
 {
   "pages":[
+    "pages/student/studentMain/studentMain",
+    "pages/student/oneCourse/oneCourse",
+    "pages/student/oneCourse/courseInfo/courseInfo",
+    "pages/student/seminarHome/seminarHome",
+    "pages/teacher/teacherMain/teacherMain",
+    
+    "pages/student/reviseStudentInfo/reviseStudentInfo",
+    
+    "pages/teacher/reviseTeacherInfo/reviseTeacherInfo",
     "pages/bind/bind",
     "pages/index/index",
     "pages/logs/logs"
@@ -7,7 +16,7 @@
   "window":{
     "backgroundTextStyle":"light",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "WeChat",
+    "navigationBarTitleText": "课堂管理系统",
     "navigationBarTextStyle":"black"
   }
 }

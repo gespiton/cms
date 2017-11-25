@@ -1,0 +1,19 @@
+<!--pages/student/reviseStudentInfo/reviseStudentInfo.wxml-->
+<view class="main_title">
+  <view class="avator"><image src='{{student.avator}}'></image></view>
+
+  <view>
+    <view>姓名： {{student.name}}</view>
+    <view>学号：  {{student.number}}</view>
+  </view>
+ 
+</view>
+
+<view class="info_div"> 
+
+    <view>学校： {{student.school}}</view>
+    <view>学号：  {{student.number}}</view>
+    <view>姓名： {{student.name}}</view>
+
+    <button id='unbind_button' bindtap='unbind'>解绑</button>
+</view>
