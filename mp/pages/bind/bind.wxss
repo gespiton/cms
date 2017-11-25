@@ -1,0 +1,14 @@
+/* pages/bind/bind.wxss */
+
+.input-group {
+}
+
+.outer{
+  width: 80%;
+  margin: auto;
+}
+
+#character button{
+  display: inline-block;
+  width: 50%;
+}

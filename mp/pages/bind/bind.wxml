@@ -1,0 +1,28 @@
+<!--pages/bind/bind.wxml-->
+<view class='outer'>
+  <view class='input_group section'>
+    <view class='label'>我是:</view>
+    <view id='character'>
+      <button bindtap='changeUserType' type="{{userType=='student'?'primary':''}}" id='bt_student'>学生</button>
+      <button bindtap='changeUserType' type="{{userType=='teacher'?'primary':''}}"  id='bt_teacher' >老师</button>
+    </view>
+  </view>
+
+  <view class='input_group section'>
+    <view class='label'>{{userType=='student'?'学号':'教工号'}}:</view>
+    <input placeholder="输入" id='id' bindinput='textInput'/>
+  </view>
+
+  <view class='input_group section'>
+    <view class='label'>姓名</view>
+    <input placeholder="输入" id='name' bindinput='textInput'/>
+  </view>
+
+  <view class="input_group">学校</view>
+  <picker mode="multiSelector" bindchange="schoolPickerChange" bindcolumnchange="bindMultiPickerColumnChange" value="{{multiIndex}}" range="{{multiArray}}">
+    <view class="picker">
+      当前选择：{{multiArray[2][multiIndex[2]]}}
+    </view>
+  </picker>
+
+</view>
