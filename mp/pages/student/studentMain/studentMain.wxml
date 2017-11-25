@@ -1,26 +1,23 @@
 <!--pages/student/studentMain/studentMain.wxml-->
-<view class="main_title">
+<view class="outer">
   <view bindtap='goRevise'>
     <view class="avator">
-      <image src='{{student.avator}}'></image>
+      <image src='https://placeimg.com/320/240/people'></image>
+      <view id='user_detail'>
+        <view id='user_name'>{{user.name}}</view>
+        <view id='id'>{{user.id}}</view>
+      </view>
     </view>
 
-    <view>
-      <view>姓名： {{student.name}}</view>
-      <view>学号： {{student.number}}</view>
-    </view>
   </view>
 
+  <scroll-view scroll-y  class='course_list'>
   <view wx:for="{{student.courses}}" wx:for-item="course">
-    <view>
-      <button class="course_button" bindtap="chooseCourse">
-        <view style="display:flex; flex-direction:row;">
-          <view>{{course.name}}</view>
-          <view>{{course.teacher}}</view>
-        </view>
-      </button>
-
-    </view>
+      <view class="course_item" bindtap="chooseCourse">
+          <view class='course_name'>{{course.name}}</view>
+          <view class='course_teacher'>{{course.teacher}}</view>
+      </view>
   </view>
+</scroll-view>
 
 </view>

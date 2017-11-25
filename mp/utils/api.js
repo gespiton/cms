@@ -25,6 +25,8 @@ const studentData = {
     "avator": "",
     "courses": [{ name: "黑魔法防御课", teacher: "斯内普教授" },
     { name: "草药学", teacher: "斯内普教授" },
+    { name: "魔药学", teacher: "斯内普教授" },
+    { name: "魔药学", teacher: "斯内普教授" },
     { name: "魔药学", teacher: "斯内普教授" }],
     "school": "霍格沃兹魔法学校格兰芬多学院"
   }

@@ -16,11 +16,11 @@ Page({
     schoolIndex: [0, 0, 1]
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
   onLoad: function(options) {
-
+    this.setData({
+        name:'default',
+        id:'123'
+    });
   },
 
   /**
@@ -60,14 +60,18 @@ Page({
   },
 
   bt_bind(e) {
-    console.log(dataCenter.get('ha'));
     dataCenter.set('user', {
       name: this.data.name,
       id: this.data.id,
       type: this.data.userType,
       school: this.data.schoolArray[2][this.data.schoolIndex[2]]
     });
-    console.log(dataCenter.get('user'));
+
+    if (this.data.userType == 'student') {
+      wx.redirectTo({
+        url: '/pages/student/studentMain/studentMain'
+      });
+    }
   }
 
 

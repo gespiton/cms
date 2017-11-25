@@ -2,7 +2,8 @@
 <view>
   <view class="course_title">
     <view>{{course.name}}</view>
-    <view>
+    <view bindtap="viewCourseInfo">
+      asdffffffffffff
       <image bindtap="viewCourseInfo"></image>
     </view>
   </view>

@@ -1,4 +1,9 @@
 const data = {
+  user:{
+    name: 'default',
+    id: '123',
+    school: 'xmu'
+  }
 
 }
 
@@ -9,7 +14,6 @@ const op = {
   get: function(key) {
     return data[key];
   }
-  
 }
 
 export default op;
