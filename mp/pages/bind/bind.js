@@ -31,13 +31,13 @@ Page({
   },
 
   changeUserType(e) {
-    console.log(e);
     let userType = '';
     if (e.target.id == 'bt_student') {
       userType = 'student';
     } else {
       userType = 'teacher';
     }
+
     this.setData({
       "userType": userType
     });
@@ -55,11 +55,19 @@ Page({
       schoolIndex: e.detail.value
     });
 
-    dataCenter.set('ha',this.data.schoolArray[2][e.detail.value[2]]);
+
+    dataCenter.set('ha', this.data.schoolArray[2][e.detail.value[2]]);
   },
 
   bt_bind(e) {
     console.log(dataCenter.get('ha'));
+    dataCenter.set('user', {
+      name: this.data.name,
+      id: this.data.id,
+      type: this.data.userType,
+      school: this.data.schoolArray[2][this.data.schoolIndex[2]]
+    });
+    console.log(dataCenter.get('user'));
   }
 
 

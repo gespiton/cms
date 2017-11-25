@@ -7,8 +7,9 @@ const op = {
     data[key] = value;
   },
   get: function(key) {
-    return data[key]
+    return data[key];
   }
+  
 }
 
 export default op;
