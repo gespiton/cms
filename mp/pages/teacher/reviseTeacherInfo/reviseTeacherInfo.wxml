@@ -1,0 +1,19 @@
+<!--pages/teacher/reviseTeacherInfo/reviseTeacherInfo.wxml-->
+<view class="main_title">
+  <view class="avator"><image src='{{teacher.avator}}'></image></view>
+
+  <view>
+    <view>姓名： {{teacher.name}}</view>
+    <view>教工号：  {{teacher.number}}</view>
+  </view>
+ 
+</view>
+
+<view class="info_div"> 
+
+    <view>学校： {{teacher.school}}</view>
+    <view>教工号：  {{teacher.number}}</view>
+    <view>姓名： {{teacher.name}}</view>
+
+    <button id='unbind_button' bindtap='unbind'>解绑</button>
+</view>

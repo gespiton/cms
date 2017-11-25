@@ -1,0 +1,21 @@
+<!--pages/student/oneCourse/oneCourse.wxml-->
+<view>
+  <view class="course_title">
+    <view>{{course.name}}</view>
+    <view>
+      <image bindtap="viewCourseInfo"></image>
+    </view>
+  </view>
+
+  <scroll-view>
+    <view class="seminar_view" wx:for="{{course.class.seminars}}" style='display:flex; flex-direction:row;'>
+      <view>讨论课{{index}}</view>
+      <view>
+        <view>{{item.date}}</view>
+        <view>{{item.groupingModel}}</view>
+        <view>{{item.report.grade}}</view>
+      </view>
+    </view>
+  </scroll-view>
+
+</view>
