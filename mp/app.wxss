@@ -7,4 +7,22 @@
   justify-content: space-between;
   padding: 200rpx 0;
   box-sizing: border-box;
-} 
+}
+
+input,picker{
+  border-radius: 10rpx;
+  border: solid 1px silver;
+  padding: 5px
+}
+
+.info{
+  width: 80%;
+  margin: auto;
+  border: solid 1px silver;
+  border-radius: 5px;
+  padding: 10px;
+}
+image{
+  display: block;
+  margin: 0;
+}

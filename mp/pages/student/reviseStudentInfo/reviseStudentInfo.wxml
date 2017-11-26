@@ -1,0 +1,14 @@
+<!--pages/student/reviseStudentInfo/reviseStudentInfo.wxml-->
+<view class='outer'>
+<view class="info_div">
+  <view class="avator">
+    <image src='https://placeimg.com/320/240/people'></image>
+  </view>
+
+    <view class='info'>学校： {{user.school}}</view>
+    <view class='info'>学号：  {{user.id}}</view>
+    <view class='info'>姓名： {{user.name}}</view>
+
+    <button type='warn' id='unbind_button' bindtap='unbind'>解绑</button>
+</view>
+</view>

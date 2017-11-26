@@ -1,0 +1,57 @@
+/* pages/student/studentMain/studentMain.wxss */
+
+.avator{
+  height: 500rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.avator image{
+  width: 100%;
+  height: 400rpx;
+  margin:  auto;
+  display: block;
+  opacity: 0.5;
+  position: absolute;
+  z-index: 0;
+}
+
+.avator #user_detail{
+  z-index: 1;
+  margin: auto;
+  display: inline-block;
+}
+
+#user_name{
+  font-size: 2em;
+  color: black;
+  text-shadow: 0 0 10px purple;
+}
+#id{
+  font-size: 1em;
+  color: gray
+}
+
+
+.info view{
+  text-align: center;
+}
+
+.course_list{
+  /*height: 500rpx;*/
+}
+
+.course_item{
+  margin: 10px auto;
+  background-color: #eee;
+  /*box-shadow: 0 3px 5px  gray;*/
+  padding: 20px 40px;
+}
+
+.course_name{
+  text-shadow: 2px 2px 4px gray;
+}
+.course_teacher{
+  color: gray;
+  font-size: 0.8em;
+}

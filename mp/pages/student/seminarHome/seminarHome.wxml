@@ -1,0 +1,17 @@
+<!--pages/student/courseHome/courseHome.wxml-->
+<view>
+
+  <view class="course_title">
+    {{course.name}}
+  </view>
+
+  <view style=" display:flex;flex-direction:row;">
+    <view >
+      <view>签到</view>
+      <view>组队和选题</view>
+    </view>
+
+    <view>打分</view>
+  </view>
+
+</view>

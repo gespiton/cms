@@ -1,0 +1,21 @@
+<!--pages/teacher/teacherMain/teacherMain.wxml-->
+<view>
+  <view class="main_title" bindtap='goRevise'>
+    <view class="avator">
+      <image src='{{teacher.avator}}'></image>
+    </view>
+
+    <view>
+      <view>姓名： {{teacher.name}}</view>
+      <view>教工号： {{teacher.number}}</view>
+    </view>
+  </view>
+
+  <view>
+    <scroll-view scroll-y  style="height:200px;">
+      <view wx:for="{{teacher.courses}}" wx:for-item="course">
+        <button class="course_button">{{course}}</button>
+      </view>
+    </scroll-view>
+  </view>
+</view>

@@ -1,0 +1,23 @@
+<!--pages/student/courseHome/courseInfo/courseInfo.wxml-->
+<view>
+  <view >
+    {{course.name}}
+  </view>
+
+  <view>
+    <view><image></image>老师：{{course.teacher.name}}</view>
+    <view><image></image>邮箱：{{course.teacher.email}}</view>
+    <view><image></image>班级：
+      <view>时间：
+        <picker-view indicator-style="height: 50px;" style="width: 100%; height: 300px;" value="{{value}}" bindchange="bindChange">
+          <picker-view-column >
+          <view wx:for="{{course.classes.times}}">{{item}}</view>
+          </picker-view-column>
+        </picker-view>
+      </view>
+      <view>地点：{{chosenLocation}}</view>
+      <view>班级人数：{{course.classes.peopleNumber}}</view>
+    </view>
+    <view><image></image>简介：{{course.introduction}}</view>
+  </view>
+</view>
