@@ -28,5 +28,5 @@ const classdata = [{
 export default {
   getClassById() {
     return classdata[1];
-  }
+  },
 }

@@ -1,18 +1,28 @@
 // pages/teacher/rollCallList/rollCallList.js
+import api from '../../../utils/rollCallList.js'
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-  
+      classId:0,
+      attendance:{},
+      classDetail:{}
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+    let classId = options.classId;
+    var attendanceData = api.getAttenDanceById();
+    var classDetail = api.getClassDetailById();
+      this.setData({
+        attendance:attendanceData,
+        classDetail:classDetail
+      })
   },
 
   /**

@@ -1,6 +1,7 @@
 {
   "pages": [
-    "pages/teacher/rollStartCall/rollStartCall",
+    "pages/teacher/classManage/classManage",
+
     "pages/bind/bind",
     "pages/student/studentMain/studentMain",
     "pages/student/reviseStudentInfo/reviseStudentInfo",
@@ -11,8 +12,9 @@
     "pages/teacher/reviseTeacherInfo/reviseTeacherInfo",
     "pages/index/index",
     "pages/logs/logs",
-    "pages/teacher/classManage/classManage",
+
     "pages/teacher/rollCallList/rollCallList",
+    "pages/teacher/rollStartCall/rollStartCall",
     "pages/teacher/groupInfo/groupInfo"
   ],
   "window": {

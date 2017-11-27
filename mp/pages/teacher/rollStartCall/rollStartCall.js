@@ -77,13 +77,14 @@ Page({
   onShareAppMessage: function () {
   
   },
-  changeStatus:function(){
+  changeStatus:function(e){
+    let event = e;
     switch(this.data.call.status){
       case "start":this.startCall();
          break;
       case "end":this.endCall();
          break;
-      case "ended":this.checkCall();
+      case "ended":this.checkCall(event);
          break;
     }
   },
@@ -96,16 +97,30 @@ Page({
     })
   },
   endCall: function () {
-    this.setData({
-      call: {
-        status: "ended",
-        btnStatusText: "签到名单"
+    wx.showModal({
+      title: '提示',
+      content: '确定要结束点名',
+      success: (res)=>{
+        if (res.confirm) {
+          console.log("用户点击确定结束点名了")
+          this.setData({
+            call: {
+              status: "ended",
+              btnStatusText: "签到名单"
+            }
+          })
+        } else if (res.cancel) {
+          console.log("用户取消了点名")
+        }
       }
     })
+    
   },
-  checkCall: function () {
+  checkCall: function (e) {
+    console.log(e);
+    let classId = e.currentTarget.dataset.classId;
     wx.navigateTo({
-      url: '../rollCallList/rollCallList',
+      url: '../rollCallList/rollCallList?classId='+classId,
     })
   },
   checkGroup:function(){

@@ -11,11 +11,11 @@
       <view class='roll_info'>
           <text class='fa fa-group'></text>
           <text class='roll_info_text'>已签到学生{{currentClass.rollcall.calledNum}}/{{currentClass.num}}</text>
-          <button wx:if="{{call.status=='end'}}" class='blue_button' bindtap='checkCall'>签到名单</button>
+          <button wx:if="{{call.status=='end'}}" class='blue_button' bindtap='checkCall' data-classId="{{classId}}">签到名单</button>
       </view>
       <view class='roll_call'>
           <button class="{{call.status=='end'?'red_button':'blue_button'}}"
-                  bindtap='changeStatus'>
+                  bindtap='changeStatus' data-classId="{{classId}}">
           {{call.btnStatusText}}</button>
       </view>
       <view class='roll_group'>
