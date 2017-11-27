@@ -1,0 +1,19 @@
+<!--pages/teacher/rollStartCall.wxml-->
+<view class='container'>
+    <view class='info_banner'>
+        <text class='fa fa-calendar largefiy'></text>
+        <view class='class_info'>
+            <text>班级1</text>
+            <text>学生总数:40</text>
+        </view>
+    </view>
+    <view class='roll_info'>
+        <text class='fa fa-group'></text>
+        <text>已签到学生0/40</text>
+    </view>
+    <view class='roll_call'>
+        <button>开始签到</button>
+        <button>查看分组</button>
+        <text>随机分组还未开始不能查看分组</text>
+    </view>
+</view>

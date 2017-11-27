@@ -1,0 +1,21 @@
+/* pages/teacher/rollStartCall.wxss */
+.container{
+    display: flex;
+    flex-direction: column;
+}
+.info_banner{
+   display: flex;
+}
+.class_info{
+   display: flex;
+   flex-direction: column;
+}
+.largefiy{
+
+}
+.roll_info{
+
+}
+.roll_call{
+
+}

@@ -1,5 +1,5 @@
 {
-  "pages":[
+  "pages": [
     "pages/bind/bind",
     "pages/student/studentMain/studentMain",
     "pages/student/reviseStudentInfo/reviseStudentInfo",
@@ -9,12 +9,14 @@
     "pages/student/oneCourse/courseInfo/courseInfo",
     "pages/teacher/reviseTeacherInfo/reviseTeacherInfo",
     "pages/index/index",
-    "pages/logs/logs"
+    "pages/logs/logs",
+    "pages/teacher/classManage/classManage",
+    "pages/teacher/rollStartCall/rollStartCall"
   ],
-  "window":{
-    "backgroundTextStyle":"light",
+  "window": {
+    "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "课堂管理系统",
-    "navigationBarTextStyle":"black"
+    "navigationBarTextStyle": "black"
   }
 }
