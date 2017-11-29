@@ -1,4 +1,6 @@
 // pages/teacher/rollStartCall.js
+import api from '../../../utils/rollStartCallApi.js'
+
 Page({
 
   /**
@@ -6,16 +8,25 @@ Page({
    */
   data: {
       classId:0,
-      currentClass:{}
+      groupType:"",
+      currentClass:{},
+      call:{
+        status:"start",
+        btnStatusText:"开始签到"
+      },
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    var classData = api.getClassById();
       this.setData({
-          classId:options.classId
+          classId: options.classId,
+          currentClass: classData,
+          groupType:classData.rollcall.groupType
       })
+      console.log(classData);
   },
 
   /**
@@ -65,5 +76,56 @@ Page({
    */
   onShareAppMessage: function () {
   
+  },
+  changeStatus:function(e){
+    let event = e;
+    switch(this.data.call.status){
+      case "start":this.startCall();
+         break;
+      case "end":this.endCall();
+         break;
+      case "ended":this.checkCall(event);
+         break;
+    }
+  },
+  startCall: function () {
+    this.setData({
+      call: {
+        status: "end",
+        btnStatusText: "结束签到"
+      }
+    })
+  },
+  endCall: function () {
+    wx.showModal({
+      title: '提示',
+      content: '确定要结束点名',
+      success: (res)=>{
+        if (res.confirm) {
+          console.log("用户点击确定结束点名了")
+          this.setData({
+            call: {
+              status: "ended",
+              btnStatusText: "签到名单"
+            }
+          })
+        } else if (res.cancel) {
+          console.log("用户取消了点名")
+        }
+      }
+    })
+    
+  },
+  checkCall: function (e) {
+    console.log(e);
+    let classId = e.currentTarget.dataset.classId;
+    wx.navigateTo({
+      url: '../rollCallList/rollCallList?classId='+classId,
+    })
+  },
+  checkGroup:function(){
+    wx.navigateTo({
+      url: '../groupInfo/groupInfo',
+    })
   }
 })

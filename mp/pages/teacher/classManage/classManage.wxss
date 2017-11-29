@@ -1,6 +1,6 @@
 /* pages/teacher/classManage/classManage.wxss */
 .banner{
-  background: #1D9CE8;
+  background: #C5ECFF;
   height: 200rpx;
   display: flex;
   flex-direction: column;

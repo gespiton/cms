@@ -3,17 +3,25 @@
     <view class='info_banner'>
         <text class='fa fa-calendar largefiy'></text>
         <view class='class_info'>
-            <text>班级1</text>
-            <text>学生总数:40</text>
+            <text class='class_name'>{{currentClass.title}}</text>
+            <text class='class_num'>学生总数:{{currentClass.num}}</text>
         </view>
     </view>
-    <view class='roll_info'>
-        <text class='fa fa-group'></text>
-        <text>已签到学生0/40</text>
-    </view>
-    <view class='roll_call'>
-        <button>开始签到</button>
-        <button>查看分组</button>
-        <text>随机分组还未开始不能查看分组</text>
+    <view class='roll'>
+      <view class='roll_info'>
+          <text class='fa fa-group'></text>
+          <text class='roll_info_text'>已签到学生{{currentClass.rollcall.calledNum}}/{{currentClass.num}}</text>
+          <button wx:if="{{call.status=='end'}}" class='blue_button' bindtap='checkCall' data-classId="{{classId}}">签到名单</button>
+      </view>
+      <view class='roll_call'>
+          <button class="{{call.status=='end'?'red_button':'blue_button'}}"
+                  bindtap='changeStatus' data-classId="{{classId}}">
+          {{call.btnStatusText}}</button>
+      </view>
+      <view class='roll_group'>
+          <button disabled='{{groupType == "随机分组"}}' 
+          class='green_button' bindtap='checkGroup'>查看分组</button>
+          <text wx:if='{{groupType == "随机分组"}}' class='alert_text'>随机分组还未开始不能查看分组</text>
+      </view>
     </view>
 </view>
