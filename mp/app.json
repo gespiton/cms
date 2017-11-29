@@ -1,20 +1,16 @@
 {
   "pages": [
+    "pages/student/seminarHome/seminarHome",
     "pages/student/oneCourse/oneCourse",
+    "pages/teacher/classManage/classManage",
     "pages/student/reviseStudentInfo/reviseStudentInfo",
     "pages/student/studentMain/studentMain",
-    "pages/teacher/classManage/classManage",
-    
     "pages/bind/bind",
-    
-    
-    "pages/student/seminarHome/seminarHome",
     "pages/teacher/teacherMain/teacherMain",
     "pages/student/oneCourse/courseInfo/courseInfo",
     "pages/teacher/reviseTeacherInfo/reviseTeacherInfo",
     "pages/index/index",
     "pages/logs/logs",
-
     "pages/teacher/rollCallList/rollCallList",
     "pages/teacher/rollStartCall/rollStartCall",
     "pages/teacher/groupInfo/groupInfo"

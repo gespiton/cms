@@ -1,17 +1,18 @@
-<!--pages/student/courseHome/courseHome.wxml-->
-<view>
-
-  <view class="course_title">
-    {{course.name}}
-  </view>
-
-  <view style=" display:flex;flex-direction:row;">
-    <view >
-      <view>签到</view>
-      <view>组队和选题</view>
+<page class="page">
+    <view class="head20">
+        <span class="FONT1">OOAD</span>
+        <span class="FONT2">讨论课4</span>
     </view>
 
-    <view>打分</view>
-  </view>
+    <view class="box2">
+        <span class="FONT21" style="margin-top: 100%">打分</span>
+    </view>
 
-</view>
+    <view class="box1">
+        <span class="FONT21">签到</span>
+    </view>
+
+    <view class="box1" style="float: ">
+        <span class="FONT21">组队和选题</span>
+    </view>
+</page>
