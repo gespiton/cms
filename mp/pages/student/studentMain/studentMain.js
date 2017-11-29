@@ -1,13 +1,12 @@
 import api from "../../../utils/api.js";
-import db from "../../../utils/dataCenter.js";
 // pages/student/studentMain/studentMain.js
 Page({
   onLoad: function (options) {
     this.setData({
-     student: api.studentData.student,
-     user: db.get('user')
+     student:api.studentApi.getStudentInfoById(),
+        courses:api.studentApi.getStudentCourseByStudentId()
     });
-
+    console.log(this.data.student);
   },
   goRevise:function () {
     wx.navigateTo({

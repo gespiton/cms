@@ -1,23 +1,24 @@
 <!--pages/student/studentMain/studentMain.wxml-->
-<view class="outer">
-  <view bindtap='goRevise'>
-    <view class="avator">
-      <image src='https://placeimg.com/320/240/people'></image>
-      <view id='user_detail'>
-        <view id='user_name'>{{user.name}}</view>
-        <view id='id'>{{user.id}}</view>
-      </view>
-    </view>
 
+
+  <view class="box5" style="position:relative;">
+    <!-- 背景图的view -->
+    <image class="img2" src="../../../resources/static/images/背景图2.jpg"  />
+    <image class="img1" src="../../../resources/static/images/人物头像【三元素 为设计而生 3png.com】.png"
+    bindtap="goRevise"/>
+    <view class="add_avator" >点击头像修改</view>
+    <view class="FONT4" style="position:absolute; z-index:2; top:10px">姓名：{{student.name}}</view>
+    <view class="FONT4" style="position:absolute; z-index:2; top:40px">学号：{{student.id}}</view>
   </view>
 
-  <scroll-view scroll-y  class='course_list'>
-  <view wx:for="{{student.courses}}" wx:for-item="course">
-      <view class="course_item" bindtap="chooseCourse">
-          <view class='course_name'>{{course.name}}</view>
-          <view class='course_teacher'>{{course.teacher}}</view>
-      </view>
+  <scroll-view scroll-y style="height:880rpx" >
+  <view class="box3" wx:for="{{courses}}" wx:for-item="course" bindtap="chooseCourse" wx:key="id">
+      
+          <text class='course_name' class="FONT11">{{course.name}}</text>
+          <text class='course_teacher' class="FONT51">老师：{{course.teacher}}</text>
+      
   </view>
 </scroll-view>
 
-</view>
+
+

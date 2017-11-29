@@ -1,14 +1,33 @@
 <!--pages/student/reviseStudentInfo/reviseStudentInfo.wxml-->
-<view class='outer'>
-<view class="info_div">
-  <view class="avator">
-    <image src='https://placeimg.com/320/240/people'></image>
-  </view>
 
-    <view class='info'>学校： {{user.school}}</view>
-    <view class='info'>学号：  {{user.id}}</view>
-    <view class='info'>姓名： {{user.name}}</view>
 
-    <button type='warn' id='unbind_button' bindtap='unbind'>解绑</button>
-</view>
-</view>
+
+    <view class="box5" style="position:relative;">
+        <!-- 背景图的view -->
+        <image class="img2" src="../../../resources/static/images/背景图2.jpg"/>
+        <image class="img1" src="../../../resources/static/images/人物头像【三元素 为设计而生 3png.com】.png"
+               bindtap="goRevise"/>
+        <view class="add_avator">点击头像修改</view>
+        <view class="FONT4" style="position:absolute; z-index:2; top:10px">姓名：{{student.name}}</view>
+        <view class="FONT4" style="position:absolute; z-index:2; top:40px">学号：{{student.id}}</view>
+    </view>
+
+    <view class="fullbackground">
+        <view class="box31" >
+            <view class="FONT13" display: inline>手机号：</view>
+            <text></text>
+        </view>
+        <view class="box31">
+            <text class="FONT13">学号：</text>
+            <text></text>
+        </ view>
+        <view class="box31">
+            <text class="FONT13">学校：</text>
+            <text></text>
+        </view>
+        <view class="box31">
+            <text class="FONT13">姓名：</text>
+            <text></text>
+        </view>
+    </view>
+
