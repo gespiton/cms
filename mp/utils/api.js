@@ -23,20 +23,12 @@ const studentData = {
     "name": "可怜的Potter",
     "id": 11,
     "avator": "",
-<<<<<<< HEAD
     "courses": [
     { name: "黑魔法防御课", teacher: "斯内普教授" ,id:'1'},
     { name: "草药学", teacher: "斯内普教授",id:'2' },
     { name: "魔药学", teacher: "斯内普教授", id:'3' },
     { name: "魔药学", teacher: "斯内普教授",id:'4' },
     { name: "魔药学", teacher: "斯内普教授",id:'5' }],
-=======
-    "courses": [{ name: "黑魔法防御课", teacher: "斯内普教授" },
-    { name: "变形术", teacher: "斯内普教授" },
-    { name: "魔药学", teacher: "斯内普教授" },
-    { name: "草药学", teacher: "斯内普教授" },
-    { name: "天文学", teacher: "斯内普教授" }],
->>>>>>> 980ab332e80775e89211b3519fb285bbe8b1ec08
     "school": "霍格沃兹魔法学校格兰芬多学院"
   }
 }
