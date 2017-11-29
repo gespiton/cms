@@ -1,1 +1,9 @@
-/* pages/student/oneCourse/oneCourse.wxss */
+.box {
+    position: relative;
+    margin-left: 5%;
+    width: 90%;
+    background-color: #CCCCCC;
+    margin-top: 5%;
+    padding-bottom: 25%;
+    border-radius: 15px;
+}

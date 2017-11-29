@@ -12,10 +12,10 @@
   </view>
 
   <scroll-view scroll-y  class='course_list'>
-  <view wx:for="{{student.courses}}" wx:for-item="course">
-      <view class="course_item" bindtap="chooseCourse">
-          <view class='course_name'>{{course.name}}</view>
-          <view class='course_teacher'>{{course.teacher}}</view>
+  <view wx:for="{{courses}}" wx:for-item="course">
+      <view class="course_item" catchtap="chooseCourse" data-course-id="{{course.id}}">
+          <view class='course_name' data-course-id="{{course.id}}">{{course.name}}</view>
+          <view class='course_teacher' data-course-id="{{course.id}}">{{course.teacher}}</view>
       </view>
   </view>
 </scroll-view>
