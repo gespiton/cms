@@ -1,2 +1,23 @@
 <!--pages/teacher/groupInfo/groupInfo.wxml-->
-<text>pages/teacher/groupInfo/groupInfo.wxml</text>
+<view class='container'>
+  <view class='banner'>
+    <text class='fa fa-group largeify'></text>
+    <text>队伍信息</text>
+  </view>
+  <view class='list_wrap'>
+    <block wx:for="{{[1,2,3,4]}}">
+      <view class='group_title'>
+        <text>队伍{{item}}</text>
+        <text>选题:未完成</text>
+      </view>
+      <view class='group_members'>
+        <block wx:for="{{[1,2,3]}}">
+        <view class='group_members_item'>
+           <text class="fa fa-user member_icon"></text>
+           <text class='member_text'>马化腾</text>
+        </view>
+        </block>
+      </view>
+    </block>
+  </view>
+</view>

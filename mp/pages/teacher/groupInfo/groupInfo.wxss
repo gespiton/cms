@@ -1,1 +1,57 @@
 /* pages/teacher/groupInfo/groupInfo.wxss */
+
+page {
+  background: #c5ecff;
+}
+
+.container {
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.banner {
+  width: 70%;
+  padding:40rpx 0 20rpx 0;
+  border-bottom: 5rpx solid #aaa;
+}
+
+.largeify {
+  font-size: 80rpx;
+}
+
+.list_wrap{
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.group_title{
+  box-sizing: border-box;
+  width: inherit;
+  background: #22A4ED;
+  font-size: 30rpx;
+  padding: 20rpx;
+  border-radius: 18rpx;
+  display: flex;
+  justify-content: space-between;
+}
+.group_members{
+  width: inherit;
+  display: flex;
+  flex-wrap: wrap;
+}
+.group_members_item{
+  display: flex;
+  width: 50%;
+  border-radius: 18rpx;
+  align-items: center;
+  background: #fff;
+}
+.member_icon{
+  font-size: 100rpx;
+}
+.member_text{
+  font-size: 30rpx;
+  margin: 0 auto;
+}
