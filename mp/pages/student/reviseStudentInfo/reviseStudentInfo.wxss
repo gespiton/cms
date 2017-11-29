@@ -1,14 +1,2 @@
 /* pages/student/reviseStudentInfo/reviseStudentInfo.wxss */
-.outer{
-  height: 100%;
-}
-.avator image{
-  margin: 40rpx auto;
-}
-
-#unbind_button{
-  position: fixed;
-  width: 80%;
-  left: 10%;
-  bottom: 40px;
-}
+@import  "../studentMain/studentMain.wxss";

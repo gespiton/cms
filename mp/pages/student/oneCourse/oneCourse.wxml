@@ -1,22 +1,14 @@
-<!--pages/student/oneCourse/oneCourse.wxml-->
-<view>
-  <view class="course_title">
-    <view>{{course.name}}</view>
-    <view bindtap="viewCourseInfo">
-      asdffffffffffff
-      <image bindtap="viewCourseInfo"></image>
+<page class="page">
+    <view class="head20">
+        <text class="FONT1">{{courseName}}</text>
     </view>
-  </view>
 
-  <scroll-view>
-    <view class="seminar_view" wx:for="{{course.class.seminars}}" style='display:flex; flex-direction:row;'>
-      <view>讨论课{{index}}</view>
-      <view>
-        <view>{{item.date}}</view>
-        <view>{{item.groupingModel}}</view>
-        <view>{{item.report.grade}}</view>
-      </view>
+    <view wx:for="{{groups}}" wx:for-item="group">
+        <view class="box" catchtap="chooseGroup">
+            <text class="FONT12">讨论课{{group.id}}</text><!--蓝色选择框-->
+            <text class="FONT2" style="margin-left: 60%;margin-top: 3%">{{group.date}}</text>
+            <text class="FONT2" style="margin-left: 60%;margin-top: 12%">{{group.type}}</text>
+            <text class="FONT2" style="margin-left: 60%;margin-top: 21%">成绩：{{group.score?group.score:'未完成'}}</text>
+        </view>
     </view>
-  </scroll-view>
-
-</view>
+</page>

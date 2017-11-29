@@ -1,13 +1,15 @@
 {
   "pages": [
-    "pages/teacher/groupInfo/groupInfo",
-
-    "pages/bind/bind",
-    "pages/student/studentMain/studentMain",
+    "pages/student/oneCourse/oneCourse",
     "pages/student/reviseStudentInfo/reviseStudentInfo",
+    "pages/student/studentMain/studentMain",
+    "pages/teacher/classManage/classManage",
+    
+    "pages/bind/bind",
+    
+    
     "pages/student/seminarHome/seminarHome",
     "pages/teacher/teacherMain/teacherMain",
-    "pages/student/oneCourse/oneCourse",
     "pages/student/oneCourse/courseInfo/courseInfo",
     "pages/teacher/reviseTeacherInfo/reviseTeacherInfo",
     "pages/index/index",
