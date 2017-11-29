@@ -1,0 +1,36 @@
+<!--pages/teacher/rollCallList/rollCallList.wxml-->
+<view class='info_banner'>
+  <text class='fa fa-calendar largefiy'></text>
+  <view class='class_info'>
+    <text class='class_name'>{{classDetail.name}}</text>
+    <text class='class_num'>签到学生:{{attendance.numPresent}}/{{classDetail.numStudent}}</text>
+  </view>
+</view>
+
+<view class='list'>
+  <view class='list_title'>
+    <text>已签到的学生</text>
+  </view>
+  <view class='list_main'>
+    <block wx:for="{{attendance.present}}" >
+      <view class='list_item'>
+        <text class='fa fa-user  user_icon'></text>
+        <text class='user_name'>{{item.name}}</text>
+      </view>
+    </block>
+  </view>
+</view>
+
+<view class='list'>
+  <view class='list_title'>
+    <text>未签到的学生</text>
+  </view>
+  <view class="list_main">
+    <block wx:for="{{attendance.absent}}">
+      <view class='list_item'>
+        <text class='fa fa-user user_icon'></text>
+        <text class='user_name'>{{item.name}}</text>
+      </view>
+    </block>
+  </view>
+</view>
