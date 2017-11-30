@@ -1,70 +1,57 @@
 // pages/StudentClass/CourseUI/Seminar/FixedGroup/UnChooseTopic.js
+import api from '../../../../utils/groupApi';
+
 Page({
 
-  /**
-   * 页面的初始数据
-   */
-  data: {
-    group:[{"name":"吴双",studentId:24320152202778},
-      { "name": "马飞宇", studentId: 24320152202779 },
-      { "name": "林萧", studentId: 24320152202782 },
-      { "name": "易中天", studentId: 24320152202783 },
-      { "name": "轩辕朗", studentId: 24320152202788 }]
-  },
+    /**
+     * 页面的初始数据
+     */
+    data: {},
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-  
-  },
+    onLoad(option) {
+        /**
+         * seminarId
+         */
+        this.load(option.seminarId);
+    },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-  
-  },
+    load(seminarId) {
+        const that = this;
+        api.getGroupInfo(seminarId, function (res) {
+            console.log(res);
+            that.setData({
+                leader: res.leader ? res.leader : null,
+                members: res.members,
+                id: res.id,
+                topics: res.topics,
+                isLeader: api.amILeader(),
+                seminarId: seminarId,
+            });
+        });
+    },
 
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-  
-  },
+    becomeLeader() {
+        const that = this;
 
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-  
-  },
+        api.becomeLeader(function (res) {
+            if (res) {
+                that.load(that.data.seminarId);
+            }
+        });
+    },
 
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-  
-  },
+    quitLeader() {
+        const that = this;
 
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-  
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-  
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-  
-  }
-})
+        api.quitLeader(function (res) {
+            if (res) {
+                that.load(that.data.seminarId);
+            }
+        });
+    },
+    chooseTopic() {
+        wx.navigateTo({
+            url: './chooseTopic/chooseTopic'
+    });
+    }
+});

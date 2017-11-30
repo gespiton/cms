@@ -9,7 +9,7 @@
             <view class="action {{seminar.groupingMethod=='fixed'?'inactive':'active'}}" catchtap="callInRoll">
                 <span>签到</span>
             </view>
-            <view class="action active">
+            <view class="action active" catchtap="grouping">
                 <span>组队和选题</span>
             </view>
         </view>

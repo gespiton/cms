@@ -40,7 +40,17 @@ Page({
             seminarId: this.data.seminarId
         });
 
-        console.log(targetUrl);
+        wx.navigateTo({
+            url: targetUrl
+        });
+    },
+
+    grouping() {
+        const targetUrl = utils.buildUrl({
+            base: './group/group',
+            seminarId: this.data.seminarId
+        });
+
         wx.navigateTo({
             url: targetUrl
         });
