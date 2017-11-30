@@ -6,7 +6,7 @@
 
     <view class='action-wrapper'>
         <view class="wrapper">
-            <view class="action {{seminar.groupingMethod=='fixed'?'inactive':''}}">
+            <view class="action {{seminar.groupingMethod=='fixed'?'inactive':'active'}}" catchtap="callInRoll">
                 <span>签到</span>
             </view>
             <view class="action active">
@@ -20,5 +20,4 @@
             </view>
         </view>
     </view>
-
 </page>

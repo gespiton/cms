@@ -9,8 +9,9 @@ const studentData = {
         {name: "魔药学", teacher: "斯内普教授", id: '4'},
         {name: "魔药学", teacher: "斯内普教授", id: '5'}],
     "school": "霍格沃兹魔法学校格兰芬多学院"
-}
+};
 
+// todo set class id into global variable
 const api = {
     getAllCourse: function () {
         return studentData.courses;

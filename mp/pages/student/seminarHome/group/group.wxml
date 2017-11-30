@@ -1,0 +1,21 @@
+<!--pages/StudentClass/CourseUI/Seminar/FixedGroup/group.wxml-->
+<view>
+    <block>
+        <view>
+            <image class="seminarImg" src="users.png"/>
+            <text class="seminarText">讨论课4\n</text>
+            <span class="seminarText">固定分组</span>
+        </view>
+    </block>
+
+    <block>
+        <span class="WhiteText">队伍信息:</span>
+        <block wx:for="{{group}}">
+            <view class="WhiteBackSquare">
+                <image class="userAvatar" src="user.png"></image>
+                <span class="groupInfoText">{{item.name}}</span>
+                <span class="groupInfoText">{{item.studentId}}</span>
+            </view>
+        </block>
+    </block>
+</view>

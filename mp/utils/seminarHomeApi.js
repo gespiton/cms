@@ -9,7 +9,7 @@ function getSeminarInfo(args, cb) {
         "id": 2,
         "name": "界面原型设计",
         "description": "界面原型设计",
-        "groupingMethod": "fixed",
+        "groupingMethod": "no fixed",
         "startTime": "2017-09-25",
         "endTime": "2017-12-09",
         courseName: courseName
