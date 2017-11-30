@@ -10,14 +10,7 @@ page {
 
 /* 左上角的users图标和文字的容器*/
 
-.blueUsersView {
-  width: 80%;
-  height: 10%;
-  margin: auto;
-  font-size: 28rpx;
-  margin-top: 30px;
-  border-bottom: gray solid 5rpx;
-}
+
 
 /*当选题未选完时的蓝色框*/
 
@@ -45,13 +38,7 @@ page {
 
 /*选题框左边的选题A/B/C。。。*/
 
-.topic {
-  color: #fff;
-  float: left;
-  font-size: 48rpx;
-  margin-top: 8%;
-  margin-left: 5%;
-}
+
 
 /*选题框中间的黑色分割线*/
 
@@ -129,4 +116,68 @@ page {
   word-wrap: break-word;
   width: 100%;
   overflow: hidden;
+}
+
+/*mine*/
+.blueUsersView {
+  width: 80%;
+  height: 10%;
+  margin: auto;
+  font-size: 28rpx;
+  margin-top: 30px;
+  border-bottom: gray solid 5rpx;
+}
+
+.topic-view{
+    display: flex;
+  flex-direction: row;
+    justify-content: space-around;
+  width: 90%;
+  margin: 40rpx auto 0 auto;
+  padding: 10rpx 0;
+
+  border-radius: 5rpx;
+  background-color: #66CDFF;
+}
+
+.flex-center{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+    flex-grow: 1;
+}
+
+.right{
+    flex-grow: 2;
+}
+
+.left-number{
+    font-size: 28rpx;
+}
+
+.i-expand{
+    /*position: absolute;*/
+    /*right: 100rpx;*/
+    /*display: block;*/
+  /*float: right;*/
+    flex-grow: 0.5;
+  padding: 20 rpx 20 rpx 20 rpx 0;
+  color:white;
+}
+
+.topic {
+  color: #fff;
+  font-size: 48rpx;
+  text-align: center;
+}
+
+.detail{
+  width: 90%;
+  margin: 0 auto 40rpx auto;
+   word-wrap: break-word;
+  background-color: #B6E7FE;
+  color: gray;
+  padding: 0 40rpx;
+  box-sizing: border-box;
+  /*white-space: ;*/
 }

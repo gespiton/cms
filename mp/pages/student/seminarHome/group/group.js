@@ -1,5 +1,6 @@
 // pages/StudentClass/CourseUI/Seminar/FixedGroup/UnChooseTopic.js
 import api from '../../../../utils/groupApi';
+import utils from '../../../../utils/utils';
 
 Page({
 
@@ -12,6 +13,9 @@ Page({
         /**
          * seminarId
          */
+
+        option.seminarId = 1; // todo delete this
+
         this.load(option.seminarId);
     },
 
@@ -49,9 +53,15 @@ Page({
             }
         });
     },
+
     chooseTopic() {
+        const targetUrl = utils.buildUrl({
+            base: './chooseTopic/chooseTopic',
+            seminarId: this.data.seminarId
+        });
+
         wx.navigateTo({
-            url: './chooseTopic/chooseTopic'
-    });
+            url: targetUrl
+        });
     }
 });

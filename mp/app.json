@@ -1,7 +1,7 @@
 {
   "pages": [
-    "pages/student/seminarHome/group/chooseTopic/chooseTopic",
     "pages/student/seminarHome/group/group",
+    "pages/student/seminarHome/group/chooseTopic/chooseTopic",
     "pages/student/seminarHome/seminarHome",
     "pages/student/seminarHome/rollCall/rollCall",
     "pages/student/oneCourse/oneCourse",

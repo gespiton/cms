@@ -6,13 +6,15 @@
     <view wx:for="{{seminars}}" wx:for-item="seminar">
         <view class="box" catchtap="chooseSeminar" data-seminar-id="{{seminar.id}}">
             <text class="FONT12" data-seminar-id="{{seminar.id}}">讨论课{{seminar.id}}</text><!--蓝色选择框-->
-            <text class="FONT2" style="margin-left: 60%;margin-top: 3%" data-seminar-id="{{seminar.id}}">{{seminar.startTime+' ~ '+seminar.endTime}}
+            <text class="FONT2" style="margin-left: 60%;margin-top: 3%" data-seminar-id="{{seminar.id}}">
+                {{seminar.startTime+' ~ '+seminar.endTime}}
             </text>
-            <text class="FONT2" style="margin-left: 60%;margin-top: 12%" data-seminar-id="{{seminar.id}}">{{seminar.groupingMethod}}
+            <text class="FONT2" style="margin-left: 60%;margin-top: 12%" data-seminar-id="{{seminar.id}}">
+                {{seminar.groupingMethod}}
             </text>
             <text class="FONT2" style="margin-left: 60%;margin-top: 21%" data-seminar-id="{{seminar.id}}">
                 成绩：
-                <!--todo get score-->
+                <!--todo get score from api-->
             </text>
         </view>
     </view>

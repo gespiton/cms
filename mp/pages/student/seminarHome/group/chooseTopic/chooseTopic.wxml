@@ -7,6 +7,22 @@
 
 
     <!--当选题未选完时框是蓝色的，要增加新框就直接复制-->
+    <block wx:if="">
+        <view class="topic-view">
+            <view class="flex-center">
+                <span class="topic">话题A</span>
+            </view>
+            <view class="flex-center right">
+                <view class="topicName">领域模型设计</view>
+                <view class="left-number">剩余 ： 2/5</view>
+            </view>
+            <view class="fa fa-arrows-alt fa-1x flex-center i-expand"/>
+        </view>
+        <view class="detail">
+            xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+        </view>
+    </block>
+
     <view class="blueTopicView">
         <span class="topic">话题A</span>
         <view class="hrVertical"/>
@@ -22,7 +38,6 @@
             领域模型设计
         </span>
         <span class="topicDescribeText">
-            xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
         </span>
 
     </view>
