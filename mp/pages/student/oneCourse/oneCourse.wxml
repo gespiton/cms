@@ -3,12 +3,17 @@
         <text class="FONT1">{{courseName}}</text>
     </view>
 
-    <view wx:for="{{groups}}" wx:for-item="group">
-        <view class="box" catchtap="chooseGroup">
-            <text class="FONT12">讨论课{{group.id}}</text><!--蓝色选择框-->
-            <text class="FONT2" style="margin-left: 60%;margin-top: 3%">{{group.date}}</text>
-            <text class="FONT2" style="margin-left: 60%;margin-top: 12%">{{group.type}}</text>
-            <text class="FONT2" style="margin-left: 60%;margin-top: 21%">成绩：{{group.score?group.score:'未完成'}}</text>
+    <view wx:for="{{seminars}}" wx:for-item="seminar">
+        <view class="box" catchtap="chooseSeminar" data-seminar-id="{{seminar.id}}">
+            <text class="FONT12" data-seminar-id="{{seminar.id}}">讨论课{{seminar.id}}</text><!--蓝色选择框-->
+            <text class="FONT2" style="margin-left: 60%;margin-top: 3%" data-seminar-id="{{seminar.id}}">{{seminar.startTime+' ~ '+seminar.endTime}}
+            </text>
+            <text class="FONT2" style="margin-left: 60%;margin-top: 12%" data-seminar-id="{{seminar.id}}">{{seminar.groupingMethod}}
+            </text>
+            <text class="FONT2" style="margin-left: 60%;margin-top: 21%" data-seminar-id="{{seminar.id}}">
+                成绩：
+                <!--todo get score-->
+            </text>
         </view>
     </view>
 </page>

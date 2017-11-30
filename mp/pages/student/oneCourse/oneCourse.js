@@ -1,5 +1,7 @@
 // pages/student/oneCourse/oneCourse.js
 import api from '../../../utils/oneCourseApi';
+import utils from '../../../utils/utils';
+
 
 Page({
     data: {},
@@ -8,24 +10,33 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
+        console.log(options);
         const that = this;
-        console.log(options.query);
+        //todo change fake courseId
+        // const courseId = options.courseId;
         const courseId = 1;
-        const courseName = 'ooad';
-        // todo get courseId and courseName from previous page
 
-        api.getGroupByCourseId({id: courseId}, function (res) {
-            console.log("called");
+
+        api.getSeminarInfoByCourseId({id: courseId}, function (res) {
+            console.log(res);
             that.setData({
-                courseName: courseName,
-                groups: res.groups
+                courseId: courseId,
+                courseName: res.courseName,
+                seminars: res.seminars
             });
         });
     },
 
-    viewCourseInfo: function () {
+    chooseSeminar: function (e) {
+        const dataset = e.target.dataset;
+        const targetUrl = utils.buildUrl({
+            base: '../seminarHome/seminarHome',
+            courseId: this.data.courseId,
+            seminarId: dataset.seminarId
+        });
+
         wx.navigateTo({
-            url: './courseInfo/courseInfo',
+            url: targetUrl
         });
     }
 });

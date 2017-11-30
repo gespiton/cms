@@ -6,16 +6,16 @@
 
     <view class='action-wrapper'>
         <view class="wrapper">
-            <view class="action">
+            <view class="action {{seminar.groupingMethod=='fixed'?'inactive':''}}">
                 <span>签到</span>
             </view>
-            <view class="action">
+            <view class="action active">
                 <span>组队和选题</span>
             </view>
         </view>
 
-        <view class="wrapper">
-            <view class="action action-score">
+        <view class="wrapper ">
+            <view class="action action-score {{started?'active':'inactive'}}">
                 <span>打分</span>
             </view>
         </view>

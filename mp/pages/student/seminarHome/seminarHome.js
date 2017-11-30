@@ -1,19 +1,42 @@
 // pages/student/courseHome/courseHome.js
-Page({
-    /**
-     * 页面的初始数据
-     */
-    data: {
-        course: {
-            "name": "黑魔法防御课", teacher: {name: "斯内普教授", email: "hhh@Example.com"}, "introduction": "",
-            "classes": {"locations": ["xxx", "sss"], times: ["DD-MM-YYYY", "MM-DD-YYYY"], peopleNumber: 33}
-        }
-    },
-    /**
-     * 生命周期函数--监听页面加载
-     */
-    onLoad: function (options) {
+import api from '../../../utils/seminarHomeApi';
 
+
+Page({
+    data: {},
+
+
+    onLoad: function (options) {
+        /**
+         * options{
+         *  courseId: 1
+         *   seminarId: 1
+         * }
+         */
+
+        console.log(options);
+        const that = this;
+        api.getSeminarInfo(options, function (seminar) {
+
+            const started = isSeminarStarted(seminar);
+
+            that.setData({
+                seminar: seminar,
+                started: started,
+                courseName: seminar.courseName
+            });
+        });
     },
 
 });
+
+function isSeminarStarted(res) {
+    const startTime = Date.parse(res.startTime);
+    const endTime = Date.parse(res.endTime);
+    const now = Date.now();
+    let started = false;
+    if (now >= startTime && now <= endTime) {
+        started = true;
+    }
+    return started;
+}

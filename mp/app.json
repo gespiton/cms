@@ -1,10 +1,10 @@
 {
   "pages": [
     "pages/student/oneCourse/oneCourse",
+    "pages/student/studentMain/studentMain",
     "pages/student/seminarHome/seminarHome",
     "pages/teacher/classManage/classManage",
     "pages/student/reviseStudentInfo/reviseStudentInfo",
-    "pages/student/studentMain/studentMain",
     "pages/bind/bind",
     "pages/teacher/teacherMain/teacherMain",
     "pages/student/oneCourse/courseInfo/courseInfo",

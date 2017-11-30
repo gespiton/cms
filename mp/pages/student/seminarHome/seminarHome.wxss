@@ -22,7 +22,6 @@
 }
 
 .seminar .action {
-    background-color: #66CCFF;
     width: 45vw;
     /*padding-top: 50%;*/
     /*padding-bottom: 50%;*/
@@ -34,6 +33,13 @@
     flex-direction: column;
 }
 
-.action-score{
+.inactive {
+    background-color: #CCCCCC;
+}
+.active{
+    background-color: #66CCFF;
+}
+
+.action-score {
     flex-grow: 2;
 }
