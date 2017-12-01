@@ -1,7 +1,7 @@
 /* pages/teacher/groupInfo/groupInfo.wxss */
 
 page {
-  background: #c5ecff;
+  background: rgba(102, 204, 255, 0.5);
 }
 
 .container {
@@ -11,17 +11,21 @@ page {
 }
 
 .banner {
-  width: 70%;
+  width: 80%;
   padding:40rpx 0 20rpx 0;
   border-bottom: 5rpx solid #aaa;
+  margin-bottom: 20rpx;
 }
 
 .largeify {
-  font-size: 80rpx;
+  font-size: 100rpx;
 }
-
+.small_icon{
+  width: 100rpx;
+  height: 100rpx;
+}
 .list_wrap{
-  width: 90%;
+  width: 95%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -29,10 +33,9 @@ page {
 .group_title{
   box-sizing: border-box;
   width: inherit;
-  background: #22A4ED;
+  background: #6cf;
   font-size: 30rpx;
   padding: 20rpx;
-  border-radius: 18rpx;
   display: flex;
   justify-content: space-between;
 }
@@ -49,6 +52,7 @@ page {
   background: #fff;
 }
 .member_icon{
+  border-radius: 18rpx;
   font-size: 100rpx;
 }
 .member_text{

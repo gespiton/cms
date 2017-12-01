@@ -5,18 +5,18 @@
 </view>
 <view class='infobar'>
     <view>
-        <text class='fa fa-clock-o'></text>
+        <image src='../../../resources/static/images/闹钟.png' class='clockAndGroupIcon' ></image>
         <text>{{course.currentSeminar.time}}</text>
     </view>
     <view>
-        <text class='fa fa-paperclip'></text>
+        <image src='../../../resources/static/images/曲别针.png' class='clockAndGroupIcon' ></image>
         <text>{{course.currentSeminar.grouptype}}</text>
     </view>
 </view>
 <view class='classes'>
   <block wx:for="{{course.classes}}">
     <view class='single_class flex_column' bindtap='toStartCall' data-classid="{{item.id}}">
-        <text class='fa fa-group largeify'></text>
+        <image src="../../../resources/static/images/班级.png" class="classIcon" />
         <text>{{item.name}}</text>
     </view>
   </block>

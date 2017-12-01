@@ -5,19 +5,35 @@
     <text>队伍信息</text>
   </view>
   <view class='list_wrap'>
-    <block wx:for="{{[1,2,3,4]}}">
-      <view class='group_title'>
-        <text>队伍{{item}}</text>
-        <text>选题:未完成</text>
+    <block wx:for="{{groups}}" wx:key="id">
+      <view class='group_title' bindtap='toggle' data-groupid='{{item.id}}'>
+        <text>队伍{{item.id}}</text>
+        <text>选题:{{item.shown}}</text>
       </view>
-      <view class='group_members'>
-        <block wx:for="{{[1,2,3]}}">
-        <view class='group_members_item'>
-           <text class="fa fa-user member_icon"></text>
-           <text class='member_text'>马化腾</text>
-        </view>
+      <view wx:if="{{item.shown}}" class='group_members'>
+        <block wx:for="{{item.members}}">
+          <view class='group_members_item'>
+            <image src="../../../resources/static/images/user.png" class='small_icon' />
+            <text class='member_text'>{{item.name}}</text>
+          </view>
         </block>
+        <view class='group_members_item'>
+          <image src="../../../resources/static/images/加号.png" bindtap='addMember' class='small_icon' data-groupid='{{item.id}}' />
+        </view>
       </view>
     </block>
+
+    <view class='group_title'>
+      <text>未签到</text>
+    </view>
+    <view class='group_members'>
+      <block wx:for="{{latesArr}}">
+        <view class='group_members_item'>
+          <image src="../../../resources/static/images/user.png" class='small_icon' />
+          <text class='member_text'>{{item.name}}</text>
+        </view>
+      </block>
+    </view>
+
   </view>
 </view>
