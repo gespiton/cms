@@ -40,6 +40,9 @@
 * api 返回的数据按照标准组的来
 
 
+
+  使用方法：
+
   ```js
     const targetUrl = utils.buildUrl({
               base: './chooseTopic/chooseTopic',
