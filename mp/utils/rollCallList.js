@@ -26,6 +26,10 @@ const attendance = {
     {
       "id": 5234,
       "name": "王七请"
+    },
+    {
+      "id": 5234,
+      "name": "王9请"
     }
   ],
   "absent": [
@@ -84,5 +88,8 @@ export default{
   },
   getClassDetailById(){
     return classData;
+  },
+  getLateStudents(){
+    return attendance.late;
   }
 }
