@@ -40,3 +40,15 @@
 * api 返回的数据按照标准组的来
 
 
+  ```js
+    const targetUrl = utils.buildUrl({
+              base: './chooseTopic/chooseTopic',
+              seminarId: this.data.seminarId
+          });
+  ```
+
+  base 是基本的url，之后要加的参数就直接添加
+
+  ​
+
+* api 返回的数据按照标准组的来
