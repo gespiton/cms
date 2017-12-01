@@ -10,17 +10,17 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-        console.log(options);
         const that = this;
         //todo change fake courseId
-        // const courseId = options.courseId;
-        const courseId = 1;
+        if (!options.courseId) {
+            options.courseId = 1;
+        }
 
 
-        api.getSeminarInfoByCourseId({id: courseId}, function (res) {
+        api.getSeminarInfoByCourseId({id: options.courseId}, function (res) {
             console.log(res);
             that.setData({
-                courseId: courseId,
+                courseId: options.courseId,
                 courseName: res.courseName,
                 seminars: res.seminars
             });
@@ -38,5 +38,9 @@ Page({
         wx.navigateTo({
             url: targetUrl
         });
+    },
+
+    viewCourseInfo() {
+
     }
 });

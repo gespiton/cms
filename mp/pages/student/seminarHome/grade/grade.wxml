@@ -15,5 +15,5 @@
             </block>
         </view>
     </block>
-    <button class="btnsubmit">提交</button>
+    <button class="btnsubmit" catchtap="submit">提交</button>
 </page>

@@ -1,17 +1,22 @@
-import api from "../../../utils/api.js";
+import api from "../../../utils/studentMainApi";
 import utils from "../../../utils/utils";
 // pages/student/studentMain/studentMain.js
 Page({
-    onLoad: function (options) {
-        this.setData({
-            student: api.studentApi.getStudentInfoById(),
-            courses: api.studentApi.getStudentCourseByStudentId()
+    onLoad() {
+
+        const that = this;
+        api.getInfo(function (res) {
+            console.log(res);
+            that.setData({
+                me: res.me,
+                classes: res.classes
+            });
         });
-        console.log(this.data.student);
     },
+
     goRevise: function () {
         wx.navigateTo({
-            url: '/pages/student/reviseStudentInfo/reviseStudentInfo'
+            url: './reviseStudentInfo/reviseStudentInfo'
         });
     },
 

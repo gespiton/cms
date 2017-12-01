@@ -1,6 +1,7 @@
 <page class="page">
     <view class="head20">
         <text class="FONT1">{{courseName}}</text>
+        <i class="fa fa-expand fa-lg i-expand" catchtap="viewCourseInfo"/>
     </view>
 
     <view wx:for="{{seminars}}" wx:for-item="seminar">

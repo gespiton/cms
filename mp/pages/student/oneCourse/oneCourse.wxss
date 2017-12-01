@@ -7,3 +7,10 @@
     padding-bottom: 25%;
     border-radius: 15px;
 }
+.i-expand{
+    position: absolute;
+    right: 0;
+    padding: 40rpx;
+    bottom: 0;
+    color: whitesmoke;
+}
