@@ -1,67 +1,70 @@
 // pages/student/courseHome/courseHome.js
+import api from '../../../utils/seminarHomeApi';
+import utils from '../../../utils/utils';
+
+
 Page({
+    data: {},
 
-  /**
-   * 页面的初始数据
-   */
-  data: {
-    course:{"name":"黑魔法防御课",teacher:{name:"斯内普教授",email:"hhh@Example.com"},"introduction":"",
-    "classes":{"locations":["xxx","sss"],times:["DD-MM-YYYY","MM-DD-YYYY"],peopleNumber:33}}
-  },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-  
-  },
+    onLoad: function (options) {
+        /**
+         * options{
+         *   courseId: 1
+         *   seminarId: 1
+         * }
+         */
+        // todo get rid of this
+        options = {
+            seminarId: 1
+        };
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-  
-  },
+        console.log(options);
+        const that = this;
+        api.getSeminarInfo(options, function (seminar) {
+            console.log(seminar);
+            const started = isSeminarStarted(seminar);
+            that.setData({
+                seminar: seminar,
+                started: started,
+                courseName: seminar.courseName,
+                seminarId: options.seminarId
+            });
+        });
+    },
 
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-  
-  },
+    callInRoll(e) {
 
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-  
-  },
+        const targetUrl = utils.buildUrl({
+            base: './rollCall/rollCall',
+            seminarId: this.data.seminarId
+        });
 
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-  
-  },
+        wx.navigateTo({
+            url: targetUrl
+        });
+    },
 
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-  
-  },
+    grouping() {
+        const targetUrl = utils.buildUrl({
+            base: './group/group',
+            seminarId: this.data.seminarId
+        });
 
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-  
-  },
+        wx.navigateTo({
+            url: targetUrl
+        });
+    }
 
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-  
-  }
-})
+});
+
+function isSeminarStarted(res) {
+    const startTime = Date.parse(res.startTime);
+    const endTime = Date.parse(res.endTime);
+    const now = Date.now();
+    let started = false;
+    if (now >= startTime && now <= endTime) {
+        started = true;
+    }
+    return started;
+}

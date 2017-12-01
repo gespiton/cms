@@ -9,36 +9,29 @@ function getGroupByCourseId(args, cb) {
     // todo replace fake data
     if (cb) {
         cb({
-            groups: [
+            courseName: 'ooad', // todo get course name via function
+            seminars: [
                 {
-                    id: 1,
-                    date: '11月6日至11月12日',
-                    type: '固定分组',
-                    score: ''
+                    "id": 1,
+                    "name": "界面原型设计",
+                    "description": "界面原型设计",
+                    "groupingMethod": "fixed",
+                    "startTime": "2017-09-25",
+                    "endTime": "2017-10-09"
                 },
                 {
-                    id: 2,
-                    date: '11月6日至11月12日',
-                    type: '固定分组',
-                    score: '3'
-                },
-                {
-                    id: 3,
-                    date: '11月6日至11月12日',
-                    type: '固定分组',
-                    score: '5'
-                },
-                {
-                    id: 4,
-                    date: '11月6日至11月12日',
-                    type: '固定分组',
-                    score: '0'
+                    "id": 2,
+                    "name": "概要设计",
+                    "description": "模型层与数据库设计",
+                    "groupingMethod": "fixed",
+                    "startTime": "2017-10-10",
+                    "endTime": "2017-10-24"
                 }
             ]
 
-        })
+        });
     }
 
 }
 
-export default {getGroupByCourseId}
+export default {getSeminarInfoByCourseId: getGroupByCourseId}
