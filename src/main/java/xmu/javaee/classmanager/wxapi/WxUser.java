@@ -1,9 +1,12 @@
-package xmu.javaee.classmanager.wxApi;
+package xmu.javaee.classmanager.wxapi;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
+/**
+ * @author: Sher
+ */
 @RestController
 @RequestMapping("api/v1/user/")
 public class WxUser {
