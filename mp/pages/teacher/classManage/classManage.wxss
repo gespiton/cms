@@ -1,26 +1,27 @@
 /* pages/teacher/classManage/classManage.wxss */
+
 .banner{
-  background: #C5ECFF;
+  background-color: #6cf;
   height: 200rpx;
+  color:#fff; 
+  padding-top: 8%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  color:#fff; 
 }
 .course_title{
-  font-size: 72rpx;
+  font-size: 80rpx;
 }
 .course_seminar{
+  font-size: 28rpx;
   margin-left: 400rpx;
 }
 .infobar{
   display: flex;
   justify-content: space-around
 }
-.largeify{
-  font-size: 220rpx;
-}
+
 .classes{
   display: flex;
   justify-content: flex-start;
@@ -31,7 +32,18 @@
   flex-direction: column;
 }
 .single_class{
-  margin-top: 70rpx;
+  margin-top: 100rpx;
   text-align: center;
-  width: 50%;
+  width: 370rpx;
+  height: 300rpx;
+} 
+
+.clockAndGroupIcon {
+  display: inline-block;
+  width: 40rpx;
+  height: 40rpx;
+}
+.classIcon{
+  width: 100%;
+  height: 70%;
 }
