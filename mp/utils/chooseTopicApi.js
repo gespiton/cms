@@ -37,3 +37,10 @@ function getTopics(seminarId, cb) {
 }
 
 export default {getTopics};
+// async function () {
+//     var x = await add
+//     var x = await add
+//     var x = await add
+//     var x = await add
+//     var x = await add
+// }

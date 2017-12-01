@@ -19,7 +19,9 @@ Page({
      * 选中某一个课程进入其课程主页面
      */
     chooseCourse: function (e) {
-        const dataset = e.target.dataset;
+        console.log(e);
+
+        const dataset = e.currentTarget.dataset;
 
         const targetUrl = utils.buildUrl({
             base: '../oneCourse/oneCourse',

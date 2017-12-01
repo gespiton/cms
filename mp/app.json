@@ -1,11 +1,11 @@
 {
   "pages": [
-    "pages/student/seminarHome/group/group",
     "pages/student/seminarHome/group/chooseTopic/chooseTopic",
+    "pages/student/studentMain/studentMain",
+    "pages/student/seminarHome/group/group",
     "pages/student/seminarHome/seminarHome",
     "pages/student/seminarHome/rollCall/rollCall",
     "pages/student/oneCourse/oneCourse",
-    "pages/student/studentMain/studentMain",
     "pages/teacher/classManage/classManage",
     "pages/student/reviseStudentInfo/reviseStudentInfo",
     "pages/bind/bind",

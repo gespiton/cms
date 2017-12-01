@@ -7,56 +7,20 @@
 
 
     <!--当选题未选完时框是蓝色的，要增加新框就直接复制-->
-    <block wx:if="">
+    <block wx:for="{{topics}}">
         <view class="topic-view">
             <view class="flex-center">
-                <span class="topic">话题A</span>
+                <span class="topic">话题{{item.id}}</span>
             </view>
             <view class="flex-center right">
-                <view class="topicName">领域模型设计</view>
-                <view class="left-number">剩余 ： 2/5</view>
+                <view class="topicName">{{item.name}}</view>
+                <view class="left-number">剩余 ： {{item.groupLeft}}/{{item.groupLimit}}</view>
             </view>
-            <view class="fa fa-arrows-alt fa-1x flex-center i-expand"/>
+            <view class="fa fa-arrows-alt fa-1x flex-center i-expand" bindtap="expand" id="{{item.id}}"/>
         </view>
-        <view class="detail">
+        <view wx:if="{{opened[item.id]}}" class="detail">
             xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
         </view>
     </block>
 
-    <view class="blueTopicView">
-        <span class="topic">话题A</span>
-        <view class="hrVertical"/>
-        <span class="topicName">领域模型设计</span>
-        <!--剩余选题数量大于等于2时-->
-        <span class="leftNumWhite">剩余 ： 2/5</span>
-        <image src='九点.png' class="nineIcon"/>
-    </view>
-
-    <!--当点击九点时出现topic的简介-->
-    <view class="topicDescribeView">
-        <span class="topicDescribeTitle">
-            领域模型设计
-        </span>
-        <span class="topicDescribeText">
-        </span>
-
-    </view>
-
-    <view class="blueTopicView">
-        <span class="topic">话题B</span>
-        <view class="hrVertical"></view>
-        <span class="topicName">包划分</span>
-        <!--剩余选题为1时会变红-->
-        <span class="leftNumRed">剩余 ： 1/5</span>
-        <image src='九点.png' class="nineIcon"></image>
-    </view>
-
-    <!--无剩余名额时选题框为灰色-->
-    <view class="greyTopicView">
-        <span class="topic">话题C</span>
-        <view class="hrVertical"></view>
-        <span class="topicName">界面设计</span>
-        <span class="leftNumWhite">剩余 ： 0/5</span>
-        <image src='九点.png' class="nineIcon"></image>
-    </view>
 </page>
