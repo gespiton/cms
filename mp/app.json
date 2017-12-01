@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/student/seminarHome/group/grade/grade",
     "pages/student/seminarHome/group/chooseTopic/chooseTopic",
     "pages/student/studentMain/studentMain",
     "pages/student/seminarHome/group/group",
