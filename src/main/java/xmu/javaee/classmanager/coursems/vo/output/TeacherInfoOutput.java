@@ -9,7 +9,7 @@ import xmu.javaee.classmanager.coursems.vo.input.BindInputSchool;
  * @date 2017/12/02
  */
 public class TeacherInfoOutput {
-    private int id;
+    private Integer id;
     private String type;
     private String name;
     private String number;
@@ -22,7 +22,7 @@ public class TeacherInfoOutput {
 
     public TeacherInfoOutput() {}
 
-    public TeacherInfoOutput(int id, String type, String name, String number, String phone, String email, String male, BindInputSchool school, String title, String avatar) {
+    public TeacherInfoOutput(Integer id, String type, String name, String number, String phone, String email, String male, BindInputSchool school, String title, String avatar) {
         this.id = id;
         this.type = type;
         this.name = name;
@@ -36,7 +36,7 @@ public class TeacherInfoOutput {
 
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 

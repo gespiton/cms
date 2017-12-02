@@ -1,89 +1,54 @@
 // pages/teacher/groupInfo/groupInfo.js
-import apiGroup from '../../../utils/groupInfoApi.js'
-import apiCall from '../../../utils/rollCallList.js'
+import api from '../../../utils/groupInfoApi.js'
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-      groups:[],
-      latesArr:null
+    groupMethod: '',
+    groups: {},
+    latesArr: null
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var that = this;
-    apiGroup.getGroupsByClass(function(value){
-      var groupsShowData = []
-      for(let i=0;i<value.length;i++){
-        groupsShowData.push({
-          ...value[i],
-          shown:false
+    let classId = options.classid
+    let seminarId = options.cursemid
+    let groupMethod = options.groupmethod
+    this.setData({
+      groupMethod: groupMethod
+    })
+    let groupsdata = []
+    api.getGroupsBySeminarId(seminarId, (value) => {
+      for (let i = 0; i < value.length; i++) {
+        api.getGroupByGroupId(value[i].id, (value) => {
+          //将队长也添加到members中
+          value.members.unshift(value.leader)
+          groupsdata.push(value)
         })
       }
-      that.setData({
-        groups: groupsShowData
-      })
-    });
-    let lates = apiCall.getLateStudents();
-    this.setData({
-      latesArr:lates
     })
+    console.log(groupsdata)
+    this.setData({
+      groups: groupsdata
+    })
+
+    //不是固定分组的话才需要显示迟到学生
+    if (groupMethod != 'fixed') {
+      api.getLateStudentByClassId(classId, (value) => {
+        this.setData({
+          latesArr: value.late
+        })
+      })
+    }
+
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-  
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-  
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-  
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-  
-  },
-
-  toggle:function(e){
+  toggle: function (e) {
     let tapId = e.currentTarget.dataset.groupid
     let list = this.data.groups
 
@@ -97,40 +62,40 @@ Page({
     });
   },
 
-  addMember:function(e){
+  addMember: function (e) {
     console.log(e)
 
     var that = this;
 
-
     let tapId = e.currentTarget.dataset.groupid
     let list = this.data.groups
 
-    let templist = apiCall.getLateStudents()
+    let templist = this.data.latesArr
     let latelist = []
-    for(let i=0; i<templist.length;i++){
+    for (let i = 0; i < templist.length; i++) {
       latelist.push(templist[i].name)
     }
-    
+
     wx.showActionSheet({
       itemList: latelist,
       success: function (res) {
-
-        console.log(res.tapIndex)
-        let people = templist[res.tapIndex]
-        console.log(people)
-        for (let i = 0, len = list.length; i < len; ++i) {
-          if (list[i].id == tapId) {
-            console.log(list[i])
-            list[i].members.push(people)
+        if (res.tapIndex!==undefined) {
+          console.log(res.tapIndex)
+          let people = templist[res.tapIndex]
+          console.log(people)
+          for (let i = 0, len = list.length; i < len; ++i) {
+            if (list[i].id == tapId) {
+              console.log(list[i])
+              list[i].members.push(people)
+            }
           }
-        }
-        templist.splice(res.tapIndex,1)
+          templist.splice(res.tapIndex, 1)
 
-        that.setData({
-          groups: list,
-          latesArr: templist
-        })
+          that.setData({
+            groups: list,
+            latesArr: templist
+          })
+        }
       },
       fail: function (res) {
         console.log(res.errMsg)

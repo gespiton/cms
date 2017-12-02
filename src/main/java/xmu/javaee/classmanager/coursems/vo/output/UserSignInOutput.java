@@ -7,7 +7,7 @@ package xmu.javaee.classmanager.coursems.vo.output;
  * @date 2017/12/02
  */
 public class UserSignInOutput {
-    private  int id;
+    private  Integer id;
     private String type;
     private String name;
     private String jwt;
@@ -19,11 +19,11 @@ public class UserSignInOutput {
         this.jwt = jwt;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

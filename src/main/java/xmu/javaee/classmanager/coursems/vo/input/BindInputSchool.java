@@ -7,16 +7,16 @@ package xmu.javaee.classmanager.coursems.vo.input;
  * @date 2017/12/02
  */
 public class BindInputSchool {
-    private int id;
+    private Integer id;
     private String name;
     public BindInputSchool(){}
 
-    public BindInputSchool(int id, String name) {
+    public BindInputSchool(Integer id, String name) {
         this.id = id;
         this.name = name;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
