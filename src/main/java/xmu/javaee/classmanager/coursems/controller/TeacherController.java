@@ -1,9 +1,7 @@
 package xmu.javaee.classmanager.coursems.controller;
 
-import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import xmu.javaee.classmanager.coursems.vo.SimpleCourseInfo;
-import xmu.javaee.classmanager.coursems.vo.TeacherInfo;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -16,13 +14,6 @@ import java.util.List;
  */
 @RestController
 public class TeacherController {
-
-    @RequestMapping(value="/me", method = RequestMethod.GET)
-    public TeacherInfo getTeacherInfo(){
-        // TODO require teacher's own info
-        return new TeacherInfo(2222, "teacher", "维瑟米尔",
-                "4444","/avatar/2345.jpg");
-    }
 
     @RequestMapping(value="/course", method = RequestMethod.GET)
     public List<SimpleCourseInfo> getCoursesInfo(){
