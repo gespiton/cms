@@ -5,7 +5,7 @@ const couseInfo = [
     {name: "魔药学", teacher: "斯内普教授", id: '4'},
     {name: "魔药学", teacher: "斯内普教授", id: '5'}];
 
-function getGroupByCourseId(args, cb) {
+function getSeminarInfoByCourseId(args, cb) {
     // todo replace fake data
     if (cb) {
         cb({
@@ -34,4 +34,4 @@ function getGroupByCourseId(args, cb) {
 
 }
 
-export default {getSeminarInfoByCourseId: getGroupByCourseId}
+export default {getSeminarInfoByCourseId}
