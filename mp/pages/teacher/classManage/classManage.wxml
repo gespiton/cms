@@ -1,21 +1,21 @@
 <!--pages/teacher/classManage/classManage.wxml-->
 <view class='banner'>
-    <text class='course_title'>{{course.title}}</text>
-    <text class='course_seminar'>{{course.currentSeminar.title}}</text>
+    <text class='course_title'>{{courseinfo.name}}</text>
+    <text class='course_seminar'>{{currentSeminar.name}}</text>
 </view>
 <view class='infobar'>
     <view>
         <image src='../../../resources/static/images/闹钟.png' class='clockAndGroupIcon' ></image>
-        <text>{{course.currentSeminar.time}}</text>
+        <text>{{currentSeminar.startTime + '~' +currentSeminar.endTime}}</text>
     </view>
     <view>
         <image src='../../../resources/static/images/曲别针.png' class='clockAndGroupIcon' ></image>
-        <text>{{course.currentSeminar.grouptype}}</text>
+        <text>{{currentSeminar.groupingMethod == "fixed"?"固定分组":"随机分组" }}</text>
     </view>
 </view>
 <view class='classes'>
-  <block wx:for="{{course.classes}}">
-    <view class='single_class flex_column' bindtap='toStartCall' data-classid="{{item.id}}">
+  <block wx:for="{{classes}}">
+    <view class='single_class flex_column' bindtap='toStartCall' data-classid="{{item.id}}" data-groupmethod="{{currentSeminar.groupingMethod}}">
         <image src="../../../resources/static/images/班级.png" class="classIcon" />
         <text>{{item.name}}</text>
     </view>

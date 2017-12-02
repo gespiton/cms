@@ -38,6 +38,7 @@
   height: 300rpx;
 } 
 
+/*来自标准组的wxss  */
 .clockAndGroupIcon {
   display: inline-block;
   width: 40rpx;

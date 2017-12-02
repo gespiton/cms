@@ -1,12 +1,13 @@
 {
   "pages": [
+
+    "pages/teacher/classManage/classManage",
     "pages/student/seminarHome/group/chooseTopic/chooseTopic",
     "pages/student/studentMain/studentMain",
     "pages/student/seminarHome/group/group",
     "pages/student/seminarHome/seminarHome",
     "pages/student/seminarHome/rollCall/rollCall",
     "pages/student/oneCourse/oneCourse",
-    "pages/teacher/classManage/classManage",
     "pages/student/reviseStudentInfo/reviseStudentInfo",
     "pages/bind/bind",
     "pages/teacher/teacherMain/teacherMain",
@@ -14,8 +15,11 @@
     "pages/teacher/reviseTeacherInfo/reviseTeacherInfo",
     "pages/index/index",
     "pages/logs/logs",
+
+    "pages/teacher/groupInfo/groupInfo",        
+    "pages/teacher/rollStartCall/rollStartCall",
     "pages/teacher/rollCallList/rollCallList",
-    "pages/teacher/rollStartCall/rollStartCall"
+    "pages/teacher/test/test"
   ],
   "window": {
     "backgroundTextStyle": "light",

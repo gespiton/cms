@@ -21,12 +21,12 @@
   </view>
 </view>
 
-<view class='list'>
+<view class='list' wx:if="{{attendance.unsigned}}">
   <view class='list_title'>
     <text>未签到的学生</text>
   </view>
   <view class="list_main">
-    <block wx:for="{{attendance.absent}}">
+    <block wx:for="{{attendance.unsigned}}">
       <view class='list_item'>
         <image src='../../../resources/static/images/user.png' class='userIcon'></image>
         <text class='user_name'>{{item.name}}</text>

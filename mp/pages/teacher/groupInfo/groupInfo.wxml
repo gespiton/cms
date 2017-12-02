@@ -8,7 +8,7 @@
     <block wx:for="{{groups}}" wx:key="id">
       <view class='group_title' bindtap='toggle' data-groupid='{{item.id}}'>
         <text>队伍{{item.id}}</text>
-        <text>选题:{{item.shown}}</text>
+        <text>选题:{{item.topics[0].name}}</text>
       </view>
       <view wx:if="{{item.shown}}" class='group_members'>
         <block wx:for="{{item.members}}">
@@ -17,13 +17,13 @@
             <text class='member_text'>{{item.name}}</text>
           </view>
         </block>
-        <view class='group_members_item'>
+        <view class='group_members_item' wx:if="{{groupMethod!='fixed'}}">
           <image src="../../../resources/static/images/加号.png" bindtap='addMember' class='small_icon' data-groupid='{{item.id}}' />
         </view>
       </view>
     </block>
-
-    <view class='group_title'>
+    
+    <view class='group_title' wx:if="{{groupMethod!='fixed'}}">
       <text>未签到</text>
     </view>
     <view class='group_members'>
@@ -34,6 +34,7 @@
         </view>
       </block>
     </view>
+    
 
   </view>
 </view>
