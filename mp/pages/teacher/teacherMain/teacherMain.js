@@ -1,4 +1,5 @@
-const api = require("../../../utils/api.js");
+import api from "../../../utils/teacherMainApi";
+import utils from "../../../utils/utils";
 // pages/teacher/teacherMain/teacherMain.js
 Page({
 
@@ -14,9 +15,14 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.setData({
-      teacher:api.default.teacherData.teacher
-    }); 
+      const that = this;
+      api.getInfo(function (res) {
+          console.log(res);
+          that.setData({
+              me: res.me,
+              classes: res.classes
+          });
+      });
   },
 
   /**
@@ -75,5 +81,24 @@ Page({
     wx.navigateTo({
       url:'../reviseTeacherInfo/reviseTeacherInfo'
     })
-  }
+  },
+
+
+    /**
+     * 选中某一个课程进入其课程主页面
+     */
+    chooseCourse: function (e) {
+        console.log(e);
+
+        const dataset = e.currentTarget.dataset;
+
+        const targetUrl = utils.buildUrl({
+            base: '../classManage/classManage',
+            courseId: dataset.courseId
+        });
+
+        wx.navigateTo({
+            url: targetUrl
+        });
+    }
 })
