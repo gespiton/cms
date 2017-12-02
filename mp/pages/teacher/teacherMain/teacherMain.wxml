@@ -1,21 +1,19 @@
 <!--pages/teacher/teacherMain/teacherMain.wxml-->
 <view>
-  <view class="main_title" bindtap='goRevise'>
-    <view class="avator">
-      <image src='{{teacher.avator}}'></image>
-    </view>
-
-    <view>
-      <view>姓名： {{teacher.name}}</view>
-      <view>教工号： {{teacher.number}}</view>
-    </view>
+  <view class="box5" style="position:relative;">
+    <!-- 背景图的view -->
+    <image class="img2" src="../../../resources/static/images/背景图2.jpg"/>
+    <image class="img1" src="../../../resources/static/images/人物头像【三元素 为设计而生 3png.com】.png"
+           bindtap="goRevise"/>
+    <view class="FONT4" style="position:absolute; z-index:2; top:10px">姓名：{{me.name}}</view>
+    <view class="FONT4" style="position:absolute; z-index:2; top:40px">教工号：{{me.id}}</view>
   </view>
 
-  <view>
-    <scroll-view scroll-y  style="height:200px;">
-      <view wx:for="{{teacher.courses}}" wx:for-item="course">
-        <button class="course_button">{{course}}</button>
-      </view>
-    </scroll-view>
-  </view>
+  <scroll-view scroll-y style="height:880rpx">
+    <view class="box3" wx:for="{{classes}}" wx:for-item="class" catchtap="chooseCourse"
+          data-course-id="{{course.id}}">
+      <text class='course_name' class="FONT11">{{class.course.name}}</text>
+    </view>
+  </scroll-view>
+
 </view>
