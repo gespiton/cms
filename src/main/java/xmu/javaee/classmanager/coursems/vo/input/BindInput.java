@@ -11,6 +11,7 @@ public class BindInput {
     private String number;
     private BindInputSchool inputSchool;
     private String type;
+
     public BindInput(){}
 
     public BindInput(String name, String number, BindInputSchool bindInputSchool, String type) {
