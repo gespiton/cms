@@ -1,8 +1,8 @@
 {
   "pages": [
+    "pages/bind/bind",
     "pages/student/studentMain/studentMain",
     "pages/student/oneCourse/courseInfo/courseInfo",
-    "pages/bind/bind",
     "pages/teacher/rollStartCall/rollStartCall",
     "pages/teacher/rollCallList/rollCallList",
     "pages/teacher/reviseTeacherInfo/reviseTeacherInfo",

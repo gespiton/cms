@@ -1,78 +1,71 @@
+import api from "../../utils/bindApi";
+import utils from "../../utils/utils";
 // pages/bind/bind.js
-import dataCenter from '../../utils/dataCenter';
 Page({
+    data: {
+        userType: 'student',
+        schoolArray: [
+            ['福建省'],
+            ['厦门式'],
+            ['集美大学', '厦门大学']
+        ],
+        schoolIndex: [0, 0, 1]
+    },
 
-  /**
-   * 页面的初始数据
-   */
-  data: {
-    userType: 'student',
-    array: ['fuck', 'you', 'stupid fuck'],
-    schoolArray: [
-      ['福建省'],
-      ['厦门式'],
-      ['集美大学', '厦门大学']
-    ],
-    schoolIndex: [0, 0, 1]
-  },
+    onLoad: function (options) {
+        this.setData({
+        });
+    },
 
-  onLoad: function(options) {
-    this.setData({
-        name:'default',
-        id:'123'
-    });
-  },
+    changeUserType(e) {
+        let userType = '';
+        if (e.target.id === 'bt_student') {
+            userType = 'student';
+        } else {
+            userType = 'teacher';
+        }
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function() {
+        this.setData({
+            "userType": userType
+        });
+    },
 
-  },
+    textInput(e) {
+        // console.log(this.data);
+        this.setData({
+            [e.target.id]: e.detail.value
+        });
+    },
 
-  changeUserType(e) {
-    let userType = '';
-    if (e.target.id == 'bt_student') {
-      userType = 'student';
-    } else {
-      userType = 'teacher';
+    schoolPickerChange(e) {
+        this.setData({
+            schoolIndex: e.detail.value
+        });
+
+
+        this.setData('school', this.data.schoolArray[2][e.detail.value[2]]);
+    },
+
+    bt_bind() {
+        const that = this;
+
+        api.bindUser({
+            'name': this.data.name,
+            'number': this.data.number,
+            'school': this.data.school
+        }, function (res) {
+            if (res) {
+                utils.showSuccessToast();
+            } else {
+                utils.failToast('info error');
+            }
+        });
+
+
+        // if (this.data.userType === 'student') {
+        //     wx.redirectTo({
+        //         url: '/pages/student/studentMain/studentMain'
+        //     });
+        // }
     }
-
-    this.setData({
-      "userType": userType
-    });
-  },
-
-  textInput(e) {
-    // console.log(this.data);
-    this.setData({
-      [e.target.id]: e.detail.value
-    });
-  },
-
-  schoolPickerChange(e) {
-    this.setData({
-      schoolIndex: e.detail.value
-    });
-
-
-    dataCenter.set('ha', this.data.schoolArray[2][e.detail.value[2]]);
-  },
-
-  bt_bind(e) {
-    dataCenter.set('user', {
-      name: this.data.name,
-      id: this.data.id,
-      type: this.data.userType,
-      school: this.data.schoolArray[2][this.data.schoolIndex[2]]
-    });
-
-    if (this.data.userType == 'student') {
-      wx.redirectTo({
-        url: '/pages/student/studentMain/studentMain'
-      });
-    }
-  }
-
-
-})
+});

@@ -1,5 +1,6 @@
 // pages/StudentClass/CourseUI/Seminar/Grade/grade.js
 import api from '../../../../utils/gradeApi';
+import utils from '../../../../utils/utils';
 
 Page({
 
@@ -40,11 +41,8 @@ Page({
         api.submitScore(this.data.groups, function (res) {
 
             if (res) {
-                wx.showToast({
-                    title: '成功, 请稍等',
-                    icon: 'success',
-                    duration: 2000
-                });
+                utils.showSuccessToast();
+
                 setTimeout(function () {
                     wx.navigateBack();
                 }, 2000);
