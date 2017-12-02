@@ -314,3 +314,14 @@ image {
     width: 100%;
 }
 
+.text-less-obvious{
+    color: gray;
+    font-size: 30rpx;
+
+
+}
+.text-center-horizontal{
+    width: 100%;
+    text-align: center;
+    display: block;
+}

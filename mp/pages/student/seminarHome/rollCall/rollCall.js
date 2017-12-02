@@ -18,12 +18,10 @@ Page({
                 seminar: seminar
             });
         });
-
     },
 
     iAmHere() {
         const that = this;
-
         api.callInRoll(null, function (res) {
             that.setData({
                 state: res.state

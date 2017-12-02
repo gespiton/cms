@@ -3,6 +3,9 @@ package xmu.javaee.classmanager;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+/**
+ * @author: Sher
+ */
 @SpringBootApplication
 public class ClassManagerApplication {
 

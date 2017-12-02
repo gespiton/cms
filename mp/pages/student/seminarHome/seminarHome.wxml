@@ -15,7 +15,7 @@
         </view>
 
         <view class="wrapper ">
-            <view class="action action-score {{started?'active':'inactive'}}">
+            <view class="action action-score {{started?'active':'inactive'}}" catchtap="scoring">
                 <span>打分</span>
             </view>
         </view>

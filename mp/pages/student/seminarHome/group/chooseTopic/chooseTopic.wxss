@@ -1,4 +1,4 @@
-/* 背景色 */
+/*!* 背景色 *!*/
 
 page {
   background: rgba(102, 204, 255, 0.5);
@@ -12,111 +12,105 @@ page {
 
 
 
-/*当选题未选完时的蓝色框*/
+/*!*当选题未选完时的蓝色框*!*/
 
-.blueTopicView {
-  height: 15%;
-  background-color: #6cf;
-  width: 90%;
-  float: left;
-  margin-left: 5%;
-  border-radius: 50rpx;
-  margin-top: 5%;
-}
+/*.blueTopicView {*/
+  /*height: 15%;*/
+  /*background-color: #6cf;*/
+  /*width: 90%;*/
+  /*float: left;*/
+  /*margin-left: 5%;*/
+  /*border-radius: 50rpx;*/
+  /*margin-top: 5%;*/
+/*}*/
 
-/*当选题未选完时的灰色框*/
+/*!*当选题未选完时的灰色框*!*/
 
-.greyTopicView {
-  height: 15%;
-  background-color: #ccc;
-  width: 90%;
-  float: left;
-  margin-left: 5%;
-  border-radius: 50rpx;
-  margin-top: 5%;
-}
+/*.greyTopicView {*/
+  /*height: 15%;*/
+  /*background-color: #ccc;*/
+  /*width: 90%;*/
+  /*float: left;*/
+  /*margin-left: 5%;*/
+  /*border-radius: 50rpx;*/
+  /*margin-top: 5%;*/
+/*}*/
 
-/*选题框左边的选题A/B/C。。。*/
+/*!*选题框左边的选题A/B/C。。。*!*/
 
 
 
-/*选题框中间的黑色分割线*/
+/*!*选题框中间的黑色分割线*!*/
 
-.hrVertical {
-  height: 100%;
-  width: 0.5%;
-  background-color: black;
-  color: black;
-  float: left;
-  margin-left: 10%;
-}
+/*.hrVertical {*/
+  /*height: 100%;*/
+  /*width: 0.5%;*/
+  /*background-color: black;*/
+  /*color: black;*/
+  /*float: left;*/
+  /*margin-left: 10%;*/
+/*}*/
 
-/*选题框右边的选题名*/
+/*!*选题框右边的选题名*!*/
 
-.topicName {
-  color: #fff;
-  float: left;
-  font-size: 28rpx;
-  width: 60%;
-  margin-top: 5%;
-}
 
-/*选题框右边的剩余人数，当人数大于等于2时为白色*/
 
-.leftNumWhite {
-  color: #fff;
-  float: left;
-  font-size: 28rpx;
-  margin-top: 5%;
-}
+/*!*选题框右边的剩余人数，当人数大于等于2时为白色*!*/
 
-/*选题框右边的剩余人数，当人数为1时为红色*/
+/*.leftNumWhite {*/
+  /*color: #fff;*/
+  /*float: left;*/
+  /*font-size: 28rpx;*/
+  /*margin-top: 5%;*/
+/*}*/
 
-.leftNumRed {
-  color: #fa8888;
-  float: left;
-  font-size: 28rpx;
-  margin-top: 5%;
-}
+/*!*选题框右边的剩余人数，当人数为1时为红色*!*/
 
-/*选题框右下角的九点按钮*/
+/*.leftNumRed {*/
+  /*color: #fa8888;*/
+  /*float: left;*/
+  /*font-size: 28rpx;*/
+  /*margin-top: 5%;*/
+/*}*/
 
-.nineIcon {
-  height: 30%;
-  width: 8%;
-  float: right;
-  padding-top: 5%;
-  padding-right: 2%;
-}
+/*!*选题框右下角的九点按钮*!*/
 
-/*选题框下方的选题简介框*/
+/*.nineIcon {*/
+  /*height: 30%;*/
+  /*width: 8%;*/
+  /*float: right;*/
+  /*padding-top: 5%;*/
+  /*padding-right: 2%;*/
+/*}*/
 
-.topicDescribeView {
-  height: 15%;
-  background-color: #fff;
-  width: 80%;
-  float: left;
-  margin-left: 10%;
-  color: black;
-  text-align: center;
-}
+/*!*选题框下方的选题简介框*!*/
 
-/*选题框下方的选题简介框里的选题标题*/
+/*.topicDescribeView {*/
+  /*height: 15%;*/
+  /*background-color: #fff;*/
+  /*width: 80%;*/
+  /*float: left;*/
+  /*margin-left: 10%;*/
+  /*color: black;*/
+  /*text-align: center;*/
+/*}*/
 
-.topicDescribeTitle {
-  font-size: 28rpx;
-  font-weight: bold;
-}
+/*!*选题框下方的选题简介框里的选题标题*!*/
 
-/*选题框下方的选题简介框里的选题文本*/
+/*.topicDescribeTitle {*/
+  /*font-size: 28rpx;*/
+  /*font-weight: bold;*/
+/*}*/
 
-.topicDescribeText {
-  font-size: 28rpx;
-  float: left;
-  word-wrap: break-word;
-  width: 100%;
-  overflow: hidden;
-}
+/*!*选题框下方的选题简介框里的选题文本*!*/
+
+/*.topicDescribeText {*/
+  /*font-size: 28rpx;*/
+  /*float: left;*/
+  /*word-wrap: break-word;*/
+  /*width: 100%;*/
+  /*overflow: hidden;*/
+/*}*/
 
 /*mine*/
 .blueUsersView {
@@ -132,6 +126,7 @@ page {
     display: flex;
   flex-direction: row;
     justify-content: space-around;
+    height: 150rpx;
   width: 90%;
   margin: 40rpx auto 0 auto;
   padding: 10rpx 0;
@@ -156,12 +151,8 @@ page {
 }
 
 .i-expand{
-    /*position: absolute;*/
-    /*right: 100rpx;*/
-    /*display: block;*/
-  /*float: right;*/
-    flex-grow: 0.5;
-  padding: 20 rpx 20 rpx 20 rpx 0;
+  flex-grow: 0.5;
+  padding: 20px 10px 20px 20px;
   color:white;
 }
 
@@ -169,6 +160,11 @@ page {
   color: #fff;
   font-size: 48rpx;
   text-align: center;
+}
+
+.topicName {
+  color: #fff;
+  font-size: 28rpx;
 }
 
 .detail{

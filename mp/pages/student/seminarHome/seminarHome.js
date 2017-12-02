@@ -48,11 +48,17 @@ Page({
     grouping() {
         const targetUrl = utils.buildUrl({
             base: './group/group',
-            seminarId: this.data.seminarId
+            seminarId: this.data.seminarId // todo remove this
         });
 
         wx.navigateTo({
             url: targetUrl
+        });
+    },
+
+    scoring() {
+        wx.navigateTo({
+            url: './grade/grade'
         });
     }
 

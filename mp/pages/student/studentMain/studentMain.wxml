@@ -5,16 +5,15 @@
         <image class="img2" src="../../../resources/static/images/背景图2.jpg"/>
         <image class="img1" src="../../../resources/static/images/人物头像【三元素 为设计而生 3png.com】.png"
                bindtap="goRevise"/>
-        <view class="add_avator">点击头像修改</view>
-        <view class="FONT4" style="position:absolute; z-index:2; top:10px">姓名：{{student.name}}</view>
-        <view class="FONT4" style="position:absolute; z-index:2; top:40px">学号：{{student.id}}</view>
+        <view class="FONT4" style="position:absolute; z-index:2; top:10px">姓名：{{me.name}}</view>
+        <view class="FONT4" style="position:absolute; z-index:2; top:40px">学号：{{me.id}}</view>
     </view>
 
     <scroll-view scroll-y style="height:880rpx">
-        <view class="box3" wx:for="{{courses}}" wx:for-item="course" catchtap="chooseCourse"
+        <view class="box3" wx:for="{{classes}}" wx:for-item="class" catchtap="chooseCourse"
               data-course-id="{{course.id}}">
-            <text class='course_name' class="FONT11">{{course.name}}</text>
-            <text class='course_teacher' class="FONT51" >老师：{{course.teacher}}</text>
+            <text class='course_name' class="FONT11">{{class.course.name}}</text>
+            <text class='course_teacher' class="FONT51">老师：{{class.teacher}}</text>
         </view>
     </scroll-view>
 </page>

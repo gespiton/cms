@@ -1,8 +1,11 @@
-package xmu.javaee.classmanager.wxApi;
+package xmu.javaee.classmanager.wxapi;
 
+/**
+ * @author Sher
+ */
 public class WxSession {
     private String openid;
-    private String session_key;
+    private String sessionKey;
     private String unionid;
     private String errcode;
     private String errmsg;
@@ -15,12 +18,12 @@ public class WxSession {
         this.openid = openid;
     }
 
-    public String getSession_key() {
-        return session_key;
+    public String getSessionKey() {
+        return sessionKey;
     }
 
-    public void setSession_key(String session_key) {
-        this.session_key = session_key;
+    public void setSessionKey(String sessionKey) {
+        this.sessionKey = sessionKey;
     }
 
     public String getUnionid() {
