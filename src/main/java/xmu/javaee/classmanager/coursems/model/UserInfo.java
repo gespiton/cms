@@ -1,4 +1,4 @@
-package xmu.javaee.classmanager.coursems.vo;
+package xmu.javaee.classmanager.coursems.model;
 
 /**
  * Demo UserInfo
@@ -12,6 +12,18 @@ public class UserInfo {
     private String name;
     private String jwt="";
     private String school="";
+    private String phone;
+    private String password;
+
+    public UserInfo(int id, String userType, String name, String jwt, String school, String phone, String password) {
+        this.id = id;
+        this.userType = userType;
+        this.name = name;
+        this.jwt = jwt;
+        this.school = school;
+        this.phone = phone;
+        this.password = password;
+    }
 
     public UserInfo(int id, String userType, String name, String jwt, String school) {
         this.id = id;
@@ -66,5 +78,21 @@ public class UserInfo {
 
     public void setSchool(String school) {
         this.school = school;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

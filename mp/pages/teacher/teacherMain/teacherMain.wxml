@@ -2,8 +2,8 @@
 <view>
   <view class="box5" style="position:relative;">
     <!-- 背景图的view -->
-    <image class="img2" src="../../../resources/static/images/背景图2.jpg"/>
-    <image class="img1" src="../../../resources/static/images/人物头像【三元素 为设计而生 3png.com】.png"
+    <image class="img2" src="../../../images/titleBackground.jpg"/>
+    <image class="img1" src="../../../images/figureAvatar.png"
            bindtap="goRevise"/>
     <view class="FONT4" style="position:absolute; z-index:2; top:10px">姓名：{{me.name}}</view>
     <view class="FONT4" style="position:absolute; z-index:2; top:40px">教工号：{{me.id}}</view>

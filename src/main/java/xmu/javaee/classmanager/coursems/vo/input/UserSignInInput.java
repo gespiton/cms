@@ -1,18 +1,21 @@
-package xmu.javaee.classmanager.coursems.vo;
+package xmu.javaee.classmanager.coursems.vo.input;
+
 
 import java.io.Serializable;
 
 /**
- * Demo UserSignInInfo
+ * Demo UserSignInInput
  *
  * @author drafting_dreams
- * @date 2017/12/01
+ * @date 2017/12
  */
-public class UserSignInInfo implements Serializable {
+public class UserSignInInput implements Serializable{
     private String phone;
     private String password;
-
-    public UserSignInInfo() {
+    public UserSignInInput(){}
+    public UserSignInInput(String phone, String password) {
+        this.phone = phone;
+        this.password = password;
     }
 
     public String getPhone() {
@@ -31,3 +34,4 @@ public class UserSignInInfo implements Serializable {
         this.password = password;
     }
 }
+
