@@ -40,13 +40,6 @@ public class CourseController {
         return courses;
     }
 
-    /**
-     * 创建课程
-     * @param id
-     * @return
-     */
-    @RequestMapping(value = "course", method = RequestMethod.POST)
-    // TODO
 
     /**
      * 按ID获取课程
@@ -58,19 +51,7 @@ public class CourseController {
         return course;
     }
 
-    /**
-     * 按ID修改课程
-     * @param courseId
-     * @return
-     */
-    @RequestMapping(value = "/course/{courseId}", method = RequestMethod.PUT)
-    // TODO
 
-    /**
-     * 按ID删除课程
-     */
-    @RequestMapping(value = "/course/{courseId}", method = RequestMethod.DELETE)
-    //TODO
 
     /**
      * 按课程ID获取课程的讨论课列表
@@ -90,12 +71,6 @@ public class CourseController {
         return seminars;
     }
 
-    /**
-     * 在指定ID的课程创建讨论课
-     * @param courseId
-     * @return
-     */
-    @RequestMapping(value = "/course/{courseId}/seminar", method = RequestMethod.POST)
 
     /**
      * 按课程ID获取课程的班级列表
@@ -116,8 +91,4 @@ public class CourseController {
 
     }
 
-    /**
-     * 在指定ID的课程创建班级
-     */
-    @RequestMapping(value = "/course/{courseId}/class", method = RequestMethod.POST)
 }
