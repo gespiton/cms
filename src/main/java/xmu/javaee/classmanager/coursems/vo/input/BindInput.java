@@ -9,7 +9,7 @@ package xmu.javaee.classmanager.coursems.vo.input;
 public class BindInput {
     private String name;
     private String number;
-    private BindInputSchool inputSchool;
+    private BindInputSchool school;
     private String type;
 
     public BindInput(){}
@@ -17,7 +17,7 @@ public class BindInput {
     public BindInput(String name, String number, BindInputSchool bindInputSchool, String type) {
         this.name = name;
         this.number = number;
-        this.inputSchool = bindInputSchool;
+        this.school = bindInputSchool;
         this.type = type;
     }
 
@@ -38,12 +38,12 @@ public class BindInput {
         this.number = number;
     }
 
-    public BindInputSchool getInputSchool() {
-        return inputSchool;
+    public BindInputSchool getSchool() {
+        return school;
     }
 
-    public void setInputSchool(BindInputSchool inputSchool) {
-        this.inputSchool = inputSchool;
+    public void setSchool(BindInputSchool school) {
+        this.school = school;
     }
 
     public String getType() {

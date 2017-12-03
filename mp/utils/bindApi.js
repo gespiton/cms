@@ -1,6 +1,5 @@
 import constants from './constants';
 import cache from './localCache';
-
 function bindUser(args, cb) {
     wx.request({
         url: constants.domain + '/me',
@@ -18,7 +17,6 @@ function bindUser(args, cb) {
             }
         }
     });
-
 }
 
 export default {bindUser};

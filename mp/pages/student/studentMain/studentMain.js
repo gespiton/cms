@@ -3,7 +3,6 @@ import utils from "../../../utils/utils";
 // pages/student/studentMain/studentMain.js
 Page({
     onLoad() {
-
         const that = this;
         api.getInfo(function (res) {
             console.log(res);

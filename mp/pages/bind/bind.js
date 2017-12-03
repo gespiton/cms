@@ -9,12 +9,12 @@ Page({
             ['厦门式'],
             ['集美大学', '厦门大学']
         ],
-        schoolIndex: [0, 0, 1]
+        schoolIndex: [0, 0, 1],
+        school:'厦门大学'
     },
 
     onLoad: function (options) {
-        this.setData({
-        });
+        this.setData({});
     },
 
     changeUserType(e) {
@@ -48,24 +48,31 @@ Page({
 
     bt_bind() {
         const that = this;
+        console.log(this.data.school);
 
         api.bindUser({
             'name': this.data.name,
             'number': this.data.number,
-            'school': this.data.school
+            'school': {'name': this.data.school, 'id': 12}
         }, function (res) {
             if (res) {
-                utils.showSuccessToast();
+                let targetUrl = '';
+                if (that.data.userType === 'student') {
+                    targetUrl = '/pages/student/studentMain/studentMain';
+                } else {
+                    targetUrl = '/pages/teacher/teacherMain/teacherMain';
+                }
+
+                utils.showSuccessToast(
+                    function () {
+                        wx.redirectTo({
+                            url: targetUrl
+                        })
+                    }
+                );
             } else {
                 utils.failToast('info error');
             }
         });
-
-
-        // if (this.data.userType === 'student') {
-        //     wx.redirectTo({
-        //         url: '/pages/student/studentMain/studentMain'
-        //     });
-        // }
     }
 });

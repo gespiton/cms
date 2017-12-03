@@ -9,7 +9,9 @@ package xmu.javaee.classmanager.coursems.vo.input;
 public class BindInputSchool {
     private Integer id;
     private String name;
-    public BindInputSchool(){}
+
+    public BindInputSchool() {
+    }
 
     public BindInputSchool(Integer id, String name) {
         this.id = id;

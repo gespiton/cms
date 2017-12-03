@@ -3,26 +3,27 @@ package xmu.javaee.classmanager.coursems.vo.output;
 import xmu.javaee.classmanager.coursems.vo.input.BindInputSchool;
 
 /**
- * Demo TeacherInfoOutput
+ * Demo User
  *
  * @author drafting_dreams
  * @date 2017/12/02
  */
-public class TeacherInfoOutput {
+public class User {
     private Integer id;
     private String type;
     private String name;
     private String number;
     private String phone;
-    private String email;
-    private String male;
+    private String email = "email";
+    private String male = "mix";
     private BindInputSchool school;
     private String title;
     private String avatar;
 
-    public TeacherInfoOutput() {}
+    public User() {
+    }
 
-    public TeacherInfoOutput(Integer id, String type, String name, String number, String phone, String email, String male, BindInputSchool school, String title, String avatar) {
+    public User(Integer id, String type, String name, String number, String phone, String email, String male, BindInputSchool school, String title, String avatar) {
         this.id = id;
         this.type = type;
         this.name = name;
@@ -33,7 +34,15 @@ public class TeacherInfoOutput {
         this.school = school;
         this.title = title;
         this.avatar = avatar;
+    }
 
+    public User(int i, String userType, String name, String school, String phone) {
+        this.id = i;
+        this.type = userType;
+        this.name = name;
+        this.number = String.valueOf(i);
+        this.phone = phone;
+        this.school = new BindInputSchool(1, school);
     }
 
     public Integer getId() {

@@ -1,5 +1,7 @@
 package xmu.javaee.classmanager.coursems.model;
 
+import xmu.javaee.classmanager.coursems.vo.input.BindInputSchool;
+
 /**
  * Demo UserInfo
  *
@@ -10,35 +12,20 @@ public class UserInfo {
     private int id;
     private String userType;
     private String name;
-    private String jwt="";
-    private String school="";
+    private String jwt = "";
+    private BindInputSchool school;
     private String phone;
     private String password;
 
-    public UserInfo(int id, String userType, String name, String jwt, String school, String phone, String password) {
-        this.id = id;
+    public UserInfo(int i, String userType, String name, String jwt, String school, String phone, String password) {
+        this.id = i;
         this.userType = userType;
         this.name = name;
-        this.jwt = jwt;
-        this.school = school;
+        this.school = new BindInputSchool(1,school);
         this.phone = phone;
         this.password = password;
     }
 
-    public UserInfo(int id, String userType, String name, String jwt, String school) {
-        this.id = id;
-        this.userType = userType;
-        this.name = name;
-        this.jwt = jwt;
-        this.school = school;
-    }
-
-    public UserInfo(int id, String userType, String name, String jwt) {
-        this.id = id;
-        this.userType = userType;
-        this.name = name;
-        this.jwt = jwt;
-    }
 
     public int getId() {
         return id;
@@ -72,13 +59,6 @@ public class UserInfo {
         this.jwt = jwt;
     }
 
-    public String getSchool() {
-        return school;
-    }
-
-    public void setSchool(String school) {
-        this.school = school;
-    }
 
     public String getPhone() {
         return phone;
@@ -94,5 +74,13 @@ public class UserInfo {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public BindInputSchool getSchool() {
+        return school;
+    }
+
+    public void setSchool(BindInputSchool school) {
+        this.school = school;
     }
 }
