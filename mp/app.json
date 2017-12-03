@@ -17,9 +17,7 @@
     "pages/student/seminarHome/grade/grade",
     "pages/student/seminarHome/group/chooseTopic/chooseTopic",
     "pages/student/seminarHome/group/group",
-    "pages/student/seminarHome/rollCall/rollCall",
-    "pages/index/index",
-    "pages/logs/logs"
+    "pages/student/seminarHome/rollCall/rollCall"
   ],
   "window": {
     "backgroundTextStyle": "light",

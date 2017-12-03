@@ -1,10 +1,12 @@
 package xmu.javaee.classmanager.coursems.controller;
 
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import xmu.javaee.classmanager.coursems.vo.output.SimpleAttendanceOutput;
 import xmu.javaee.classmanager.coursems.vo.output.SimpleGroupIdOutput;
 import xmu.javaee.classmanager.coursems.vo.output.SimpleStudentInfoForAttendanceOutPut;
+import xmu.javaee.classmanager.coursems.vo.output.Topic;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -72,4 +74,17 @@ public class SeminarController {
         groups.add(group);
         return groups;
     }
+
+    /**
+     * 根据 seminar id 获取 topics
+     * @return topics
+     */
+    @RequestMapping(value = "/seminar/{seminarID}/topic")
+    public List<Topic> getTopics(){
+        List<Topic> topics = MockDb.getTopics();
+        return topics;
+    }
+
+
+
 }

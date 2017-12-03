@@ -4,6 +4,7 @@ import xmu.javaee.classmanager.coursems.vo.output.*;
 
 import xmu.javaee.classmanager.coursems.vo.input.BindInput;
 
+import java.time.Instant;
 import java.util.*;
 
 /**
@@ -16,6 +17,10 @@ public class MockDb {
     private static List<SimpleCourse> courses;
 
     private static Map<Integer, Group> fixedGroups;
+
+    private static List<Topic> topics;
+
+    private static Map<Integer, Topic> topicMap;
 
     static {
         users = new HashMap<>();
@@ -32,16 +37,16 @@ public class MockDb {
 
 
         fixedGroups = new HashMap<>();
-        Group group = new Group();
-        List<GroupMember> groupMembers = new ArrayList<>();
-        groupMembers.add(new GroupMember(1, users.get(1).getName()));
-        groupMembers.add(new GroupMember(2, users.get(2).getName()));
-        groupMembers.add(new GroupMember(3, users.get(3).getName()));
-        group.setId(1);
-        group.setMembers(groupMembers);
-        fixedGroups.put(1, group);
 
+        // topics array
+        topics = new ArrayList<>();
+        topics.add(new Topic(0, "领域模型", "Domain model与模块划分", 5, 3));
+        topics.add(new Topic(1, "package 划分", "用rest 风格 划分packge", 5, 3));
+        topics.add(new Topic(3, "ux design", "讨论 user experience design", 5, 0));
 
+        // topic map
+        topicMap = new HashMap<>();
+        topics.forEach(topic -> topicMap.put(topic.getId(), topic));
     }
 
 
@@ -71,7 +76,7 @@ public class MockDb {
                 "界面原型设计", "fixed", "2017-09-25", "2017-12-09");
 
         CourseSeminarOutput seminar2 = new CourseSeminarOutput(32, "概要设计", "模型层与数据库设计",
-                "fixed", "2017-10-10", "2017-10-24");
+                "random", "2017-10-10", "2017-12-24");
 
         List<CourseSeminarOutput> seminars = new LinkedList<CourseSeminarOutput>();
         seminars.add(seminar1);
@@ -80,16 +85,56 @@ public class MockDb {
     }
 
     static Group getGroupWithID(Integer groupID, String id) {
+
+        if (fixedGroups.get(groupID) != null) {
+            return fixedGroups.get(groupID);
+        }
+
         Group group = new Group();
         List<GroupMember> groupMembers = new ArrayList<>();
         groupMembers.add(new GroupMember(1, users.get(1).getName()));
         groupMembers.add(new GroupMember(2, users.get(2).getName()));
         groupMembers.add(new GroupMember(3, users.get(3).getName()));
-        group.setId(1);
+        group.setId(groupID);
         group.setMembers(groupMembers);
 
-        fixedGroups.put(1,group);
+        fixedGroups.put(groupID, group);
 
         return group;
+    }
+
+    static boolean modifyGroup(Integer groupID, Group group) {
+        Group currentGroup = fixedGroups.get(groupID);
+
+        Leader leader = group.getLeader();
+        if (leader != null) {
+            leader.setName(users.get(leader.getId()).getName());
+        }
+
+        currentGroup.setLeader(leader);
+        currentGroup.setMembers(group.getMembers());
+        return true;
+    }
+
+    static List<Topic> getTopics() {
+        return topics;
+    }
+
+    static boolean chooseTopic(Integer groupID, Topic topic) {
+        Group group = fixedGroups.get(groupID);
+
+
+        List<Topic> choosenTopics = new ArrayList<>();
+        if (group.getTopics() != null) {
+            choosenTopics = group.getTopics();
+        }
+
+        topic = topicMap.get(topic.getId());
+
+        topic.setGroupLeft(topic.getGroupLeft() - 1);
+        choosenTopics.add(topicMap.get(topic.getId()));
+
+        group.setTopics(choosenTopics);
+        return true;
     }
 }

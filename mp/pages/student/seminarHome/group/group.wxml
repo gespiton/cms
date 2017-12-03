@@ -50,7 +50,9 @@
                 <view wx:for="{{topics}}">
                     <view class="topic">{{item.name}}</view>
                 </view>
+                <button class="btn-choose-topic" bindtap="chooseTopic">继续选题</button>
             </block>
+
             <block wx:else>
                 <button class="btn-choose-topic" bindtap="chooseTopic">选题</button>
             </block>
