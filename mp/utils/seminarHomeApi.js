@@ -1,19 +1,14 @@
-import oneCourseApi from './oneCourseApi';
+import cache from './localCache';
 
-function getSeminarInfo(args, cb) {
-    //todo replacing fake data
-    console.log("get group info");
-    const courseName = 'ooad'; //todo get course name by seminar id or parse in to that page as parameter;
+function getSeminarInfo(seminarID, cb) {
+    const courses = cache.get('courses');
+    const courseName = courses[cache.get('currentCourseID')].name;
+    const seminar = cache.get('seminars')[seminarID];
+    seminar.courseName = courseName;
 
-    cb({
-        "id": 2,
-        "name": "界面原型设计",
-        "description": "界面原型设计",
-        "groupingMethod": "no fixed",
-        "startTime": "2017-09-25",
-        "endTime": "2017-12-09",
-        courseName: courseName
-    });
+    cache.set('currentSeminarID',seminarID);
+
+    cb(seminar);
 }
 
 export default {getSeminarInfo}

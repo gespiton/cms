@@ -1,6 +1,6 @@
 import api from "../../utils/bindApi";
 import utils from "../../utils/utils";
-// pages/bind/bind.js
+
 Page({
     data: {
         userType: 'student',
@@ -10,7 +10,7 @@ Page({
             ['集美大学', '厦门大学']
         ],
         schoolIndex: [0, 0, 1],
-        school:'厦门大学'
+        school: '厦门大学'
     },
 
     onLoad: function (options) {

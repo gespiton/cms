@@ -1,27 +1,16 @@
-// pages/StudentClass/CourseUI/Seminar/FixedGroup/UnChooseTopic.js
 import api from '../../../../utils/groupApi';
 import utils from '../../../../utils/utils';
 
 Page({
-
-    /**
-     * 页面的初始数据
-     */
     data: {},
 
-    onLoad(option) {
-        /**
-         * seminarId
-         */
-
-        option.seminarId = 1; // todo delete this
-
-        this.load(option.seminarId);
+    onLoad() {
+        this.load();
     },
 
     load(seminarId) {
         const that = this;
-        api.getGroupInfo(seminarId, function (res) {
+        api.getGroupInfo(function (res) {
             console.log(res);
             that.setData({
                 leader: res.leader ? res.leader : null,

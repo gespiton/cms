@@ -1,18 +1,18 @@
 package xmu.javaee.classmanager.coursems.vo.output;
 
 /**
- * Demo TeacherSimpleCourse
+ * Demo SimpleCourse
  *
  * @author drafting_dreams
  * @date 2017/12/02
  */
-public class TeacherSimpleCourse {
+public class SimpleCourse {
     private Integer id;
     private String name;
     private String description;
 
-    public TeacherSimpleCourse(){}
-    public TeacherSimpleCourse(Integer id, String name) {
+    public SimpleCourse(){}
+    public SimpleCourse(Integer id, String name) {
         this.id = id;
         this.name = name;
     }

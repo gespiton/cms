@@ -62,16 +62,14 @@ public class SeminarController {
 
     /**
      * 按照讨论课id查询讨论课列表
-     * @return
+     * @return group contains current user only !
      */
     @RequestMapping(value = "/seminar/{seminarId}/group")
-    public List<SimpleGroupIdOutput> getseminarGroups() {
-        SimpleGroupIdOutput group = new SimpleGroupIdOutput(28);
-
-        List<SimpleGroupIdOutput> groups = new LinkedList<SimpleGroupIdOutput>();
-
+    public List<SimpleGroupIdOutput> getSeminarGroups() {
+        // this id has to be one to work -- couple with MockDb
+        SimpleGroupIdOutput group = new SimpleGroupIdOutput(1);
+        List<SimpleGroupIdOutput> groups = new LinkedList<>();
         groups.add(group);
-
         return groups;
     }
 }

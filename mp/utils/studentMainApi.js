@@ -11,9 +11,19 @@ function getInfo(cb) {
             cache.set('me', response.data);
 
             utils.requestWithId({
-                url: '/class',
+                url: '/course',
                 success: function (res) {
-                    console.log(res.data);
+                    function cacheCourses() {
+                        const courses = {};
+                        res.data.map(course => {
+                            courses[course.id] = course;
+                        });
+
+                        cache.set("courses", courses);
+                    }
+
+                    cacheCourses();
+
                     cb({'me': response.data, 'classes': res.data});
                 }
             });

@@ -1,3 +1,6 @@
+import cache from './localCache';
+import utils from './utils';
+
 const notLeaderData = {
     "id": 28,
     // "leader": {
@@ -54,16 +57,33 @@ const leaderData = {
     //     }
     // ],
     "report": ""
-}
+};
 
 let isLeader = false;
 
-function getGroupInfo(seminarId, cb) {
+function getGroupInfo(cb) {
     // todo replace fake data
     // GET /seminar/{seminarId}/group?include={studentId}
     // GET /group/{groupId}?embedTopics=true
 
-    cb(isLeader ? leaderData : notLeaderData);
+    // first get group id
+    utils.requestWithId({
+        url: `/seminar/${cache.get('currentSeminarID')}/group?include=${cache.get('userID')}`,
+        success: function (res) {
+            console.log("got group id");
+            const groupID = res.data[0].id;
+            cache.set('groupID', groupID);
+
+            // then get group info
+            utils.requestWithId({
+                url: `/group/${groupID}`,
+                success: function (res) {
+                    cache.set('group', res.data);
+                    cb(res.data);
+                }
+            });
+        }
+    });
 }
 
 function amILeader() {
@@ -87,7 +107,26 @@ function becomeLeader(cb) {
 //         }
 //     ]
 // }
-    isLeader = true;
+
+    const group = cache.get('group');
+    const members = group.members;
+    const myID = cache.get('userID');
+    const newMembers = members.filter(group => group.id != myID);
+    console.log(newMembers);
+
+    const reqObj = {};
+    reqObj.leader = {'id': myID};
+    reqObj.members = newMembers;
+
+    // utils.requestWithId({
+    //     url: `/group/${cache.get('groupID')}`,
+    //     data: reqObj,
+    //     method: 'put',
+    //     success: function () {
+    //
+    //     }
+    // });
+
     cb(true);
 }
 

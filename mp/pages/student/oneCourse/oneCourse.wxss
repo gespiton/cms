@@ -7,10 +7,15 @@
     padding-bottom: 25%;
     border-radius: 15px;
 }
-.i-expand{
+
+.i-expand {
     position: absolute;
     right: 0;
-    padding: 40rpx;
+    padding: 40 rpx;
     bottom: 0;
     color: whitesmoke;
+}
+
+.active {
+    background-color: #66CCFF;
 }

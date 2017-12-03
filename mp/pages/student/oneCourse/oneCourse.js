@@ -6,24 +6,22 @@ import utils from '../../../utils/utils';
 Page({
     data: {},
 
-    /**
-     * 生命周期函数--监听页面加载
-     */
-
     onLoad: function (options) {
+        console.log(options);
         const that = this;
-        //todo change fake courseId
-        if (!options.courseId) {
-            options.courseId = 1;
-        }
-
 
         api.getSeminarInfoByCourseId({id: options.courseId}, function (res) {
-            console.log(res);
+            const seminars = res.seminars;
+            seminars.map(seminar=>{
+                seminar.active = that.isSeminarStarted(seminar);
+            });
+
+            console.log(seminars);
+
             that.setData({
                 courseId: options.courseId,
                 courseName: res.courseName,
-                seminars: res.seminars
+                seminars: seminars
             });
         });
     },
@@ -45,5 +43,16 @@ Page({
         wx.navigateTo({
             url: './courseInfo/courseInfo'
         });
+    },
+
+    isSeminarStarted(res) {
+        const startTime = Date.parse(res.startTime);
+        const endTime = Date.parse(res.endTime);
+        const now = Date.now();
+        let started = false;
+        if (now >= startTime && now <= endTime) {
+            started = true;
+        }
+        return started;
     }
 });

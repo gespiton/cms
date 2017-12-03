@@ -1,5 +1,6 @@
 import constants from "./constants";
 import cache from "./localCache";
+import utils from './utils';
 
 function buildUrl(args) {
     let baseUrl = args.base;
@@ -36,9 +37,13 @@ function requestWithId(args) {
     wx.request({
         url: constants.domain + args.url,
         header: {'id': cache.get('userID')},
+        method: args.method ? args.method : 'get',
         data: args.data,
-        success: args.success
+        success: args.success,
+        fail:function () {
+            utils.failToast('fail');
+        }
     });
 }
 
-export default {buildUrl, showSuccessToast, failToast,requestWithId}
+export default {buildUrl, showSuccessToast, failToast, requestWithId}

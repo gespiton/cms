@@ -10,19 +10,13 @@ Page({
     onLoad: function (options) {
         /**
          * options{
-         *   courseId: 1
          *   seminarId: 1
          * }
          */
-        // todo get rid of this
-        options = {
-            seminarId: 1
-        };
 
-        console.log(options);
+
         const that = this;
-        api.getSeminarInfo(options, function (seminar) {
-            console.log(seminar);
+        api.getSeminarInfo(options.seminarId, function (seminar) {
             const started = isSeminarStarted(seminar);
             that.setData({
                 seminar: seminar,
@@ -47,8 +41,7 @@ Page({
 
     grouping() {
         const targetUrl = utils.buildUrl({
-            base: './group/group',
-            seminarId: this.data.seminarId // todo remove this
+            base: './group/group'
         });
 
         wx.navigateTo({
