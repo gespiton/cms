@@ -1,6 +1,5 @@
 import constants from "./constants";
 import cache from "./localCache";
-import utils from './utils';
 
 function buildUrl(args) {
     let baseUrl = args.base;
