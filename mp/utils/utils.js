@@ -27,7 +27,7 @@ function failToast(msg) {
     wx.showToast({
         title: msg,
         // icon: 'fail',
-        image: './icons/error.png',
+        image: '/images/error.png',
         duration: 2000
     });
 }

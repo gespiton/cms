@@ -10,7 +10,7 @@ function callInRoll(args, cb) {
     // todo PUT /class/{classId}/attendance/{studentId}
     cb({
         state: true
-    });
+    });   
 }
 
 export default {getSeminarInfoById, callInRoll}

@@ -35,6 +35,11 @@ public class Class {
         this.endTime = endTime;
     }
 
+    public Class(int i, String name) {
+        this.id = i;
+        this.name = name;
+    }
+
     public Integer getId() {
         return id;
     }

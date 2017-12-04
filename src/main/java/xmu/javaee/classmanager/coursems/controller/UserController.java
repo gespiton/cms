@@ -1,7 +1,6 @@
 package xmu.javaee.classmanager.coursems.controller;
 
 import org.springframework.web.bind.annotation.*;
-import xmu.javaee.classmanager.coursems.model.UserInfo;
 import xmu.javaee.classmanager.coursems.vo.input.BindInput;
 import xmu.javaee.classmanager.coursems.vo.output.User;
 import xmu.javaee.classmanager.coursems.vo.output.UserSignInOutput;
