@@ -1,8 +1,8 @@
 <!--pages/teacher/rollStartCall.wxml-->
 
-<view class='container'>
+<view class='container' xmlns:wx="http://www.w3.org/1999/xhtml">
     <view class='info_banner'>
-        <image src='../../../resources/static/images/蓝色板.png' class="blueBoardIcon"></image>
+        <image src='/images/bulletin.png' class="blueBoardIcon"/>
         <view class='class_info'>
             <text class='class_name'>{{currentClass.name}}</text>
             <text class='class_num'>学生总数:{{currentClass.numStudent}}</text>
@@ -10,7 +10,7 @@
     </view>
     <view class='roll'>
       <view class='roll_info'>
-          <image src='../../../resources/static/images/users.png' class='usersIcon'></image>
+          <image src='/images/users.png' class='usersIcon'/>
           <text class='roll_info_text'>已签到学生0/{{currentClass.numStudent}}</text>
           <button wx:if="{{call.status=='calling'}}" class='blue_button' bindtap='checkCall' data-classid="{{classid}}" data-cursemid="{{currentSeminarId}}" data-callstatus="{{call.status}}">签到名单</button>
       </view>

@@ -1,10 +1,9 @@
 package xmu.javaee.classmanager.coursems.controller;
 
-import xmu.javaee.classmanager.coursems.vo.output.*;
-
 import xmu.javaee.classmanager.coursems.vo.input.BindInput;
+import xmu.javaee.classmanager.coursems.vo.output.*;
+import xmu.javaee.classmanager.coursems.vo.output.Class;
 
-import java.time.Instant;
 import java.util.*;
 
 /**
@@ -22,6 +21,8 @@ public class MockDb {
 
     private static Map<Integer, Topic> topicMap;
 
+    private static SeminarForTeacher seminarForTeacher;
+
     static {
         users = new HashMap<>();
         users.put(0, new User(0, "teacher", "Mr.wang", "schoolxxx", "110"));
@@ -35,7 +36,6 @@ public class MockDb {
         courses.add(new SimpleCourse(2, "OOAD"));
         courses.add(new SimpleCourse(3, "操作系统"));
 
-
         fixedGroups = new HashMap<>();
 
         // topics array
@@ -47,6 +47,14 @@ public class MockDb {
         // topic map
         topicMap = new HashMap<>();
         topics.forEach(topic -> topicMap.put(topic.getId(), topic));
+
+
+        // seminar for teacher
+        seminarForTeacher = new SeminarForTeacher(1, "界面原型设计", "OOAD", "fixed", "2017-09-25", "2017-12-09");
+        List<Class> classes = new ArrayList<>();
+        classes.add(new Class(1, "周三 12"));
+        classes.add(new Class(2, "周三 34"));
+        seminarForTeacher.setClasses(classes);
     }
 
 
@@ -72,10 +80,10 @@ public class MockDb {
 
     static List<CourseSeminarOutput> getSeminarsByCourseId(Integer courseID) {
 
-        CourseSeminarOutput seminar1 = new CourseSeminarOutput(29, "界面原型设计",
+        CourseSeminarOutput seminar1 = new CourseSeminarOutput(1, "界面原型设计",
                 "界面原型设计", "fixed", "2017-09-25", "2017-12-09");
 
-        CourseSeminarOutput seminar2 = new CourseSeminarOutput(32, "概要设计", "模型层与数据库设计",
+        CourseSeminarOutput seminar2 = new CourseSeminarOutput(2, "概要设计", "模型层与数据库设计",
                 "random", "2017-10-10", "2017-12-24");
 
         List<CourseSeminarOutput> seminars = new LinkedList<CourseSeminarOutput>();
@@ -136,5 +144,9 @@ public class MockDb {
 
         group.setTopics(choosenTopics);
         return true;
+    }
+
+    static SeminarForTeacher getSeminarForTeacher(Integer courseID) {
+        return seminarForTeacher;
     }
 }
