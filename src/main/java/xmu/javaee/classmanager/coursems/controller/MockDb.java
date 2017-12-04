@@ -147,6 +147,9 @@ public class MockDb {
     }
 
     static SeminarForTeacher getSeminarForTeacher(Integer courseID) {
+        if(courseID != 1){
+            seminarForTeacher.setGroupingMethod("random");
+        }
         return seminarForTeacher;
     }
 }
