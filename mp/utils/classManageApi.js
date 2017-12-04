@@ -1,3 +1,4 @@
+import utils from './utils';
 const course = {
   "id": 23,
   "name": "OOAD",
@@ -37,6 +38,7 @@ const myrequest = function(requrl,callback){
   wx.request({
     url: requrl,
     success: function (res) {
+      console.log(res.data)
       callback(res.data)
     },
     fail: function () {
@@ -45,12 +47,17 @@ const myrequest = function(requrl,callback){
       })
     }
   })
+
 }
 
 const getCourseInfoByCourseId = function (id,callback){
-   callback(course)
-  // let url = '/course/'+id
-  // myrequest(url,callback)
+
+  utils.requestWithId({
+      url:'/course/'+id,
+      success:function(res) {
+
+      }
+  });
 }
 
 const getSeminarArrByCourseId = function(id,callback){

@@ -20,7 +20,7 @@ Page({
           console.log(res);
           that.setData({
               me: res.me,
-              classes: res.classes
+              courses: res.courses
           });
       });
   },
@@ -91,7 +91,7 @@ Page({
         console.log(e);
 
         const dataset = e.currentTarget.dataset;
-
+        console.log(dataset);
         const targetUrl = utils.buildUrl({
             base: '../classManage/classManage',
             courseId: dataset.courseId

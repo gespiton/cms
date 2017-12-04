@@ -1,6 +1,6 @@
 // pages/teacher/classManage/classManage.js
 import api from '../../../utils/classManageApi.js'
-
+import utils from "../../../utils/utils";
 //这个页面需要上级页面传入一个courseid
 //这里先在data里虚拟一个course_id
 
@@ -19,8 +19,9 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
-    let that = this
+  onLoad: function (option) {
+    let that = this;
+
     api.getCourseInfoByCourseId(this.data.course_id,function(value){
         that.setData({
           courseinfo:value
