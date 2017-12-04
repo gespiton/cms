@@ -21,16 +21,16 @@ import java.util.List;
 public class SeminarController {
     @RequestMapping(value = "/seminar/{seminarId}/class/{classId}/attendance")
     public SimpleAttendanceOutput getAttendance() {
-        SimpleAttendanceOutput attendance = new SimpleAttendanceOutput(40,60);
+        SimpleAttendanceOutput attendance = new SimpleAttendanceOutput(2, 120);
         return attendance;
     }
 
     @RequestMapping(value = "/seminar/{seminarId}/class/{classId}/attendance/present")
     public List<SimpleStudentInfoForAttendanceOutPut> getPresentStudents() {
-        SimpleStudentInfoForAttendanceOutPut student1 = new SimpleStudentInfoForAttendanceOutPut(2357,"张三");
-        SimpleStudentInfoForAttendanceOutPut student2 = new SimpleStudentInfoForAttendanceOutPut(8232,"李四");
+        SimpleStudentInfoForAttendanceOutPut student1 = new SimpleStudentInfoForAttendanceOutPut(2357, "张三");
+        SimpleStudentInfoForAttendanceOutPut student2 = new SimpleStudentInfoForAttendanceOutPut(8232, "李四");
 
-        List<SimpleStudentInfoForAttendanceOutPut> students = new LinkedList<SimpleStudentInfoForAttendanceOutPut>();
+        List<SimpleStudentInfoForAttendanceOutPut> students = new LinkedList<>();
 
         students.add(student1);
         students.add(student2);
@@ -40,8 +40,8 @@ public class SeminarController {
 
     @RequestMapping(value = "/seminar/{seminarId}/class/{classId}/attendance/late")
     public List<SimpleStudentInfoForAttendanceOutPut> getLateStudents() {
-        SimpleStudentInfoForAttendanceOutPut student1 = new SimpleStudentInfoForAttendanceOutPut(3412,"王五");
-        SimpleStudentInfoForAttendanceOutPut student2 = new SimpleStudentInfoForAttendanceOutPut(5234,"王七九");
+        SimpleStudentInfoForAttendanceOutPut student1 = new SimpleStudentInfoForAttendanceOutPut(3412, "王五");
+        SimpleStudentInfoForAttendanceOutPut student2 = new SimpleStudentInfoForAttendanceOutPut(5234, "王七九");
 
         List<SimpleStudentInfoForAttendanceOutPut> students = new LinkedList<SimpleStudentInfoForAttendanceOutPut>();
 
@@ -53,7 +53,7 @@ public class SeminarController {
 
     @RequestMapping(value = "/seminar/{seminarId}/class/{classId}/attendance/absent")
     public List<SimpleStudentInfoForAttendanceOutPut> getAbsentStudents() {
-        SimpleStudentInfoForAttendanceOutPut student1 = new SimpleStudentInfoForAttendanceOutPut(34,"张六");
+        SimpleStudentInfoForAttendanceOutPut student1 = new SimpleStudentInfoForAttendanceOutPut(34, "张六");
 
         List<SimpleStudentInfoForAttendanceOutPut> students = new LinkedList<SimpleStudentInfoForAttendanceOutPut>();
 
@@ -64,6 +64,7 @@ public class SeminarController {
 
     /**
      * 按照讨论课id查询讨论课列表
+     *
      * @return group contains current user only !
      */
     @RequestMapping(value = "/seminar/{seminarId}/group")
@@ -77,14 +78,14 @@ public class SeminarController {
 
     /**
      * 根据 seminar id 获取 topics
+     *
      * @return topics
      */
     @RequestMapping(value = "/seminar/{seminarID}/topic")
-    public List<Topic> getTopics(){
+    public List<Topic> getTopics() {
         List<Topic> topics = MockDb.getTopics();
         return topics;
     }
-
 
 
 }

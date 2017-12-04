@@ -78,8 +78,8 @@ Page({
                                 status: "end",
                                 btnStatusText: "签到名单"
                             }
-                        })
-                    })
+                        });
+                    });
                 }
             }
         });

@@ -17,14 +17,21 @@ Page({
      */
     onLoad: function (options) {
         let classId = options.classID;
+        const that = this;
+
         const classDetail = api.getClassDetail(classId, (value) => {
             this.setData({
                 classDetail: value
             });
         });
 
-        api.getCallingStatus(function () {
 
+        api.getCallingStatus(function (res) {
+            console.log(res);
+            that.setData({
+                classDetail: classDetail,
+                attendance: res
+            });
         });
         // let callStatus = options.callstatus;
         // console.log("获取数据" + callStatus);
@@ -45,4 +52,4 @@ Page({
         //     console.log("签到状态数据获取错误")
         // }
     }
-})
+});

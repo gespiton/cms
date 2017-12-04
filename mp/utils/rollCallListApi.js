@@ -13,7 +13,7 @@ const rollStatusInCalling = {
             "name": "李四"
         }
     ]
-}
+};
 
 const rollStatusAfterCalled = {
     "numPresent": 4,
@@ -43,7 +43,8 @@ const rollStatusAfterCalled = {
             "name": "张六"
         }
     ]
-}
+};
+
 const classdata = {
     "id": 23,
     "name": "周三1-2节",
@@ -77,7 +78,7 @@ const classdata = {
         "report": 50,
         "presentation": 50
     }
-}
+};
 
 //简单地封装了一下wx.request
 const myrequest = function (requrl, callback) {
@@ -110,16 +111,28 @@ const getClassDetail = function () {
     return cache.get('currentClass');
 };
 
-function getCallingStatus() {
+function getCallingStatus(cb) {
+    Promise.all([getInfo('attendance'), getInfo('attendance/present')]).then(res => {
+        const result = res[0];
+        result.present = res[1];
+        cb(result);
+    });
+}
+
+function getInfo(url) {
     const classID = cache.get('currentClass').id;
     const seminarID = cache.get('currentSeminar').id;
-    utils.requestWithId({
-        url: `/seminar/${seminarID}/class/${classID}/attendance`,
-        success:function (res) {
-            
-        }
+
+    return new Promise(resolve => {
+        utils.requestWithId({
+            url: `/seminar/${seminarID}/class/${classID}/${url}`,
+            success: function (res) {
+                resolve(res.data);
+            }
+        });
     })
 }
+
 
 export default {
     getClassDetail,
