@@ -8,7 +8,7 @@ Page({
      */
     data: {
         groupMethod: '',
-        groups: {},
+        groups:'世界很大',
         latesArr: null
     },
 
@@ -16,36 +16,42 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-        let classId = options.classID
-        let seminarId = options.cursemid
+        // let classId = options.classID
+        // let seminarId = options.cursemid
         let groupMethod = options.groupmethod
         this.setData({
-            groupMethod: groupMethod
+          groupMethod: groupMethod,
         })
         let groupsdata = []
-        api.getGroupsBySeminarId(seminarId, (value) => {
+        api.getGroups((value) => {
             for (let i = 0; i < value.length; i++) {
-                api.getGroupByGroupId(value[i].id, (value) => {
+                api.getGroupDetail(value[i].id, (value) => {
                     //将队长也添加到members中
-                    value.members.unshift(value.leader)
+                    if(value.leader){
+                      value.members.unshift(value.leader)
+                    }
                     groupsdata.push(value)
                 })
             }
         })
+        console.log("组信息")
         console.log(groupsdata)
         this.setData({
-            groups: groupsdata
-        })
+          groups: groupsdata
+        },()=>{console.log("this.setData调用了")})
+
+        console.log(this.data.groups)
 
         //不是固定分组的话才需要显示迟到学生
         if (groupMethod != 'fixed') {
-            api.getLateStudentByClassId(classId, (value) => {
+            api.getLateStudent((value) => {
                 this.setData({
                     latesArr: value.late
                 });
             });
         }
 
+        
     },
 
     toggle: function (e) {

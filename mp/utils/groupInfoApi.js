@@ -1,3 +1,34 @@
+import utils from './utils';
+import cache from './localCache';
+
+function getGroups(callback) {
+  let seminarId = cache.get('currentSeminar').id
+  utils.requestWithId({
+    url: `/seminar/${seminarId}/group`,
+    success: function (res) {
+      const groups = res.data;
+      callback(groups);
+    }
+  })
+}
+
+function getGroupDetail(groupId, callback) {
+  utils.requestWithId({
+    url: `/group/${groupId}`,
+    success: function (res) {
+      const group = res.data;
+      callback(group);
+    }
+  })
+}
+
+function getLateStudent(callback) {
+  getCallingStatus(callback)
+  getCallingStatus((value)=>{
+    console.log(value);
+  })
+}
+
 const groups = [
   {
     "id": 28
@@ -73,34 +104,34 @@ const perGroup29 = {
 }
 
 //包含迟到的学生
-const latestudents={
+const latestudents = {
   "numPresent": 4,
-    "present": [
-      {
-        "id": 2357,
-        "name": "张三"
-      },
-      {
-        "id": 8232,
-        "name": "李四"
-      }
-    ],
-      "late": [
-        {
-          "id": 3412,
-          "name": "王五"
-        },
-        {
-          "id": 5234,
-          "name": "王七九"
-        }
-      ],
-        "absent": [
-          {
-            "id": 34,
-            "name": "张六"
-          }
-        ]
+  "present": [
+    {
+      "id": 2357,
+      "name": "张三"
+    },
+    {
+      "id": 8232,
+      "name": "李四"
+    }
+  ],
+  "late": [
+    {
+      "id": 3412,
+      "name": "王五"
+    },
+    {
+      "id": 5234,
+      "name": "王七九"
+    }
+  ],
+  "absent": [
+    {
+      "id": 34,
+      "name": "张六"
+    }
+  ]
 }
 
 //简单地封装了一下wx.request
@@ -125,27 +156,50 @@ const getGroupsBySeminarId = function (seminarId, callback) {
 }
 
 const getGroupByGroupId = function (groupId, callback) {
-  if(groupId==28){
+  if (groupId == 28) {
     callback(perGroup28)
   }
-  else if(groupId==29){
+  else if (groupId == 29) {
     callback(perGroup29)
   }
-  else{
+  else {
     console.log("没有该组")
-  } 
+  }
   // let url = '/group/'+groupId+'?embedTopics=true'
   // myrequest(url,callback)
 }
 
-const getLateStudentByClassId = function(classId,callback){
+const getLateStudentByClassId = function (classId, callback) {
   callback(latestudents)
   // let url = '/class/'+classID+'/attendance?showLate=true'
   // myrequest(url,callback)
 }
+function getLateStudent(cb) {
+  Promise.all([getInfo('attendance'), getInfo('attendance/late')]).then(res => {
+    const result = res[0];
+    result.late = res[1];
+    cb(result);
+  });
+}
 
+function getInfo(url) {
+  const classID = cache.get('currentClass').id;
+  const seminarID = cache.get('currentSeminar').id;
+
+  return new Promise(resolve => {
+    utils.requestWithId({
+      url: `/seminar/${seminarID}/class/${classID}/${url}`,
+      success: function (res) {
+        resolve(res.data);
+      }
+    });
+  })
+}
 export default {
   getGroupsBySeminarId,
   getGroupByGroupId,
-  getLateStudentByClassId
+  getLateStudentByClassId,
+  getGroups,
+  getGroupDetail,
+  getLateStudent
 }
