@@ -2,7 +2,6 @@ import utils from './utils';
 import cache from './localCache';
 
 function getSeminarInfoByCourseId(args, cb) {
-    // todo replace fake data
     utils.requestWithId({
         url: `/course/${args.id}/seminar`,
         success: function (res) {

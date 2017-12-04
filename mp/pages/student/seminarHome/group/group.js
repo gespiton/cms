@@ -5,13 +5,13 @@ Page({
     data: {},
 
     onLoad() {
+        console.log("loading");
         this.load();
     },
 
     load(seminarId) {
         const that = this;
         api.getGroupInfo(function (res) {
-            console.log(res);
             that.setData({
                 leader: res.leader ? res.leader : null,
                 members: res.members,
@@ -23,12 +23,33 @@ Page({
         });
     },
 
+    onShow() {
+        const that = this;
+        if (this.data.hide) {
+            console.log("reloading");
+            api.getGroupInfo(function (res) {
+                that.setData({
+                    topics: res.topics
+                })
+            })
+        }
+    },
+
+    ohHide() {
+        this.setData({'hide': true})
+    },
+
+
     becomeLeader() {
         const that = this;
 
         api.becomeLeader(function (res) {
             if (res) {
-                that.load(that.data.seminarId);
+                that.setData({
+                    leader: res.leader ? res.leader : null,
+                    members: res.members,
+                    isLeader: api.amILeader(),
+                });
             }
         });
     },
@@ -38,15 +59,24 @@ Page({
 
         api.quitLeader(function (res) {
             if (res) {
-                that.load(that.data.seminarId);
+                that.setData({
+                    leader: res.leader ? res.leader : null,
+                    members: res.members,
+                    isLeader: api.amILeader(),
+                });
             }
         });
     },
 
     chooseTopic() {
+
         const targetUrl = utils.buildUrl({
             base: './chooseTopic/chooseTopic',
             seminarId: this.data.seminarId
+        });
+
+        this.setData({
+            'hide': true
         });
 
         wx.navigateTo({

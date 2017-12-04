@@ -1,14 +1,13 @@
 <page>
-    <!--设置左上角的usersIcon-->
     <view class="blueUsersView">
         <i class="fa fa-users fa-4x"/>
         <strong>请为您的队伍选题</strong>
     </view>
 
 
-    <!--当选题未选完时框是蓝色的，要增加新框就直接复制-->
     <block wx:for="{{topics}}">
-        <view class="topic-view">
+        <view class="topic-view {{item.groupLeft>0?'active':''}}" bindtap="{{item.groupLeft>0?'chooseTopic':''}}"
+              id="{{item.id}}">
             <view class="flex-center">
                 <span class="topic">话题{{item.id}}</span>
             </view>
@@ -19,7 +18,7 @@
             <view class="fa fa-arrows-alt fa-1x flex-center i-expand" bindtap="expand" id="{{item.id}}"/>
         </view>
         <view wx:if="{{opened[item.id]}}" class="detail">
-            xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+            {{item.description}}
         </view>
     </block>
 

@@ -3,6 +3,7 @@ package xmu.javaee.classmanager.coursems.controller;
 import org.springframework.web.bind.annotation.*;
 import xmu.javaee.classmanager.coursems.vo.output.CourseClassOutput;
 import xmu.javaee.classmanager.coursems.vo.output.CourseSeminarOutput;
+import xmu.javaee.classmanager.coursems.vo.output.SeminarForTeacher;
 import xmu.javaee.classmanager.coursems.vo.output.SimpleCourse;
 
 import javax.servlet.http.HttpServletRequest;
@@ -51,6 +52,11 @@ public class CourseController {
         return MockDb.getSeminarsByCourseId(courseId);
     }
 
+    @RequestMapping(value = "/course/{courseId}/seminar/current", method = RequestMethod.GET)
+    public SeminarForTeacher getSminar(@PathVariable Integer courseId){
+        SeminarForTeacher seminar  = MockDb.getSeminarForTeacher(courseId);
+        return  seminar;
+    }
 
     /**
      * 按课程ID获取课程的班级列表
@@ -69,7 +75,6 @@ public class CourseController {
         classes.add(class2);
 
         return classes;
-
     }
 
 }

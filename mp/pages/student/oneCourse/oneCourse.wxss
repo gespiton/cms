@@ -11,7 +11,7 @@
 .i-expand {
     position: absolute;
     right: 0;
-    padding: 40 rpx;
+    padding: 40rpx;
     bottom: 0;
     color: whitesmoke;
 }

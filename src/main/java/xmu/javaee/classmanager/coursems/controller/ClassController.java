@@ -20,12 +20,13 @@ import javax.servlet.http.HttpServletResponse;
 public class ClassController {
     /**
      * 按班级ID获取班级详情
+     *
      * @return
      */
     @RequestMapping(value = "/class/{classId}", method = RequestMethod.GET)
     public ClassDetailOutput getClassById() {
         Proportions proportions = new Proportions(50, 50, 20, 60, 20);
-        ClassDetailOutput output = new ClassDetailOutput(23, "周三1-2节", 120, "周三 一二节",
+        ClassDetailOutput output = new ClassDetailOutput(1, "周三12节", 120, "周三 一二节",
                 "海韵201", -1,
                 "/roster/周三12班.xlsx", proportions);
         return output;
@@ -34,6 +35,7 @@ public class ClassController {
     /**
      * 按ID修改班级
      * 可以用于修改签到状态和其他班级信息
+     *
      * @param input
      * @param response
      */

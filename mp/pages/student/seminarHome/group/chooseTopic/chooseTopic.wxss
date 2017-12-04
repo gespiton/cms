@@ -8,109 +8,7 @@ page {
   overflow-y: auto;
 }
 
-/* 左上角的users图标和文字的容器*/
 
-
-
-/*!*当选题未选完时的蓝色框*!*/
-
-/*.blueTopicView {*/
-  /*height: 15%;*/
-  /*background-color: #6cf;*/
-  /*width: 90%;*/
-  /*float: left;*/
-  /*margin-left: 5%;*/
-  /*border-radius: 50rpx;*/
-  /*margin-top: 5%;*/
-/*}*/
-
-/*!*当选题未选完时的灰色框*!*/
-
-/*.greyTopicView {*/
-  /*height: 15%;*/
-  /*background-color: #ccc;*/
-  /*width: 90%;*/
-  /*float: left;*/
-  /*margin-left: 5%;*/
-  /*border-radius: 50rpx;*/
-  /*margin-top: 5%;*/
-/*}*/
-
-/*!*选题框左边的选题A/B/C。。。*!*/
-
-
-
-/*!*选题框中间的黑色分割线*!*/
-
-/*.hrVertical {*/
-  /*height: 100%;*/
-  /*width: 0.5%;*/
-  /*background-color: black;*/
-  /*color: black;*/
-  /*float: left;*/
-  /*margin-left: 10%;*/
-/*}*/
-
-/*!*选题框右边的选题名*!*/
-
-
-
-/*!*选题框右边的剩余人数，当人数大于等于2时为白色*!*/
-
-/*.leftNumWhite {*/
-  /*color: #fff;*/
-  /*float: left;*/
-  /*font-size: 28rpx;*/
-  /*margin-top: 5%;*/
-/*}*/
-
-/*!*选题框右边的剩余人数，当人数为1时为红色*!*/
-
-/*.leftNumRed {*/
-  /*color: #fa8888;*/
-  /*float: left;*/
-  /*font-size: 28rpx;*/
-  /*margin-top: 5%;*/
-/*}*/
-
-/*!*选题框右下角的九点按钮*!*/
-
-/*.nineIcon {*/
-  /*height: 30%;*/
-  /*width: 8%;*/
-  /*float: right;*/
-  /*padding-top: 5%;*/
-  /*padding-right: 2%;*/
-/*}*/
-
-/*!*选题框下方的选题简介框*!*/
-
-/*.topicDescribeView {*/
-  /*height: 15%;*/
-  /*background-color: #fff;*/
-  /*width: 80%;*/
-  /*float: left;*/
-  /*margin-left: 10%;*/
-  /*color: black;*/
-  /*text-align: center;*/
-/*}*/
-
-/*!*选题框下方的选题简介框里的选题标题*!*/
-
-/*.topicDescribeTitle {*/
-  /*font-size: 28rpx;*/
-  /*font-weight: bold;*/
-/*}*/
-
-/*!*选题框下方的选题简介框里的选题文本*!*/
-
-/*.topicDescribeText {*/
-  /*font-size: 28rpx;*/
-  /*float: left;*/
-  /*word-wrap: break-word;*/
-  /*width: 100%;*/
-  /*overflow: hidden;*/
-/*}*/
 
 /*mine*/
 .blueUsersView {
@@ -130,8 +28,12 @@ page {
   width: 90%;
   margin: 40rpx auto 0 auto;
   padding: 10rpx 0;
+    background-color: #ddd;
 
   border-radius: 5rpx;
+}
+
+.active{
   background-color: #66CDFF;
 }
 
@@ -177,3 +79,5 @@ page {
   box-sizing: border-box;
   /*white-space: ;*/
 }
+
+

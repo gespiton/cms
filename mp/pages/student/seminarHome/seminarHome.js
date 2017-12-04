@@ -28,7 +28,6 @@ Page({
     },
 
     callInRoll(e) {
-
         const targetUrl = utils.buildUrl({
             base: './rollCall/rollCall',
             seminarId: this.data.seminarId
