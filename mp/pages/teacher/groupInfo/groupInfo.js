@@ -16,7 +16,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    let classId = options.classid
+    let classId = options.classID
     let seminarId = options.cursemid
     let groupMethod = options.groupmethod
     this.setData({

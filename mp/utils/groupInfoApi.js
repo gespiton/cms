@@ -140,7 +140,7 @@ const getGroupByGroupId = function (groupId, callback) {
 
 const getLateStudentByClassId = function(classId,callback){
   callback(latestudents)
-  // let url = '/class/'+classId+'/attendance?showLate=true'
+  // let url = '/class/'+classID+'/attendance?showLate=true'
   // myrequest(url,callback)
 }
 

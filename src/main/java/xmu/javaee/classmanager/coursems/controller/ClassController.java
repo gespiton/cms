@@ -1,13 +1,11 @@
 package xmu.javaee.classmanager.coursems.controller;
 
 
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import xmu.javaee.classmanager.coursems.vo.output.ClassDetailOutput;
 import xmu.javaee.classmanager.coursems.vo.output.Proportions;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
@@ -23,14 +21,24 @@ public class ClassController {
      *
      * @return
      */
-    @RequestMapping(value = "/class/{classId}", method = RequestMethod.GET)
-    public ClassDetailOutput getClassById() {
+    @RequestMapping(value = "/class/{classId}")
+    public ClassDetailOutput getClassById(@PathVariable Integer classId) {
         Proportions proportions = new Proportions(50, 50, 20, 60, 20);
         ClassDetailOutput output = new ClassDetailOutput(1, "周三12节", 120, "周三 一二节",
                 "海韵201", -1,
                 "/roster/周三12班.xlsx", proportions);
-        return output;
+
+        ClassDetailOutput output2 = new ClassDetailOutput(2, "周三34节", 120, "周三 三四节",
+                "海韵201", -1,
+                "/roster/周三12班.xlsx", proportions);
+
+        if (classId == 1) {
+            return output;
+        } else {
+            return output2;
+        }
     }
+
 
     /**
      * 按ID修改班级

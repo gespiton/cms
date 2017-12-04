@@ -66,8 +66,8 @@ public class CourseController {
      */
     @RequestMapping(value = "/course/{courseId}/class", method = RequestMethod.GET)
     public List<CourseClassOutput> getCourseClasses(@PathVariable("courseId") Integer courseId) {
-        CourseClassOutput class1 = new CourseClassOutput(45, "周三1-2节");
-        CourseClassOutput class2 = new CourseClassOutput(48, "周三3-4节");
+        CourseClassOutput class1 = new CourseClassOutput(1, "周三1-2节");
+        CourseClassOutput class2 = new CourseClassOutput(2, "周三3-4节");
 
         List<CourseClassOutput> classes = new LinkedList<CourseClassOutput>();
 

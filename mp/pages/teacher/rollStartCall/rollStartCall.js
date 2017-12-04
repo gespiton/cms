@@ -1,26 +1,17 @@
 // pages/teacher/rollStartCall.js
 import api from '../../../utils/rollStartCallApi.js'
-import op from "../../../utils/localCache";
 
 Page({
 
-    /**
-     * 页面的初始数据
-     */
     data: {
-        classid: 0,
+        classID: 0,
         currentClass: {},
-        currentSeminarId: 0,
-        currentSeminar: {},
         call: {
             status: "start",
             btnStatusText: "开始签到"
         },
     },
 
-    /**
-     * 生命周期函数--监听页面加载
-     */
     onLoad: function (options) {
         const classID = options.classID;
         const groupMethod = options.groupMethod;
@@ -30,27 +21,20 @@ Page({
         api.getClassByClassId(classID, function (value) {
             console.log(value);
             that.setData({
-                classid: classID,
+                classID: classID,
                 currentClass: value
-                // groupType: classData.rollcall.groupType
             })
         });
 
 
-        api.getCurrentSeminar();
-        // api.getCurrentSeminarById(this.data.currentSeminarId, function (value) {
-        //     that.setData({
-        //         currentSeminar: value,
-        //         'currentSeminar.groupingMethod': groupMethod
-        //     });
-        //     // 'currentSeminar.groupingMethod' :groupMethod
-        //     //  上面这行是从前一个页面传过来的
-        //     //  其实不传过来的话 groupingMethod也是有值的目前后端尚未实现，因此先模拟从前一页面传来
-        // })
+        const currentSeminar = api.getCurrentSeminar();
+        this.setData({
+            currentSeminar: currentSeminar,
+            groupingMethod: groupMethod
+        });
     },
 
     changeStatus: function (e) {
-        let event = e;
         switch (this.data.call.status) {
             case "start":
                 this.startCall();
@@ -59,25 +43,26 @@ Page({
                 this.endCall();
                 break;
             case "end":
-                this.checkCall(event);
+                this.checkCall(e);
                 break;
         }
     },
 
     startCall: function () {
-        var that = this;
-        api.putCurClassCalling(this.data.classid, {"calling": this.data.currentSeminarId}, function (res) {
+        const that = this;
+        api.putCurClassCalling({classID: this.data.classID, "calling": this.data.currentSeminar.id}, function (res) {
             that.setData({
                 call: {
                     status: "calling",
                     btnStatusText: "结束签到"
                 }
-            })
+            });
+
             wx.showToast({
                 title: '开始点名',
-                duration: 300
-            })
-        })
+                duration: 800
+            });
+        });
     },
 
 //callback hell想办法用promise或者async来解决这个问题
@@ -87,8 +72,7 @@ Page({
             content: '确定要结束点名',
             success: (res) => {
                 if (res.confirm) {
-                    console.log("用户点击确定结束点名了")
-                    api.putCurClassCalling(this.data.classid, {"calling": -1}, () => {
+                    api.putCurClassCalling({"classID": this.data.classID, "calling": -1}, () => {
                         this.setData({
                             call: {
                                 status: "end",
@@ -96,27 +80,25 @@ Page({
                             }
                         })
                     })
-                } else if (res.cancel) {
-                    console.log("用户取消了点名")
                 }
             }
-        })
+        });
+    },
 
-    },
     checkCall: function (e) {
-        let classId = e.currentTarget.dataset.classid
-        let callStatus = e.currentTarget.dataset.callstatus
-        console.log("点击了班级id:" + classId + "签到状态:" + callStatus);
+        let classId = this.data.classID;
+        let callStatus = e.currentTarget.dataset.callstatus;
         wx.navigateTo({
-            url: '../rollCallList/rollCallList?classid=' + classId + '&callstatus=' + callStatus,
+            // todo remove callstatus
+            url: '../rollCallList/rollCallList?classID=' + classId + '&callstatus=' + callStatus,
         })
     },
+
     checkGroup: function (e) {
-        let classId = e.currentTarget.dataset.classid;
+        let classId = e.currentTarget.dataset.classID;
         let groupMethod = e.currentTarget.dataset.groupmethod;
-        console.log("点击了班级id:" + classId + '分组方法' + groupMethod);
         wx.navigateTo({
-            url: '../groupInfo/groupInfo?classid=' + classId + '&groupmethod=' + groupMethod,
+            url: '../groupInfo/groupInfo?classID=' + classId + '&groupmethod=' + groupMethod,
         })
     }
 });

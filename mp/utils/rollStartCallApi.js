@@ -1,4 +1,5 @@
 import utils from './utils';
+import cache from './localCache';
 
 const classdata = {
     "id": 23,
@@ -60,14 +61,29 @@ const getClassByClassId = function (id, callback) {
     utils.requestWithId({
         url: `/class/${id}`,
         success: function (res) {
-            callback(res.data);
+            const currentClass = res.data;
+            cache.set('currentClass', currentClass);
+            callback(currentClass);
         }
     });
 
 };
 
-const putCurClassCalling = function (id, reqbody, callback) {
+const putCurClassCalling = function (args, callback) {
     callback();
+    const requestBody = {};
+    requestBody.calling = args.calling;
+
+    utils.requestWithId({
+        url: `/class/${args.classID}`,
+        method: 'put',
+        data: requestBody,
+        success: function (res) {
+            if (res.status == '204') {
+                callback(true);
+            }
+        }
+    });
     // wx.request({
     //   url: '/class/'+id,
     //   data:reqbody,
@@ -75,10 +91,10 @@ const putCurClassCalling = function (id, reqbody, callback) {
     //     callback(res)
     //   }
     // })
-}
+};
 
-const getCurrentSeminar = function (id, callback) {
-    callback(seminardata2)
+const getCurrentSeminar = function (callback) {
+    return cache.get('currentSeminar');
     //  let url = '/seminar/'+id
     //  myrequest(url,callback)
 };
