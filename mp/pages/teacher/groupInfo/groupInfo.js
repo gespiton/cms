@@ -8,7 +8,7 @@ Page({
      */
     data: {
         groupMethod: '',
-        groups:'世界很大',
+        groups: '世界很大',
         latesArr: null
     },
 
@@ -18,29 +18,20 @@ Page({
     onLoad: function (options) {
         // let classId = options.classID
         // let seminarId = options.cursemid
-        let groupMethod = options.groupmethod
-        this.setData({
-          groupMethod: groupMethod,
-        })
-        let groupsdata = []
-        api.getGroups((value) => {
-            for (let i = 0; i < value.length; i++) {
-                api.getGroupDetail(value[i].id, (value) => {
-                    //将队长也添加到members中
-                    if(value.leader){
-                      value.members.unshift(value.leader)
-                    }
-                    groupsdata.push(value)
-                })
-            }
-        })
-        console.log("组信息")
-        console.log(groupsdata)
-        this.setData({
-          groups: groupsdata
-        },()=>{console.log("this.setData调用了")})
+        let groupMethod = options.groupmethod;
+        const that = this;
 
-        console.log(this.data.groups)
+
+        function getGroupDetailPromisify(groupId) {
+            return new Promise(resolve => {
+                api.getGroupDetail(groupId, res => {
+                    if (res.leader) {
+                        res.members.unshift(res.leader);
+                    }
+                    resolve(res);
+                });
+            });
+        }
 
         //不是固定分组的话才需要显示迟到学生
         if (groupMethod != 'fixed') {
@@ -51,7 +42,23 @@ Page({
             });
         }
 
-        
+        api.getGroups((value) => {
+            const promiseArray = value.map(group => getGroupDetailPromisify(group.id));
+            Promise.all(promiseArray).then(groups => {
+                //todo  接着这里
+                console.log("组信息");
+                console.log(groups);
+
+                that.setData({
+                    groupMethod: groupMethod,
+                    groups: groups
+                });
+
+                console.log(this.data.groups);
+            });
+        });
+
+
     },
 
     toggle: function (e) {

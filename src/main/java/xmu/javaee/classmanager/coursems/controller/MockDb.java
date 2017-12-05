@@ -86,7 +86,7 @@ public class MockDb {
         CourseSeminarOutput seminar2 = new CourseSeminarOutput(2, "概要设计", "模型层与数据库设计",
                 "random", "2017-10-10", "2017-12-24");
 
-        List<CourseSeminarOutput> seminars = new LinkedList<CourseSeminarOutput>();
+        List<CourseSeminarOutput> seminars = new LinkedList<>();
         seminars.add(seminar1);
         seminars.add(seminar2);
         return seminars;
@@ -147,8 +147,10 @@ public class MockDb {
     }
 
     static SeminarForTeacher getSeminarForTeacher(Integer courseID) {
-        if(courseID != 1){
+        if (courseID != 1) {
             seminarForTeacher.setGroupingMethod("random");
+        }else{
+            seminarForTeacher.setGroupingMethod("fixed");
         }
         return seminarForTeacher;
     }
