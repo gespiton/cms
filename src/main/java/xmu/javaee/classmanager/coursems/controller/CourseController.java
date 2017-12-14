@@ -1,6 +1,9 @@
 package xmu.javaee.classmanager.coursems.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import xmu.javaee.classmanager.coursems.dao.CourseDao;
+import xmu.javaee.classmanager.coursems.model.Course;
 import xmu.javaee.classmanager.coursems.vo.output.CourseClassOutput;
 import xmu.javaee.classmanager.coursems.vo.output.CourseSeminarOutput;
 import xmu.javaee.classmanager.coursems.vo.output.SeminarForTeacher;
@@ -25,6 +28,7 @@ public class CourseController {
      *
      * @return
      */
+
     @RequestMapping(value = "course", method = RequestMethod.GET)
     public List<SimpleCourse> getCourses(HttpServletRequest request) {
 
@@ -53,9 +57,9 @@ public class CourseController {
     }
 
     @RequestMapping(value = "/course/{courseId}/seminar/current", method = RequestMethod.GET)
-    public SeminarForTeacher getSminar(@PathVariable Integer courseId){
-        SeminarForTeacher seminar  = MockDb.getSeminarForTeacher(courseId);
-        return  seminar;
+    public SeminarForTeacher getSminar(@PathVariable Integer courseId) {
+        SeminarForTeacher seminar = MockDb.getSeminarForTeacher(courseId);
+        return seminar;
     }
 
     /**
