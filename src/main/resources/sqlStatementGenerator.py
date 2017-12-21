@@ -3,7 +3,6 @@ fields = '''
 	private String description;
 	private Integer groupNumberLimit;
 	private Integer groupStudentLimit;
-	private Seminar seminar;
     '''
 
 
@@ -30,4 +29,5 @@ def update():
     li = ["%s = #{%s}," % (s, s) for s in fieldLi]
     print ('\n'.join(li))
 
-update()
+# update()
+insert()

@@ -46,5 +46,4 @@ public class Topic {
 	public void setSeminar(Seminar seminar) {
 		this.seminar = seminar;
 	}
-	
 }

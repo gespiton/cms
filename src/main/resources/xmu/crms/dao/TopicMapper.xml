@@ -23,7 +23,7 @@
         <result property="endTime" column="end_time"/>
     </resultMap>
 
-    <select id="getTopicById" parameterType="long" resultMap="topicResult">
+    <select id="getTopicById" parameterType="BigInteger" resultMap="topicResult">
         SELECT
             t.id                  AS topic_id,
             t.name                AS topic_name,
@@ -51,4 +51,26 @@
         WHERE id = #{id}
     </update>
 
+
+    <insert id="insertWithSeminarId">
+        INSERT INTO topic (name, description, group_number_limit, group_student_limit, seminar_id)
+        VALUES
+        (#{topic.name}, #{topic.description}, #{topic.groupNumberLimit}, #{topic.groupStudentLimit}, #{seminarId})
+
+        <selectKey resultType="java.math.BigInteger" keyProperty="topic.id" order="AFTER">
+            SELECT last_insert_id()
+        </selectKey>
+    </insert>
+
+
+    <delete id="deleteById">
+        DELETE FROM topic
+        WHERE id = #{id}
+    </delete>
+
+    <select id="getTopicsBySeminarId" resultMap="topicResult">
+        SELECT *
+        FROM topic
+        WHERE seminar_id = #{id}
+    </select>
 </mapper>
