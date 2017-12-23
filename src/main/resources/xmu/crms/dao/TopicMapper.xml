@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="xmu.crms.dao.TopicDao">
+
+    <resultMap id="topicResult" type="Topic">
+        <id property="id" column="topic_id"/>
+        <result property="name" column="topic_name"/>
+        <result property="description" column="topic_description"/>
+        <result property="groupNumberLimit" column="group_number_limit"/>
+        <result property="groupStudentLimit" column="group_student_limit"/>
+        <association property="seminar" resultMap="seminarResult"/>
+    </resultMap>
+
+    <resultMap id="seminarResult" type="Seminar">
+        <id property="id" column="seminar_id"/>
+        <result property="name" column="seminar_name"/>
+        <result property="description" column="seminar_description"/>
+        <result property="fixed" column="seminar_fixed"/>
+        <result property="startTime" column="start_time"/>
+        <result property="endTime" column="end_time"/>
+    </resultMap>
+
+
+    <resultMap id="seminarGroupTopicResult" type="SeminarGroupTopic">
+        <id property="id" column="id"/>
+        <result property="presentationGrade" column="presentation_grade"/>
+        <association property="topic" column="topic_id" javaType="Topic" select="getTopicById"/>
+        <association property="seminarGroup" column="seminar_group_id" select="getSeminarGroupById"/>
+    </resultMap>
+
+    <select id="getSeminarGroupById" resultType="SeminarGroup">
+        SELECT *
+        FROM seminar_group
+        WHERE id = #{id}
+    </select>
+
+    <select id="getTopicById" parameterType="BigInteger" resultMap="topicResult">
+        SELECT
+            t.id                  AS topic_id,
+            t.name                AS topic_name,
+            t.description         AS topic_description,
+            t.group_number_limit  AS group_number_limit,
+            t.group_student_limit AS group_student_limit,
+
+            s.id                  AS seminar_id,
+            s.name                AS seminar_name,
+            s.description         AS seminar_description,
+            s.is_fixed            AS seminar_fixed,
+            s.start_time          AS start_time,
+            s.end_time            AS end_time
+        FROM topic t LEFT OUTER JOIN seminar s ON t.seminar_id = s.id
+        WHERE t.id = #{id}
+    </select>
+
+    <update id="updateTopic" parameterType="Topic">
+        UPDATE topic
+        SET
+            name                = #{name},
+            description         = #{description},
+            group_number_limit  = #{groupNumberLimit},
+            group_student_limit = #{groupStudentLimit}
+        WHERE id = #{id}
+    </update>
+
+
+    <insert id="insertWithSeminarId">
+        INSERT INTO topic (name, description, group_number_limit, group_student_limit, seminar_id)
+        VALUES
+        (#{topic.name}, #{topic.description}, #{topic.groupNumberLimit}, #{topic.groupStudentLimit}, #{seminarId})
+
+        <selectKey resultType="java.math.BigInteger" keyProperty="topic.id" order="AFTER">
+            SELECT last_insert_id()
+        </selectKey>
+    </insert>
+
+
+    <delete id="deleteById">
+        DELETE FROM topic
+        WHERE id = #{id}
+    </delete>
+
+    <select id="getTopicsBySeminarId" resultMap="topicResult">
+        SELECT *
+        FROM topic
+        WHERE seminar_id = #{id}
+    </select>
+
+
+    <!--seminar_group_topic table-->
+    <select id="getTopicInfoOfGroup" resultMap="seminarGroupTopicResult">
+        SELECT *
+        FROM seminar_group_topic
+        WHERE topic_id = #{topicId} AND seminar_group_id = #{groupId}
+    </select>
+
+
+    <delete id="deleteSeminarGroupTopic">
+        DELETE FROM seminar_group_topic
+        WHERE topic_id = #{topicId} AND seminar_group_id = #{groupId}
+    </delete>
+
+    <delete id="deleteAllSeminarGroupTopicsByTopicId">
+        DELETE FROM seminar_group_topic
+        WHERE topic_id = #{topicId}
+    </delete>
+</mapper>

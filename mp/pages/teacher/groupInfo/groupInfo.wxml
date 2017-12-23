@@ -5,20 +5,20 @@
     <text>队伍信息</text>
   </view>
   <view class='list_wrap'>
-    <block wx:for="{{groups}}" wx:key="id">
+    <block wx:for="{{groups}}">
       <view class='group_title' bindtap='toggle' data-groupid='{{item.id}}'>
         <text>队伍{{item.id}}</text>
-        <text>选题:{{item.topics[0].name}}</text>
+        <text>选题:{{item.topics[0].name?item.topics[0].name:'未选题'}}</text>
       </view>
       <view wx:if="{{item.shown}}" class='group_members'>
         <block wx:for="{{item.members}}">
           <view class='group_members_item'>
-            <image src="../../../resources/static/images/user.png" class='small_icon' />
+            <image src="../../../images/user.png" class='small_icon' />
             <text class='member_text'>{{item.name}}</text>
           </view>
         </block>
         <view class='group_members_item' wx:if="{{groupMethod!='fixed'}}">
-          <image src="../../../resources/static/images/加号.png" bindtap='addMember' class='small_icon' data-groupid='{{item.id}}' />
+          <image src="../../../images/plus.png" bindtap='addMember' class='small_icon' data-groupid='{{item.id}}' />
         </view>
       </view>
     </block>
@@ -29,7 +29,7 @@
     <view class='group_members'>
       <block wx:for="{{latesArr}}">
         <view class='group_members_item'>
-          <image src="../../../resources/static/images/user.png" class='small_icon' />
+          <image src="../../../images/user.png" class='small_icon' />
           <text class='member_text'>{{item.name}}</text>
         </view>
       </block>
