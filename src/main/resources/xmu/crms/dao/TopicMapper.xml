@@ -23,6 +23,20 @@
         <result property="endTime" column="end_time"/>
     </resultMap>
 
+
+    <resultMap id="seminarGroupTopicResult" type="SeminarGroupTopic">
+        <id property="id" column="id"/>
+        <result property="presentationGrade" column="presentation_grade"/>
+        <association property="topic" column="topic_id" javaType="Topic" select="getTopicById"/>
+        <association property="seminarGroup" column="seminar_group_id" select="getSeminarGroupById"/>
+    </resultMap>
+
+    <select id="getSeminarGroupById" resultType="SeminarGroup">
+        SELECT *
+        FROM seminar_group
+        WHERE id = #{id}
+    </select>
+
     <select id="getTopicById" parameterType="BigInteger" resultMap="topicResult">
         SELECT
             t.id                  AS topic_id,
@@ -73,4 +87,23 @@
         FROM topic
         WHERE seminar_id = #{id}
     </select>
+
+
+    <!--seminar_group_topic table-->
+    <select id="getTopicInfoOfGroup" resultMap="seminarGroupTopicResult">
+        SELECT *
+        FROM seminar_group_topic
+        WHERE topic_id = #{topicId} AND seminar_group_id = #{groupId}
+    </select>
+
+
+    <delete id="deleteSeminarGroupTopic">
+        DELETE FROM seminar_group_topic
+        WHERE topic_id = #{topicId} AND seminar_group_id = #{groupId}
+    </delete>
+
+    <delete id="deleteAllSeminarGroupTopicsByTopicId">
+        DELETE FROM seminar_group_topic
+        WHERE topic_id = #{topicId}
+    </delete>
 </mapper>
