@@ -20,7 +20,7 @@
         <association column="teacher_id" property="teacher" javaType="User" select="getUserByUserId">
         </association>
     </resultMap>
-
+    <!--helper select-->
 	<select id="getUserByUserId" parameterType="java.math.BigInteger" resultType="User">
 		select id, phone, wechat_id, openid, avatar, password,
 		school_id, `name`, gender, `type`, `number`, education, title, email
@@ -82,5 +82,18 @@
 		three_point_percentage = #{threePointPercentage,jdbcType=INTEGER}
 		where id = #{id,jdbcType=BIGINT}
 	</update>
+
+	<delete id="deleteCourseByCourseId" parameterType="java.math.BigInteger">
+		delete from course
+		where id = #{id,jdbcType=BIGINT}
+	</delete>
+
+	<select id="listCourseByCourseName" parameterType="java.lang.String" resultMap="CourseResult">
+		select id,name,start_date,end_date,teacher_id,description,report_percentage,presentation_percentage,five_point_percentage,four_point_percentage,three_point_percentage
+		from course
+		where name = #{name,jdbcType=VARCHAR}
+	</select>
+
+
 
 </mapper>

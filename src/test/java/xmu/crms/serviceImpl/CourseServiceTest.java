@@ -90,4 +90,19 @@ public class CourseServiceTest {
         assertEquals("OOAD4",courseService.getCourseByCourseId(courseId).getName());
     }
 
+    @Test
+    public void deleteCourseByCourseId() throws Exception {
+        BigInteger courseId = new BigInteger("2");
+        courseService.deleteCourseByCourseId(courseId);
+        assertEquals(null,courseService.getCourseByCourseId(courseId));
+    }
+
+    @Test
+    public void listCourseByCourseName() throws Exception {
+        String courseName = "课程1";
+        List<Course> courseList = courseService.listCourseByCourseName(courseName);
+        assertNotNull(courseList);
+    }
+
+
 }

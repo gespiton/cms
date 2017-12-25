@@ -47,9 +47,9 @@ public class CourseServiceImpl implements CourseService{
             throw new IllegalArgumentException("课程ID格式错误！");
         }
         Course course = courseDao.getCourseByCourseId(courseId);
-        if(course == null) {
-            throw new CourseNotFoundException();
-        }
+//        if(course == null) {
+//            throw new CourseNotFoundException();
+//        }
         return course;
     }
 
@@ -61,12 +61,18 @@ public class CourseServiceImpl implements CourseService{
 
     @Override
     public void deleteCourseByCourseId(BigInteger courseId) throws IllegalArgumentException, CourseNotFoundException {
-
+        if(!(courseId.intValue() > 0)) {
+            throw new IllegalArgumentException("用户ID格式错误！");
+        }
+        int matchDeleteLines = courseDao.deleteCourseByCourseId(courseId);
+		if(matchDeleteLines == 0)
+			throw new CourseNotFoundException();
     }
 
     @Override
     public List<Course> listCourseByCourseName(String courseName) {
-        return null;
+        List<Course> courseList = courseDao.listCourseByCourseName(courseName);
+        return courseList;
     }
 
     @Override

@@ -14,5 +14,7 @@ public interface CourseDao {
     Integer insertCourseByUserId(Course course);
     Course getCourseByCourseId(BigInteger courseId);
     int updateCourseByCourseId(Course course);
+    int deleteCourseByCourseId(BigInteger courseId);
+    List<Course> listCourseByCourseName(String courseName);
 
 }
