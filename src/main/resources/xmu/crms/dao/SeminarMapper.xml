@@ -4,7 +4,7 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="xmu.crms.mapper.SeminarMapper" >
+<mapper namespace="xmu.crms.dao.SeminarDao" >
     <resultMap id="SeminarMap" type="Seminar" >
         <id column="id" property="id"  />
         <result column="name" property="name"  />
@@ -68,7 +68,7 @@
         SELECT * FROM seminar WHERE id = #{seminarId}
     </select>
 
-    <select id="getSeminarDetailBySeminarId" resultMap="SeminarMap2">
+    <select id="getSeminarDetailBySeminarId" resultMap="SeminarMap">
         SELECT * FROM seminar WHERE id = #{seminarId}
     </select>
 

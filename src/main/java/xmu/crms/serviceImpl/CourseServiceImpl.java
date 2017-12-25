@@ -20,31 +20,43 @@ public class CourseServiceImpl implements CourseService{
 
     @Override
     public List<Course> listCourseByUserId(BigInteger userId) throws IllegalArgumentException, CourseNotFoundException {
-        // TODO Auto-generated method stub
         if(!(userId.intValue() > 0)) {
             throw new IllegalArgumentException("用户ID格式错误！");
         }
         List<Course> courseList = courseDao.listCourseByUserId(userId);
         if(courseList == null) {
-            throw new CourseNotFoundException("没有找到课程！");
+            throw new CourseNotFoundException();
         }
         return courseList;
     }
 
 
     @Override
-    public BigInteger insertCourseByUserId(BigInteger userId, Course course) throws IllegalArgumentException {
-        return null;
-    }
+    public BigInteger insertCourseByUserId(BigInteger userId,Course course) throws IllegalArgumentException {
+        if(!(userId.intValue() > 0)) {
+            throw new IllegalArgumentException("用户ID格式错误！");
+        }
+        course.getTeacher().setId(userId);
+        Integer courseId = courseDao.insertCourseByUserId(course);
+        return BigInteger.valueOf(courseId);
+}
 
     @Override
     public Course getCourseByCourseId(BigInteger courseId) throws IllegalArgumentException, CourseNotFoundException {
-        return null;
+        if(!(courseId.intValue() > 0)) {
+            throw new IllegalArgumentException("课程ID格式错误！");
+        }
+        Course course = courseDao.getCourseByCourseId(courseId);
+        if(course == null) {
+            throw new CourseNotFoundException();
+        }
+        return course;
     }
 
     @Override
     public void updateCourseByCourseId(BigInteger courseId, Course course) {
-
+        course.setId(courseId);
+        courseDao.updateCourseByCourseId(course);
     }
 
     @Override

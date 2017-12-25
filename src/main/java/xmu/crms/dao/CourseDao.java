@@ -11,4 +11,8 @@ import java.util.List;
 @Component
 public interface CourseDao {
     List<Course> listCourseByUserId(BigInteger userId);
+    Integer insertCourseByUserId(Course course);
+    Course getCourseByCourseId(BigInteger courseId);
+    int updateCourseByCourseId(Course course);
+
 }
