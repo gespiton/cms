@@ -14,6 +14,8 @@ Date: 2017-12-16 12:32:48
 */
 
 SET FOREIGN_KEY_CHECKS=0;
+CREATE DATABASE IF NOT EXISTS cms;
+use cms;
 
 -- ----------------------------
 -- Table structure for attendance

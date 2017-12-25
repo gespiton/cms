@@ -50,4 +50,6 @@ public class ClassController {
     public void modifyClassById(@RequestBody ClassDetailOutput input, HttpServletResponse response) {
         response.setStatus(204);
     }
+
+
 }

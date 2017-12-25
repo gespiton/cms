@@ -10,7 +10,11 @@
   </view>
 
   <scroll-view scroll-y style="height:880rpx">
+<<<<<<< HEAD
+    <view class="box3" wx:for="{{courses}}" wx:for-item="course" catchtap="chooseCourse"
+=======
     <view class="box3" wx:for="{{classes}}" wx:for-item="course" catchtap="chooseCourse"
+>>>>>>> 394615a7ef2b85ec8e6620931d1bab895b0034a4
           data-course-id="{{course.id}}">
       <text class='course_name' class="FONT11">{{course.name}}</text>
     </view>
