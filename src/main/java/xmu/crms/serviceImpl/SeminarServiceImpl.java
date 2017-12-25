@@ -19,50 +19,33 @@ import java.util.List;
  * @date 2017/12/24
  */
 public class SeminarServiceImpl implements SeminarService {
-    @Autowired
+    @Autowired(required = false)
     SeminarDao seminarDao;
 
-    @Autowired
-    CourseServiceImpl courseService;
 
     @Override
-    public List<Seminar> listSeminarByCourseId (BigInteger courseId) throws IllegalArgumentException, CourseNotFoundException {
-        if (courseId == null) {
-            throw new IllegalArgumentException("Wrong format for courseId.");
+    public List<Seminar> listSeminarByCourseId(BigInteger courseId) throws IllegalArgumentException, CourseNotFoundException {
+        if (seminarDao.getCourseById(courseId) == null) {
+            throw new CourseNotFoundException();
         }
-        List<Seminar> seminars = new ArrayList<>();
-        try {
-            Course course = courseService.getCourseByCourseId(courseId);
-            if (course == null) {
-                throw new CourseNotFoundException();
-            }
-            seminars = seminarDao.listSeminarByCourseId(courseId);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return seminars;
+        return seminarDao.listSeminarByCourseId(courseId);
     }
 
 
     @Override
     public Boolean deleteSeminarByCourseId(BigInteger courseId) throws IllegalArgumentException, CourseNotFoundException {
-        if (courseId == null) {
-            throw new IllegalArgumentException("Wrong format for courseId.");
+        if (seminarDao.getCourseById(courseId) == null) {
+            throw new CourseNotFoundException();
         }
 
-        Boolean result = false;
-        try {
-            Course course = courseService.getCourseByCourseId(courseId);
-            if (course == null) {
-                throw new CourseNotFoundException();
-            }
-
-            result = seminarDao.deleteSeminarByCourseId(courseId);
-        } catch (Exception e) {
-            e.printStackTrace();
+        List<Seminar> seminars = listSeminarByCourseId(courseId);
+        for (int i = 0; i < seminars.size(); i++) {
+            seminarDao.deleteTopicBySeminarId(seminars.get(i).getId());
+            seminarDao.deleteSeminarGroupBySeminarId(seminars.get(i).getId());
         }
 
-        return result;
+        return seminarDao.deleteSeminarByCourseId(courseId);
+
     }
 
     @Override
@@ -77,82 +60,41 @@ public class SeminarServiceImpl implements SeminarService {
 
     @Override
     public Seminar getSeminarBySeminarId(BigInteger seminarId) throws IllegalArgumentException, SeminarNotFoundException {
-        if (seminarId == null) {
-            throw new IllegalArgumentException("Wrong format for seminarId.");
-        }
-
-
-        try {
-            Seminar seminar = seminarDao.getSeminarBySeminarId(seminarId);
-            if (seminar != null) {
-                return seminar;
-            }
+        if(seminarDao.getSeminarBySeminarId(seminarId)==null){
             throw new SeminarNotFoundException();
-        } catch (Exception e) {
-            e.printStackTrace();
         }
-
-        return null;
+        return seminarDao.getSeminarBySeminarId(seminarId);
     }
 
     @Override
     public Boolean updateSeminarBySeminarId(BigInteger seminarId, Seminar seminar) throws IllegalArgumentException, SeminarNotFoundException {
-        if (seminarId == null) {
-            throw new IllegalArgumentException("Wrong format for seminarId.");
+        if(seminarDao.getSeminarBySeminarId(seminarId)==null){
+            throw new SeminarNotFoundException();
         }
-
-        Boolean result = false;
-
-        try {
-            result = seminarDao.updateSeminarBySeminarId(seminarId, seminar);
-            if (!result) {
-                throw new SeminarNotFoundException();
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        return result;
+        seminar.setId(seminarId);
+        return seminarDao.updateSeminarBySeminarId(seminar);
     }
 
     @Override
     public Boolean deleteSeminarBySeminarId(BigInteger seminarId) throws IllegalArgumentException, SeminarNotFoundException {
-        if (seminarId == null) {
-            throw new IllegalArgumentException("Wrong format for seminarId.");
+        if(seminarDao.getSeminarBySeminarId(seminarId)==null){
+            throw new SeminarNotFoundException();
         }
-
-        Boolean result = false;
-
-        try {
-            result = seminarDao.deleteSeminarBySeminarId(seminarId);
-            if (!result) {
-                throw new SeminarNotFoundException();
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        return result;
+        //删除讨论课包含的topic信息和小组信息
+        seminarDao.deleteTopicBySeminarId(seminarId);
+        seminarDao.deleteSeminarGroupBySeminarId(seminarId);
+        //通过seminarId删除讨论课
+        return seminarDao.deleteSeminarBySeminarId(seminarId);
     }
 
     @Override
     public BigInteger insertSeminarByCourseId(BigInteger courseId, Seminar seminar) throws IllegalArgumentException, CourseNotFoundException {
-        if (courseId == null) {
-            throw new IllegalArgumentException("Wrong format for courseId.");
+        if (seminarDao.getCourseById(courseId) == null) {
+            throw new CourseNotFoundException();
         }
-
-        BigInteger seminarId = new BigInteger("-1");
-        try {
-            Course course = courseService.getCourseByCourseId(courseId);
-            if (course == null) {
-                throw new CourseNotFoundException();
-            }
-
-            seminarId = seminarDao.insertSeminarByCourseId(courseId, seminar);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        return seminarId;
+        Course course = new Course();
+        course.setId(courseId);
+        seminar.setCourse(course);
+        return seminarDao.insertSeminarByCourseId(seminar);
     }
 }

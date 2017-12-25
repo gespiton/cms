@@ -1,5 +1,6 @@
 package xmu.crms.dao;
 
+import xmu.crms.entity.Course;
 import xmu.crms.entity.Seminar;
 
 import java.math.BigInteger;
@@ -21,11 +22,10 @@ public interface SeminarDao {
     /**
      * 插入讨论课信息，该讨论课属于的课程为 courseId 所指定的课程
      *
-     * @param courseId
      * @param seminar seminar 信息
      * @return 新建讨论课的 id， 失败返回 -1
      */
-    BigInteger insertSeminarByCourseId(BigInteger courseId, Seminar seminar);
+    BigInteger insertSeminarByCourseId(Seminar seminar);
 
     /**
      * 删除 courseId 对应的课程下的所有讨论课信息，先删除 semianr 下的 topic ，再把相应的 SeminarGroup 删除
@@ -46,10 +46,9 @@ public interface SeminarDao {
     /**
      * update seminar by seminar ID
      *
-     * @param seminarId seminar
      * @return 如果成功更新返回 true，如果没有找到 seminarId 导致更新失败 返回 false
      */
-    Boolean updateSeminarBySeminarId(BigInteger seminarId, Seminar seminar);
+    Boolean updateSeminarBySeminarId(Seminar seminar);
 
     /**
      * get seminar by seminar ID
@@ -58,4 +57,26 @@ public interface SeminarDao {
      * @return Seminar
      */
     Seminar getSeminarBySeminarId(BigInteger seminarId);
+
+    /**
+     * delete topic by seminar id
+     *
+     * @param id seminar id
+     */
+    void deleteTopicBySeminarId(BigInteger id);
+
+    /**
+     * delete seminar group by seminar id
+     *
+     * @param id seminar
+     */
+    void deleteSeminarGroupBySeminarId(BigInteger id);
+
+    /**
+     * get course by course id
+     *
+     * @param courseId course id
+     * @return the course
+     */
+    Course getCourseById(BigInteger courseId);
 }
