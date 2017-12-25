@@ -53,6 +53,15 @@ public interface TopicDao {
      */
     List<Topic> getTopicsBySeminarId(BigInteger seminarId);
 
+
+    /**
+     * delete all topics under seminar
+     *
+     * @param seminarId seminar id
+     * @return number of deleted rows
+     */
+    Integer deleteTopicsBySeminarId(BigInteger seminarId);
+
     /**
      * get topic info in seminar_group_topic table
      *
@@ -78,4 +87,28 @@ public interface TopicDao {
      * @return number of deleted row
      */
     Integer deleteAllSeminarGroupTopicsByTopicId(BigInteger topicId);
+
+    /**
+     * delete all the chosen seminarGroupTopic by groupId
+     *
+     * @param groupId group id
+     * @return deleted number
+     */
+    Integer deleteChosenTopicByGroupId(BigInteger groupId);
+
+    /**
+     * get all the topics that a seminarGroup choose
+     *
+     * @param groupId group id
+     * @return list of seminarGroupTopic
+     */
+    List<SeminarGroupTopic> getChosenTopicByGroupId(BigInteger groupId);
+
+
+    /**
+     * get all the SeminarGroupTopics belong to a topic
+     * @param topicId topic id
+     * @return list of seminarGroupTopic
+     */
+    List<SeminarGroupTopic> getSeminarGroupTopicsByTopicId(BigInteger topicId);
 }

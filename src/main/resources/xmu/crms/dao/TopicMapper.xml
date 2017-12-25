@@ -96,6 +96,22 @@
         WHERE topic_id = #{topicId} AND seminar_group_id = #{groupId}
     </select>
 
+    <select id="getChosenTopicByGroupId" resultMap="seminarGroupTopicResult">
+        SELECT *
+        FROM seminar_group_topic
+        WHERE seminar_group_id = #{id}
+    </select>
+
+    <select id="getSeminarGroupTopicsByTopicId" resultMap="seminarGroupTopicResult">
+        SELECT *
+        FROM seminar_group_topic
+        WHERE topic_id = #{id}
+    </select>
+
+    <delete id="deleteChosenTopicByGroupId">
+        DELETE FROM seminar_group_topic
+        WHERE seminar_group_id = #{id}
+    </delete>
 
     <delete id="deleteSeminarGroupTopic">
         DELETE FROM seminar_group_topic
@@ -105,5 +121,10 @@
     <delete id="deleteAllSeminarGroupTopicsByTopicId">
         DELETE FROM seminar_group_topic
         WHERE topic_id = #{topicId}
+    </delete>
+
+    <delete id="deleteTopicsBySeminarId">
+        DELETE FROM topic
+        WHERE seminar_id = #{id}
     </delete>
 </mapper>
