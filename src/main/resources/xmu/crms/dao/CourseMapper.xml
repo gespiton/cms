@@ -1,21 +1,30 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<!--
-       Copyright 2015-2016 the original author or authors.
-       Licensed under the Apache License, Version 2.0 (the "License");
-       you may not use this file except in compliance with the License.
-       You may obtain a copy of the License at
-          http://www.apache.org/licenses/LICENSE-2.0
-       Unless required by applicable law or agreed to in writing, software
-       distributed under the License is distributed on an "AS IS" BASIS,
-       WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-       See the License for the specific language governing permissions and
-       limitations under the License.
--->
+
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
 <mapper namespace="xmu.crms.dao.CourseDao">
-    <select id="getAllCourse" resultType="Course">
-        select * from course
+
+    <resultMap type="xmu.crms.entity.Course" id="CourseResult">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="start_date" property="startDate"/>
+        <result column="end_date" property="endDate"/>
+        <result column="decription" property="decription"/>
+        <result column="report_percentage" property="reportPercentage"/>
+        <result column="presentation_percentage" property="presentationPercentage"/>
+        <result column="five_point_percentage" property="fivePointPercentage"/>
+        <result column="four_point_percentage" property="fourPointPercentage"/>
+        <result column="three_point_percentage" property="threePointPercentage"/>
+        <association column="teacher_id" property="teacher" javaType="User" select="UserMapper.getUserByUserId">
+        </association>
+    </resultMap>
+
+    <select id="listCourseByUserId" resultMap="CourseResult">
+        select id,name,start_date,end_date,description,report_percentage,presentation_percentage,five_point_percentage,four_point_percentage,three_point_percentage
+        from course
+        where teacher_id = #{id}
     </select>
+
 </mapper>
