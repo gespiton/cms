@@ -6,23 +6,37 @@
 <mapper namespace="xmu.crms.dao.TopicDao">
 
     <resultMap id="topicResult" type="Topic">
-        <id property="id" column="topic_id"/>
-        <result property="name" column="topic_name"/>
-        <result property="description" column="topic_description"/>
+        <id property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="description" column="description"/>
         <result property="groupNumberLimit" column="group_number_limit"/>
         <result property="groupStudentLimit" column="group_student_limit"/>
-        <association property="seminar" resultMap="seminarResult"/>
+        <association property="seminar" column="seminar_id" select="selectSeminarById"/>
     </resultMap>
 
-    <resultMap id="seminarResult" type="Seminar">
-        <id property="id" column="seminar_id"/>
-        <result property="name" column="seminar_name"/>
-        <result property="description" column="seminar_description"/>
-        <result property="fixed" column="seminar_fixed"/>
+    <resultMap id="SeminarResult" type="Seminar">
+        <id property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="description" column="description"/>
+        <result property="fixed" column="is_fixed"/>
         <result property="startTime" column="start_time"/>
         <result property="endTime" column="end_time"/>
+        <association property="course" column="course_id" select="selectCourse"/>
     </resultMap>
 
+    <resultMap type="Course" id="CourseResultMap">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="start_date" property="startDate"/>
+        <result column="end_date" property="endDate"/>
+        <result column="description" property="description"/>
+        <result column="report_percentage" property="reportPercentage"/>
+        <result column="presentation_percentage" property="presentationPercentage"/>
+        <result column="five_point_percentage" property="fivePointPercentage"/>
+        <result column="four_point_percentage" property="fourPointPercentage"/>
+        <result column="three_point_percentage" property="threePointPercentage"/>
+        <association column="teacher_id" property="teacher" select="selectUserByUserId"/>
+    </resultMap>
 
     <resultMap id="seminarGroupTopicResult" type="SeminarGroupTopic">
         <id property="id" column="id"/>
@@ -31,28 +45,58 @@
         <association property="seminarGroup" column="seminar_group_id" select="getSeminarGroupById"/>
     </resultMap>
 
+    <resultMap type="User" id="UserResultMap">
+        <id column="id" property="id"/>
+        <result column="phone" property="phone"/>
+        <result column="wechat_id" property="wechatId"/>
+        <result column="openid" property="openid"/>
+        <result column="avatar" property="avatar"/>
+        <result column="password" property="password"/>
+        <result column="name" property="name"/>
+        <result column="gender" property="gender"/>
+        <result column="type" property="type"/>
+        <result column="number" property="number"/>
+        <result column="education" property="education"/>
+        <result column="title" property="title"/>
+        <result column="email" property="email"/>
+        <association column="school_id" property="school" select="selectSchoolBySchoolId"/>
+    </resultMap>
+
     <select id="getSeminarGroupById" resultType="SeminarGroup">
         SELECT *
         FROM seminar_group
         WHERE id = #{id}
     </select>
 
-    <select id="getTopicById" parameterType="BigInteger" resultMap="topicResult">
-        SELECT
-            t.id                  AS topic_id,
-            t.name                AS topic_name,
-            t.description         AS topic_description,
-            t.group_number_limit  AS group_number_limit,
-            t.group_student_limit AS group_student_limit,
+    <select id="selectSeminarById" resultMap="SeminarResult">
+        SELECT *
+        FROM seminar
+        WHERE id = #{id}
+    </select>
 
-            s.id                  AS seminar_id,
-            s.name                AS seminar_name,
-            s.description         AS seminar_description,
-            s.is_fixed            AS seminar_fixed,
-            s.start_time          AS start_time,
-            s.end_time            AS end_time
-        FROM topic t LEFT OUTER JOIN seminar s ON t.seminar_id = s.id
-        WHERE t.id = #{id}
+    <select id="selectCourse" resultMap="CourseResultMap">
+        SELECT *
+        FROM course
+        WHERE id = #{id}
+    </select>
+
+    <select id="selectUserByUserId" resultMap="UserResultMap">
+        SELECT *
+        FROM user_info
+        WHERE id = #{id}
+    </select>
+
+    <select id="selectSchoolBySchoolId" resultType="School">
+        SELECT *
+        FROM school
+        WHERE id = #{id}
+    </select>
+
+    <select id="getTopicById" parameterType="BigInteger" resultMap="topicResult">
+        SELECT *
+        FROM topic
+        WHERE id = #{id}
+
     </select>
 
     <update id="updateTopic" parameterType="Topic">

@@ -10,13 +10,13 @@ import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import xmu.crms.ClassManagerApplication;
 import xmu.crms.dao.TopicDao;
-import xmu.crms.entity.SeminarGroup;
-import xmu.crms.entity.SeminarGroupTopic;
-import xmu.crms.entity.Topic;
+import xmu.crms.entity.*;
 
 import java.math.BigInteger;
 import java.util.Date;
 import java.util.List;
+
+import static junit.framework.TestCase.assertNotNull;
 
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -28,13 +28,7 @@ public class TopicMapperTest {
     @Test
     public void getTopicById() {
         Topic topic = topicDao.getTopicById(BigInteger.valueOf(1));
-        Assert.assertNotNull(topic);
-        Assert.assertNotNull(topic.getId());
-        Assert.assertNotNull(topic.getName());
-        Assert.assertNotNull(topic.getDescription());
-        Assert.assertNotNull(topic.getGroupNumberLimit());
-        Assert.assertNotNull(topic.getGroupStudentLimit());
-        Assert.assertNotNull(topic.getSeminar());
+        testTopic(topic);
     }
 
     @Test
@@ -48,6 +42,7 @@ public class TopicMapperTest {
 
         Assert.assertNotNull(result);
         Assert.assertEquals(updatedTopic.getDescription(), randomStr);
+        testTopic(updatedTopic);
     }
 
 
@@ -68,6 +63,7 @@ public class TopicMapperTest {
         Assert.assertNotNull(topic.getId());
         Assert.assertEquals(testName, insertedTopic.getName());
         Assert.assertEquals(seminarId, insertedTopic.getSeminar().getId());
+        testTopic(insertedTopic);
     }
 
     @Test
@@ -95,12 +91,7 @@ public class TopicMapperTest {
         Assert.assertTrue(topics.size() > 0);
 
         Topic oneTopic = topics.get(0);
-        Assert.assertNotNull(oneTopic.getId());
-        Assert.assertNotNull(oneTopic.getDescription());
-        Assert.assertNotNull(oneTopic.getName());
-        Assert.assertNotNull(oneTopic.getSeminar());
-        Assert.assertNotNull(oneTopic.getGroupNumberLimit());
-        Assert.assertNotNull(oneTopic.getGroupStudentLimit());
+        testTopic(oneTopic);
     }
 
     @Test
@@ -126,6 +117,7 @@ public class TopicMapperTest {
 
         Assert.assertEquals(true, result);
         Assert.assertEquals(null, info);
+        //todo test seminar group topic
     }
 
     @Test
@@ -160,6 +152,78 @@ public class TopicMapperTest {
 
         List<SeminarGroupTopic> topics = topicDao.getChosenTopicByGroupId(groupId);
         Assert.assertEquals(0, topics.size());
+    }
+
+
+    void testTopic(Topic topic) {
+        assertNotNull(topic);
+        assertNotNull(topic.getId());
+        assertNotNull(topic.getName());
+        assertNotNull(topic.getDescription());
+        assertNotNull(topic.getGroupNumberLimit());
+        assertNotNull(topic.getGroupStudentLimit());
+        assertNotNull(topic.getSeminar());
+        Seminar seminar = topic.getSeminar();
+        testSeminar(seminar);
+    }
+
+    void testSeminar(Seminar seminar) {
+        assertNotNull(seminar.getId());
+        assertNotNull(seminar.getName());
+        assertNotNull(seminar.getDescription());
+        assertNotNull(seminar.getStartTime());
+        assertNotNull(seminar.getEndTime());
+        assertNotNull(seminar.getFixed());
+        assertNotNull(seminar.getCourse());
+
+        Course course = seminar.getCourse();
+        testCourse(course);
+    }
+
+    void testCourse(Course course) {
+        assertNotNull(course.getId());
+        assertNotNull(course.getName());
+        assertNotNull(course.getStartDate());
+        assertNotNull(course.getEndDate());
+        assertNotNull(course.getTeacher());
+        assertNotNull(course.getDescription());
+        assertNotNull(course.getReportPercentage());
+        assertNotNull(course.getPresentationPercentage());
+        assertNotNull(course.getFivePointPercentage());
+        assertNotNull(course.getFourPointPercentage());
+        assertNotNull(course.getThreePointPercentage());
+
+        User user = course.getTeacher();
+        testUser(user);
+
+    }
+
+    void testUser(User user) {
+        assertNotNull(user.getId());
+        assertNotNull(user.getPhone());
+        // database default to null
+//        assertNotNull(user.getWechatId());
+//        assertNotNull(user.getOpenid());
+//        assertNotNull(user.getAvatar());
+        assertNotNull(user.getPassword());
+        assertNotNull(user.getName());
+        assertNotNull(user.getSchool());
+        assertNotNull(user.getGender());
+        assertNotNull(user.getType());
+        assertNotNull(user.getNumber());
+        assertNotNull(user.getEducation());
+        assertNotNull(user.getTitle());
+        assertNotNull(user.getEmail());
+
+        School school = user.getSchool();
+        testSchool(school);
+    }
+
+    void testSchool(School school) {
+        assertNotNull(school.getId());
+        assertNotNull(school.getName());
+        assertNotNull(school.getProvince());
+        assertNotNull(school.getCity());
     }
 //    @Test
 //    @DirtiesContext

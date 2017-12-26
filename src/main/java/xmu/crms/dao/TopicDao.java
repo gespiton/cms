@@ -108,6 +108,7 @@ public interface TopicDao {
 
     /**
      * get all the SeminarGroupTopics belong to a topic
+     *
      * @param topicId topic id
      * @return list of seminarGroupTopic
      */
