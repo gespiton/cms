@@ -19,6 +19,8 @@ import java.util.List;
  * @date 2017/12/24
  */
 public class SeminarServiceImpl implements SeminarService {
+
+    // todo deleted later
     @Autowired(required = false)
     SeminarDao seminarDao;
 
@@ -33,7 +35,7 @@ public class SeminarServiceImpl implements SeminarService {
 
 
     @Override
-    public Boolean deleteSeminarByCourseId(BigInteger courseId) throws IllegalArgumentException, CourseNotFoundException {
+    public void deleteSeminarByCourseId(BigInteger courseId) throws IllegalArgumentException, CourseNotFoundException {
         if (seminarDao.getCourseById(courseId) == null) {
             throw new CourseNotFoundException();
         }
@@ -44,47 +46,38 @@ public class SeminarServiceImpl implements SeminarService {
             seminarDao.deleteSeminarGroupBySeminarId(seminars.get(i).getId());
         }
 
-        return seminarDao.deleteSeminarByCourseId(courseId);
+        seminarDao.deleteSeminarByCourseId(courseId);
 
     }
 
-    @Override
-    public Seminar getMySeminarBySeminarId(BigInteger seminarId, BigInteger userId) throws IllegalArgumentException, SeminarNotFoundException {
-        return null;
-    }
-
-    @Override
-    public Seminar getSeminarDetailBySeminarId(BigInteger seminarId, BigInteger userId) throws IllegalArgumentException, SeminarNotFoundException {
-        return null;
-    }
 
     @Override
     public Seminar getSeminarBySeminarId(BigInteger seminarId) throws IllegalArgumentException, SeminarNotFoundException {
-        if(seminarDao.getSeminarBySeminarId(seminarId)==null){
+        if (seminarDao.getSeminarBySeminarId(seminarId) == null) {
             throw new SeminarNotFoundException();
         }
         return seminarDao.getSeminarBySeminarId(seminarId);
     }
 
     @Override
-    public Boolean updateSeminarBySeminarId(BigInteger seminarId, Seminar seminar) throws IllegalArgumentException, SeminarNotFoundException {
-        if(seminarDao.getSeminarBySeminarId(seminarId)==null){
+    public void updateSeminarBySeminarId(BigInteger seminarId, Seminar seminar) throws IllegalArgumentException, SeminarNotFoundException {
+        if (seminarDao.getSeminarBySeminarId(seminarId) == null) {
             throw new SeminarNotFoundException();
         }
         seminar.setId(seminarId);
-        return seminarDao.updateSeminarBySeminarId(seminar);
+        seminarDao.updateSeminarBySeminarId(seminar);
     }
 
     @Override
-    public Boolean deleteSeminarBySeminarId(BigInteger seminarId) throws IllegalArgumentException, SeminarNotFoundException {
-        if(seminarDao.getSeminarBySeminarId(seminarId)==null){
+    public void deleteSeminarBySeminarId(BigInteger seminarId) throws IllegalArgumentException, SeminarNotFoundException {
+        if (seminarDao.getSeminarBySeminarId(seminarId) == null) {
             throw new SeminarNotFoundException();
         }
         //删除讨论课包含的topic信息和小组信息
         seminarDao.deleteTopicBySeminarId(seminarId);
         seminarDao.deleteSeminarGroupBySeminarId(seminarId);
         //通过seminarId删除讨论课
-        return seminarDao.deleteSeminarBySeminarId(seminarId);
+        seminarDao.deleteSeminarBySeminarId(seminarId);
     }
 
     @Override
