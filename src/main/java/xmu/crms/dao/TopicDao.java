@@ -80,6 +80,7 @@ public interface TopicDao {
      */
     boolean deleteSeminarGroupTopic(@Param("topicId") BigInteger topicId, @Param("groupId") BigInteger groupId);
 
+
     /**
      * delete all records by topic id
      *

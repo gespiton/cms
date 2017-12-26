@@ -4,6 +4,7 @@
     <text class='course_seminar'>{{seminar.name}}</text>
 </view>
 <view class='infobar'>
+
 <view>
     <image src='/images/clock.png' class='clockAndGroupIcon'/>
     <text>{{seminar.startTime + ' ~ ' +seminar.endTime}}</text>
@@ -18,6 +19,7 @@
     <view class='single_class flex_column' bindtap='toStartCall' data-classid="{{item.id}}"
           data-groupmethod="{{seminar.groupingMethod}}">
         <image src="/images/class.png" class="classIcon"/>
+
         <text>{{item.name}}</text>
     </view>
 </block>
