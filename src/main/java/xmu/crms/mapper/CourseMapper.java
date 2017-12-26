@@ -1,7 +1,6 @@
-package xmu.crms.dao;
+package xmu.crms.mapper;
 
 import org.springframework.stereotype.Component;
-import xmu.crms.entity.ClassInfo;
 import xmu.crms.entity.Course;
 
 import java.math.BigInteger;
@@ -10,7 +9,7 @@ import java.util.List;
  * @author caistrong
  */
 @Component
-public interface CourseDao {
+public interface CourseMapper {
     List<Course> listCourseByUserId(BigInteger userId);
     Integer insertCourseByUserId(Course course);
     Course getCourseByCourseId(BigInteger courseId);

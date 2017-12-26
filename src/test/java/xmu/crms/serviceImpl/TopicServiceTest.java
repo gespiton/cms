@@ -8,17 +8,19 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import xmu.crms.ClassManagerApplication;
-import xmu.crms.dao.TopicDao;
-import xmu.crms.entity.*;
+import xmu.crms.entity.SeminarGroupTopic;
+import xmu.crms.entity.Topic;
 import xmu.crms.exception.TopicNotFoundException;
+import xmu.crms.mapper.TopicMapper;
+import xmu.crms.service.GradeService;
 import xmu.crms.service.TopicService;
 
 import java.math.BigInteger;
 import java.util.Date;
 import java.util.List;
 
-import static junit.framework.TestCase.assertNotNull;
 import static junit.framework.TestCase.fail;
+import static org.mockito.Mockito.*;
 import static org.mockito.BDDMockito.*;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -27,7 +29,7 @@ public class TopicServiceTest {
     @Autowired
     TopicService topicService;
     @Autowired
-    TopicDao topicDao;
+    TopicMapper topicMapper;
 
 
     // getTopicById
@@ -89,14 +91,14 @@ public class TopicServiceTest {
     @Test
     public void insertTopicWithSeminarId() {
         BigInteger seminarId = BigInteger.valueOf(1);
-        Topic topic = topicDao.getTopicById(BigInteger.valueOf(1));
+        Topic topic = topicMapper.getTopicById(BigInteger.valueOf(1));
         String testName = "test String";
 
         topic.setName(testName);
         topic.setId(null);
 
         BigInteger insertedRow = topicService.insertTopicBySeminarId(seminarId, topic);
-        Topic insertedTopic = topicDao.getTopicById(topic.getId());
+        Topic insertedTopic = topicMapper.getTopicById(topic.getId());
 
         Assert.assertEquals(BigInteger.valueOf(1), insertedRow);
         Assert.assertNotNull(insertedTopic);
@@ -141,11 +143,11 @@ public class TopicServiceTest {
         BigInteger groupId = BigInteger.valueOf(1);
 
 
-        SeminarGroupTopic info = topicDao.getTopicInfoOfGroup(topicId, groupId);
+        SeminarGroupTopic info = topicMapper.getTopicInfoOfGroup(topicId, groupId);
         Assert.assertNotNull(info);
 
         topicService.deleteSeminarGroupTopicById(topicId, groupId);
-        info = topicDao.getTopicInfoOfGroup(topicId, groupId);
+        info = topicMapper.getTopicInfoOfGroup(topicId, groupId);
 
         Assert.assertEquals(null, info);
     }
@@ -160,7 +162,7 @@ public class TopicServiceTest {
         topicService.deleteSeminarGroupTopicByTopicId(topicId);
 
         // due to flaw of design, test again
-        int deletedNum = topicDao.deleteAllSeminarGroupTopicsByTopicId(topicId);
+        int deletedNum = topicMapper.deleteAllSeminarGroupTopicsByTopicId(topicId);
         Assert.assertEquals(0, deletedNum);
     }
 
@@ -188,18 +190,28 @@ public class TopicServiceTest {
     }
 
     // deleteTopicBySeminarId
-    @Test
+//    @Test
     @DirtiesContext
     public void deleteTopicBySeminarId() {
         BigInteger seminarId = BigInteger.valueOf(1);
-        List<Topic> topics = topicDao.getTopicsBySeminarId(seminarId);
+        GradeService gradeService = mock(GradeService.class);
+        TopicService service = new TopicServiceImpl(topicMapper, gradeService);
+
+        //given
+        given(gradeService.deleteStudentScoreGroupByTopicId(any(BigInteger.class)));
+
+
+        //when
+        List<Topic> topics = topicMapper.getTopicsBySeminarId(seminarId);
         Assert.assertTrue(topics.size() > 0);
 
 
-        topicService.deleteTopicBySeminarId(seminarId);
+        service.deleteTopicBySeminarId(seminarId);
 
 
-        topics = topicDao.getTopicsBySeminarId(seminarId);
+        //then
+        then(gradeService).should(calls(any())).deleteStudentScoreGroupByTopicId(any());
+        topics = topicMapper.getTopicsBySeminarId(seminarId);
         Assert.assertEquals(0, topics.size());
     }
 

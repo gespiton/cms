@@ -9,7 +9,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import xmu.crms.ClassManagerApplication;
-import xmu.crms.dao.TopicDao;
 import xmu.crms.entity.*;
 
 import java.math.BigInteger;
@@ -23,22 +22,22 @@ import static junit.framework.TestCase.assertNotNull;
 @SpringBootTest(classes = ClassManagerApplication.class)
 public class TopicMapperTest {
     @Autowired
-    TopicDao topicDao;
+    TopicMapper topicMapper;
 
     @Test
     public void getTopicById() {
-        Topic topic = topicDao.getTopicById(BigInteger.valueOf(1));
+        Topic topic = topicMapper.getTopicById(BigInteger.valueOf(1));
         testTopic(topic);
     }
 
     @Test
     public void updateTopic() {
         String randomStr = new Date().toString();
-        Topic topic = topicDao.getTopicById(BigInteger.valueOf(1));
+        Topic topic = topicMapper.getTopicById(BigInteger.valueOf(1));
         topic.setDescription(randomStr);
 
-        Boolean result = topicDao.updateTopic(topic);
-        Topic updatedTopic = topicDao.getTopicById(BigInteger.valueOf(1));
+        Boolean result = topicMapper.updateTopic(topic);
+        Topic updatedTopic = topicMapper.getTopicById(BigInteger.valueOf(1));
 
         Assert.assertNotNull(result);
         Assert.assertEquals(updatedTopic.getDescription(), randomStr);
@@ -48,16 +47,16 @@ public class TopicMapperTest {
 
     @Test
     public void insertTopicWithSeminarId() {
-        Topic topic = topicDao.getTopicById(BigInteger.valueOf(1));
+        Topic topic = topicMapper.getTopicById(BigInteger.valueOf(1));
         String testName = "test String";
         BigInteger seminarId = BigInteger.valueOf(2);
 
         topic.setName(testName);
         topic.setId(null);
 
-        topicDao.insertWithSeminarId(seminarId, topic);
+        topicMapper.insertWithSeminarId(seminarId, topic);
         System.out.println(topic.getId());
-        Topic insertedTopic = topicDao.getTopicById(topic.getId());
+        Topic insertedTopic = topicMapper.getTopicById(topic.getId());
 
         Assert.assertNotNull(insertedTopic);
         Assert.assertNotNull(topic.getId());
@@ -68,16 +67,16 @@ public class TopicMapperTest {
 
     @Test
     public void deleteTopic() {
-        Topic topic = topicDao.getTopicById(BigInteger.valueOf(1));
+        Topic topic = topicMapper.getTopicById(BigInteger.valueOf(1));
         topic.setId(null);
         BigInteger seminarId = BigInteger.valueOf(2);
-        topicDao.insertWithSeminarId(seminarId, topic);
+        topicMapper.insertWithSeminarId(seminarId, topic);
 
         // after insert
         BigInteger insertedId = topic.getId();
-        topicDao.deleteById(insertedId);
+        topicMapper.deleteById(insertedId);
 
-        Topic t = topicDao.getTopicById(insertedId);
+        Topic t = topicMapper.getTopicById(insertedId);
         Assert.assertEquals(null, t);
 
     }
@@ -85,7 +84,7 @@ public class TopicMapperTest {
     @Test
     public void getTopicsBySeminarId() {
         BigInteger seminarId = BigInteger.valueOf(2);
-        List<Topic> topics = topicDao.getTopicsBySeminarId(seminarId);
+        List<Topic> topics = topicMapper.getTopicsBySeminarId(seminarId);
 
         Assert.assertNotNull(topics);
         Assert.assertTrue(topics.size() > 0);
@@ -96,7 +95,7 @@ public class TopicMapperTest {
 
     @Test
     public void getSeminarGroupTopicInfo() {
-        SeminarGroupTopic info = topicDao.getTopicInfoOfGroup(BigInteger.valueOf(1), BigInteger.valueOf(1));
+        SeminarGroupTopic info = topicMapper.getTopicInfoOfGroup(BigInteger.valueOf(1), BigInteger.valueOf(1));
         Assert.assertEquals(4, info.getPresentationGrade().intValue());
         Assert.assertEquals(1, info.getTopic().getId().intValue());
         Assert.assertEquals(1, info.getSeminarGroup().getId().intValue());
@@ -109,11 +108,11 @@ public class TopicMapperTest {
         BigInteger groupId = BigInteger.valueOf(1);
 
 
-        SeminarGroupTopic info = topicDao.getTopicInfoOfGroup(topicId, groupId);
+        SeminarGroupTopic info = topicMapper.getTopicInfoOfGroup(topicId, groupId);
         Assert.assertNotNull(info);
 
-        boolean result = topicDao.deleteSeminarGroupTopic(topicId, groupId);
-        info = topicDao.getTopicInfoOfGroup(topicId, groupId);
+        boolean result = topicMapper.deleteSeminarGroupTopic(topicId, groupId);
+        info = topicMapper.getTopicInfoOfGroup(topicId, groupId);
 
         Assert.assertEquals(true, result);
         Assert.assertEquals(null, info);
@@ -128,7 +127,7 @@ public class TopicMapperTest {
         // this number is correspond to schema.sql
         int topicNum = 12;
 
-        int deletedNum = topicDao.deleteAllSeminarGroupTopicsByTopicId(topicId);
+        int deletedNum = topicMapper.deleteAllSeminarGroupTopicsByTopicId(topicId);
 
         Assert.assertEquals(topicNum, deletedNum);
     }
@@ -138,7 +137,7 @@ public class TopicMapperTest {
     public void getSeminarGroupTopicsByGroupId() {
         BigInteger groupId = BigInteger.valueOf(1);
 
-        List<SeminarGroupTopic> topics = topicDao.getChosenTopicByGroupId(groupId);
+        List<SeminarGroupTopic> topics = topicMapper.getChosenTopicByGroupId(groupId);
 
         Assert.assertNotNull(topics);
         Assert.assertTrue(topics.size() > 0);
@@ -148,9 +147,9 @@ public class TopicMapperTest {
     @DirtiesContext
     public void deleteAllChosenTopics() {
         BigInteger groupId = BigInteger.valueOf(1);
-        topicDao.deleteChosenTopicByGroupId(groupId);
+        topicMapper.deleteChosenTopicByGroupId(groupId);
 
-        List<SeminarGroupTopic> topics = topicDao.getChosenTopicByGroupId(groupId);
+        List<SeminarGroupTopic> topics = topicMapper.getChosenTopicByGroupId(groupId);
         Assert.assertEquals(0, topics.size());
     }
 
@@ -230,12 +229,12 @@ public class TopicMapperTest {
 //    public void deleteTopicBySeminarId() {
 //        BigInteger seminarId = BigInteger.valueOf(1);
 //
-//        List<Topic> topics = topicDao.getTopicsBySeminarId(seminarId);
+//        List<Topic> topics = topicMapper.getTopicsBySeminarId(seminarId);
 //        int oriSize = topics.size();
 //
-//        topicDao.deleteTopicEverywhere(seminarId);
+//        topicMapper.deleteTopicEverywhere(seminarId);
 //
-//        List<Topic> afterDeleteTopics = topicDao.getTopicsBySeminarId(seminarId);
+//        List<Topic> afterDeleteTopics = topicMapper.getTopicsBySeminarId(seminarId);
 //        assert (oriSize > 0);
 //        Assert.assertEquals(0, afterDeleteTopics.size());
 //

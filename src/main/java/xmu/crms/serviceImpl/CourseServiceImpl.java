@@ -2,7 +2,7 @@ package xmu.crms.serviceImpl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import xmu.crms.dao.CourseDao;
+import xmu.crms.mapper.CourseMapper;
 import xmu.crms.entity.ClassInfo;
 import xmu.crms.entity.Course;
 import xmu.crms.exception.CourseNotFoundException;
@@ -12,7 +12,6 @@ import xmu.crms.service.SeminarService;
 import xmu.crms.service.UserService;
 
 import java.math.BigInteger;
-import java.util.ArrayList;
 import java.util.List;
 /**
  * @author caistrong
@@ -20,7 +19,7 @@ import java.util.List;
 @Component
 public class CourseServiceImpl implements CourseService{
     @Autowired
-    CourseDao courseDao;
+    CourseMapper courseMapper;
 //    todo 合并时将false去掉
     @Autowired(required = false)
     ClassService classService;
@@ -35,7 +34,7 @@ public class CourseServiceImpl implements CourseService{
         if(!(userId.intValue() > 0)) {
             throw new IllegalArgumentException("用户ID格式错误！");
         }
-        List<Course> courseList = courseDao.listCourseByUserId(userId);
+        List<Course> courseList = courseMapper.listCourseByUserId(userId);
         if(courseList == null) {
             throw new CourseNotFoundException();
         }
@@ -49,7 +48,7 @@ public class CourseServiceImpl implements CourseService{
             throw new IllegalArgumentException("用户ID格式错误！");
         }
         course.getTeacher().setId(userId);
-        Integer courseId = courseDao.insertCourseByUserId(course);
+        Integer courseId = courseMapper.insertCourseByUserId(course);
         return BigInteger.valueOf(courseId);
 }
 
@@ -58,7 +57,7 @@ public class CourseServiceImpl implements CourseService{
         if(!(courseId.intValue() > 0)) {
             throw new IllegalArgumentException("课程ID格式错误！");
         }
-        Course course = courseDao.getCourseByCourseId(courseId);
+        Course course = courseMapper.getCourseByCourseId(courseId);
 //        if(course == null) {
 //            throw new CourseNotFoundException();
 //        }
@@ -68,7 +67,7 @@ public class CourseServiceImpl implements CourseService{
     @Override
     public void updateCourseByCourseId(BigInteger courseId, Course course) {
         course.setId(courseId);
-        courseDao.updateCourseByCourseId(course);
+        courseMapper.updateCourseByCourseId(course);
     }
 
     @Override
@@ -79,21 +78,21 @@ public class CourseServiceImpl implements CourseService{
 //        todo Seminar实现后将下行代码注释去掉
 //        删除课程前先将该课程的seminar去掉
 //        seminarService.deleteSeminarByCourseId(courseId);
-        int matchDeleteLines = courseDao.deleteCourseByCourseId(courseId);
+        int matchDeleteLines = courseMapper.deleteCourseByCourseId(courseId);
 		if(matchDeleteLines == 0)
 			throw new CourseNotFoundException();
     }
 
     @Override
     public List<Course> listCourseByCourseName(String courseName) {
-        List<Course> courseList = courseDao.listCourseByCourseName(courseName);
+        List<Course> courseList = courseMapper.listCourseByCourseName(courseName);
         return courseList;
     }
 
     @Override
     public List<ClassInfo> listClassByCourseName(String courseName) {
         try {
-            List<Course> courseList = courseDao.listCourseByCourseName(courseName);
+            List<Course> courseList = courseMapper.listCourseByCourseName(courseName);
             BigInteger course_id = courseList.get(0).getId();
 //        todo 下面的classService还没实现
             List<ClassInfo> classInfoList = classService.listClassByCourseId(course_id);

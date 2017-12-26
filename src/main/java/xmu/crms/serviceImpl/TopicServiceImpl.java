@@ -2,7 +2,7 @@ package xmu.crms.serviceImpl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import xmu.crms.dao.TopicDao;
+import xmu.crms.mapper.TopicMapper;
 import xmu.crms.entity.SeminarGroupTopic;
 import xmu.crms.entity.Topic;
 import xmu.crms.exception.TopicNotFoundException;
@@ -19,16 +19,18 @@ import java.util.List;
 @Service
 public class TopicServiceImpl implements TopicService {
     private final
-    TopicDao topicDao;
+    TopicMapper topicMapper;
 
-    // todo delete this anotation for test only
-    @Autowired(required = false)
+    final
     GradeService gradeService;
 
-    @Autowired()
-    public TopicServiceImpl(TopicDao topicDao) {
-        this.topicDao = topicDao;
-        this.gradeService = gradeService;
+    // todo clear here
+    @Autowired(required = false)
+    public TopicServiceImpl(TopicMapper topicMapper, GradeService gradeService) {
+        GradeService gradeService1;
+        this.topicMapper = topicMapper;
+        gradeService1 = gradeService;
+        this.gradeService = gradeService1;
     }
 
     @Override
@@ -37,7 +39,7 @@ public class TopicServiceImpl implements TopicService {
             throw new IllegalArgumentException("id should be null");
         }
 
-        Topic t = topicDao.getTopicById(topicId);
+        Topic t = topicMapper.getTopicById(topicId);
         if (t == null) {
             throw new TopicNotFoundException();
         }
@@ -77,7 +79,7 @@ public class TopicServiceImpl implements TopicService {
         }
 
         try {
-            topicDao.updateTopic(oriTopic);
+            topicMapper.updateTopic(oriTopic);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -90,7 +92,7 @@ public class TopicServiceImpl implements TopicService {
         }
 
         try {
-            topicDao.deleteById(topicId);
+            topicMapper.deleteById(topicId);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -102,7 +104,7 @@ public class TopicServiceImpl implements TopicService {
             throw new IllegalArgumentException();
         }
 
-        List<Topic> topics = topicDao.getTopicsBySeminarId(seminarId);
+        List<Topic> topics = topicMapper.getTopicsBySeminarId(seminarId);
         return topics;
     }
 
@@ -112,7 +114,7 @@ public class TopicServiceImpl implements TopicService {
             throw new IllegalArgumentException();
         }
 
-        long inserted = topicDao.insertWithSeminarId(seminarId, topic);
+        long inserted = topicMapper.insertWithSeminarId(seminarId, topic);
         return BigInteger.valueOf(inserted);
     }
 
@@ -123,7 +125,7 @@ public class TopicServiceImpl implements TopicService {
             throw new IllegalArgumentException();
         }
 
-        topicDao.deleteSeminarGroupTopic(groupId, topicId);
+        topicMapper.deleteSeminarGroupTopic(groupId, topicId);
     }
 
     @Override
@@ -132,7 +134,7 @@ public class TopicServiceImpl implements TopicService {
             throw new IllegalArgumentException();
         }
 
-        topicDao.deleteAllSeminarGroupTopicsByTopicId(topicId);
+        topicMapper.deleteAllSeminarGroupTopicsByTopicId(topicId);
     }
 
     @Override
@@ -141,7 +143,7 @@ public class TopicServiceImpl implements TopicService {
             throw new IllegalArgumentException();
         }
 
-        return topicDao.getTopicInfoOfGroup(topicId, groupId);
+        return topicMapper.getTopicInfoOfGroup(topicId, groupId);
     }
 
     @Override
@@ -150,7 +152,7 @@ public class TopicServiceImpl implements TopicService {
             throw new IllegalArgumentException();
         }
 
-        return topicDao.getChosenTopicByGroupId(groupId);
+        return topicMapper.getChosenTopicByGroupId(groupId);
     }
 
     @Override
@@ -159,15 +161,15 @@ public class TopicServiceImpl implements TopicService {
             throw new IllegalArgumentException();
         }
 
-        List<Topic> topics = topicDao.getTopicsBySeminarId(seminarId);
+        List<Topic> topics = topicMapper.getTopicsBySeminarId(seminarId);
         topics.forEach(topic -> {
-            List<SeminarGroupTopic> seminarGroupTopics = topicDao.getSeminarGroupTopicsByTopicId(topic.getId());
+            List<SeminarGroupTopic> seminarGroupTopics = topicMapper.getSeminarGroupTopicsByTopicId(topic.getId());
             seminarGroupTopics.forEach(seminarGroupTopic -> {
                 gradeService.deleteStudentScoreGroupByTopicId(seminarGroupTopic.getId());
-                topicDao.deleteChosenTopicByGroupId(seminarGroupTopic.getSeminarGroup().getId());
+                topicMapper.deleteChosenTopicByGroupId(seminarGroupTopic.getSeminarGroup().getId());
             });
         });
 
-        topicDao.deleteTopicsBySeminarId(seminarId);
+        topicMapper.deleteTopicsBySeminarId(seminarId);
     }
 }

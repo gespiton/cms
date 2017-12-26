@@ -10,7 +10,7 @@ import org.springframework.context.annotation.FilterType;
  * @author: Sher
  */
 @SpringBootApplication
-@MapperScan(basePackages = {"xmu.crms.dao"})
+@MapperScan(basePackages = {"xmu.crms.mapper"})
 
 public class ClassManagerApplication {
     public static void main(String[] args) {

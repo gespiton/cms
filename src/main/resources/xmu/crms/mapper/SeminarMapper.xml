@@ -4,7 +4,7 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="xmu.crms.dao.SeminarDao">
+<mapper namespace="xmu.crms.mapper.SeminarMapper">
     <resultMap id="SeminarMap" type="Seminar">
         <id column="id" property="id"/>
         <result column="name" property="name"/>

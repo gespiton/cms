@@ -1,4 +1,4 @@
-package xmu.crms.dao;
+package xmu.crms.mapper;
 
 import xmu.crms.entity.Course;
 import xmu.crms.entity.Seminar;
@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * @author: drafting_dreams
  */
-public interface SeminarDao {
+public interface SeminarMapper {
     /**
      *根据课程ID查找该课程下的所有讨论课，返回讨论课列表
      *

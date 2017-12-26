@@ -1,4 +1,4 @@
-package xmu.crms.dao;
+package xmu.crms.mapper;
 
 import org.apache.ibatis.annotations.Param;
 import xmu.crms.entity.SeminarGroupTopic;
@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * @author shin
  */
-public interface TopicDao {
+public interface TopicMapper {
     /**
      * get topic by topicId
      *
