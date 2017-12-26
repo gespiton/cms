@@ -5,12 +5,14 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
+import xmu.crms.entity.ClassInfo;
 import xmu.crms.entity.Course;
 import xmu.crms.entity.User;
 
 import java.math.BigInteger;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
 
@@ -103,6 +105,11 @@ public class CourseServiceTest {
         List<Course> courseList = courseService.listCourseByCourseName(courseName);
         assertNotNull(courseList);
     }
-
+//    @Test
+//    public void listClassByCourseName() throws Exception {
+//        String courseName = "课程1";
+//        List<ClassInfo> classList = courseService.listClassByCourseName(courseName);
+//        assertNotNull(classList);
+//    }
 
 }

@@ -6,9 +6,13 @@ import xmu.crms.dao.CourseDao;
 import xmu.crms.entity.ClassInfo;
 import xmu.crms.entity.Course;
 import xmu.crms.exception.CourseNotFoundException;
+import xmu.crms.service.ClassService;
 import xmu.crms.service.CourseService;
+import xmu.crms.service.SeminarService;
+import xmu.crms.service.UserService;
 
 import java.math.BigInteger;
+import java.util.ArrayList;
 import java.util.List;
 /**
  * @author caistrong
@@ -17,6 +21,14 @@ import java.util.List;
 public class CourseServiceImpl implements CourseService{
     @Autowired
     CourseDao courseDao;
+//    todo 合并时将false去掉
+    @Autowired(required = false)
+    ClassService classService;
+    @Autowired(required = false)
+    UserService userService;
+    @Autowired(required = false)
+    SeminarService seminarService;
+
 
     @Override
     public List<Course> listCourseByUserId(BigInteger userId) throws IllegalArgumentException, CourseNotFoundException {
@@ -64,6 +76,9 @@ public class CourseServiceImpl implements CourseService{
         if(!(courseId.intValue() > 0)) {
             throw new IllegalArgumentException("用户ID格式错误！");
         }
+//        todo Seminar实现后将下行代码注释去掉
+//        删除课程前先将该课程的seminar去掉
+//        seminarService.deleteSeminarByCourseId(courseId);
         int matchDeleteLines = courseDao.deleteCourseByCourseId(courseId);
 		if(matchDeleteLines == 0)
 			throw new CourseNotFoundException();
@@ -77,16 +92,37 @@ public class CourseServiceImpl implements CourseService{
 
     @Override
     public List<ClassInfo> listClassByCourseName(String courseName) {
+        try {
+            List<Course> courseList = courseDao.listCourseByCourseName(courseName);
+            BigInteger course_id = courseList.get(0).getId();
+//        todo 下面的classService还没实现
+            List<ClassInfo> classInfoList = classService.listClassByCourseId(course_id);
+            return classInfoList;
+        }catch (CourseNotFoundException e){
+            e.printStackTrace();
+        }
+//        todo 合并时将下两行删除
+//        List<ClassInfo> classInfoList = new ArrayList<ClassInfo>();
+//        return classInfoList;
         return null;
     }
 
     @Override
     public List<ClassInfo> listClassByTeacherName(String teacherName) {
+        try{
+            BigInteger userId = userService.listUserIdByUserName(teacherName).get(0);
+            List<ClassInfo> classInfoList = this.listClassByUserId(userId);
+            return classInfoList;
+        }catch (Exception e){
+            e.printStackTrace();
+        }
         return null;
     }
 
     @Override
     public List<ClassInfo> listClassByUserId(BigInteger userId) throws IllegalArgumentException, CourseNotFoundException, ClassNotFoundException {
-        return null;
+        BigInteger courseId = this.listCourseByUserId(userId).get(0).getId();
+        List<ClassInfo> classInfoList = classService.listClassByCourseId(courseId);
+        return classInfoList;
     }
 }

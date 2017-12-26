@@ -20,6 +20,19 @@
         <association column="teacher_id" property="teacher" javaType="User" select="getUserByUserId">
         </association>
     </resultMap>
+
+	<resultMap type="ClassInfo" id="ClassInfoResult">
+		<id column="id" property="id"/>
+		<result column="name" property="name"/>
+		<result column="site" property="site"/>
+		<result column="class_time" property="classTime"/>
+		<result column="report_percentage" property="reportPercentage"/>
+		<result column="presentation_percentage" property="presentationPercentage"/>
+		<result column="five_point_percentage" property="fivePointPercentage"/>
+		<result column="four_point_percentage" property="fourPointPercentage"/>
+		<result column="three_point_percentage" property="threePointPercentage"/>
+	</resultMap>
+
     <!--helper select-->
 	<select id="getUserByUserId" parameterType="java.math.BigInteger" resultType="User">
 		select id, phone, wechat_id, openid, avatar, password,
@@ -93,7 +106,5 @@
 		from course
 		where name = #{name,jdbcType=VARCHAR}
 	</select>
-
-
 
 </mapper>
