@@ -21,16 +21,13 @@ public class TopicServiceImpl implements TopicService {
     private final
     TopicMapper topicMapper;
 
-    final
+    @Autowired(required = false)
     GradeService gradeService;
 
     // todo clear here
     @Autowired(required = false)
-    public TopicServiceImpl(TopicMapper topicMapper, GradeService gradeService) {
-        GradeService gradeService1;
+    public TopicServiceImpl(TopicMapper topicMapper) {
         this.topicMapper = topicMapper;
-        gradeService1 = gradeService;
-        this.gradeService = gradeService1;
     }
 
     @Override
